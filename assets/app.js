@@ -21,9 +21,13 @@ body{color:#11151b}
 .contact-form input::placeholder,.contact-form textarea::placeholder{color:#b8c0c9;opacity:1}
 .contact-form input,.contact-form select,.contact-form textarea{border-color:#ffffff3d}
 .button-outline{border-color:#ffffff70;background:#ffffff08}
+.page-hero .tax-pill{background:#e4f5ad;color:#334200;border-color:#94b52b;box-shadow:0 0 0 1px rgba(79,99,0,.08)}
+.page-hero .tax-pill:before{background:#9edc18;color:#11151b}
+.section-dark .tax-pill{background:#c9ff4818;color:#c9ff48;border-color:#c9ff4840}
+.section-dark .tax-pill:before{background:#c9ff48;color:#11151b}
 .brand-copy small{font-size:10px}.dropdown-menu small{font-size:11px}.hero-metrics span,.stage-card small,.trust-list{font-size:11px}.service-card .service-no{font-size:11px}.case-visual .label{font-size:10px}.price-card .badge{font-size:9px}.price-note{font-size:12px}.partner-benefit small{font-size:10px}.contact-meta span,.business-info span{font-size:10px}.business-info strong,.business-info a{font-size:12px}.footer-bottom{font-size:11px}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #9bc600;outline-offset:3px}
-@media(max-width:680px){.hero-lead,.page-hero p,.section-head p{color:#4e5965}.service-card p,.case-copy p,.feature-row p,.faq-list details p{font-size:13px}.business-info strong,.business-info a{line-height:1.65}}
+@media(max-width:680px){.hero-lead,.page-hero p,.section-head p{color:#4e5965}.service-card p,.case-copy p,.feature-row p,.faq-list details p{font-size:13px}.business-info strong,.business-info a{line-height:1.65}.page-hero .tax-pill{font-size:12px;padding:9px 12px}}
 `;document.head.appendChild(contrastStyle);
 
 const toggle=$('.menu-toggle'),menu=$('.mobile-menu');if(toggle&&menu){toggle.addEventListener('click',()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));document.body.classList.toggle('menu-open',open)});$$('a',menu).forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');document.body.classList.remove('menu-open');toggle.setAttribute('aria-expanded','false')}));}
