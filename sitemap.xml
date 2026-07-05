@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/services.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/web.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/commerce.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/space.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/photography.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/pov-video.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/equipment.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/store.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/map.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/operations.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/education-guide.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/automation.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/custom-development.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/packages.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/maintenance.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/start.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/portfolio.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/pricing.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/partnership.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/about.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/contact.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/faq.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/privacy.html</loc><lastmod>2026-07-04</lastmod></url>
-<url><loc>https://kyungminkim11.github.io/lavalabs-web/terms.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/</loc><lastmod>2026-07-06</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/services.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/web.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/commerce.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/space.html</loc><lastmod>2026-07-06</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/space-rental.html</loc><lastmod>2026-07-06</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/space-fashion-popup.html</loc><lastmod>2026-07-06</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/photography.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/pov-video.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/equipment.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/store.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/map.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/operations.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/education-guide.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/automation.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/custom-development.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/packages.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/maintenance.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/start.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/portfolio.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/pricing.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/partnership.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/about.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/contact.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/faq.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/privacy.html</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://space.lavalabs.co.kr/terms.html</loc><lastmod>2026-07-04</lastmod></url>
 </urlset>
