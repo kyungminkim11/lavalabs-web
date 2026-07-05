@@ -26,6 +26,7 @@ const loadScript = (src) =>
   "assets/osmo360-update.js",
   "assets/education-guide.js",
   "assets/footer-compact.js",
+  "assets/footer-sitemap.js",
   "assets/service-taxonomy.js",
   "assets/budget-recommender.js",
   "assets/professional-polish.js",
