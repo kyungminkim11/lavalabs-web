@@ -36,8 +36,9 @@
     ]],
     ['COMPANY',[
       ['홈','index.html','primary'],['라바랩스 소개','about.html'],
+      ['한눈에 보는 사이트맵','sitemap.html','accent'],
       ['개인정보 처리방침','privacy.html'],['서비스 이용 안내','terms.html'],
-      ['검색엔진 사이트맵','sitemap.xml']
+      ['검색엔진용 XML','sitemap.xml']
     ]]
   ];
 
