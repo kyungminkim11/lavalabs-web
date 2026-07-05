@@ -1,3 +1,16 @@
+(() => {
+  const style = document.createElement("style");
+  style.textContent = `
+    @media (max-width:1020px){
+      .nav{gap:10px}
+      .nav > .theme-toggle:not(.mobile-theme-toggle){margin-left:auto!important}
+      .nav > .menu-toggle{margin-left:0!important}
+    }
+    @media (max-width:680px){.nav{gap:8px}}
+  `;
+  document.head.appendChild(style);
+})();
+
 const loadScript = (src) =>
   new Promise((resolve) => {
     const script = document.createElement("script");
@@ -30,5 +43,4 @@ const loadScript = (src) =>
   "assets/service-taxonomy.js",
   "assets/budget-recommender.js",
   "assets/professional-polish.js",
-  "assets/header-controls-fix.js",
 ].reduce((promise, src) => promise.then(() => loadScript(src)), Promise.resolve());
