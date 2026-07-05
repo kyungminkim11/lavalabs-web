@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://kyungminkim11.github.io/lavalabs-web/sitemap.xml
+
+Sitemap: https://space.lavalabs.co.kr/sitemap.xml
