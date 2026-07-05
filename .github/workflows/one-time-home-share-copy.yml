@@ -1,0 +1,78 @@
+name: Refine homepage social share copy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-time-home-share-copy.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refine-copy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update homepage sharing copy
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+          share_title = '공간을 보여주고, 운영을 단순하게 | LavaLabs'
+          share_description = '홈페이지·360° 가상투어·공간 촬영·QR 메뉴판·업무 자동화까지. 작은 매장과 브랜드를 위한 디지털 스튜디오입니다.'
+
+          text = re.sub(
+              r'<meta name="description" content="[^"]*">',
+              f'<meta name="description" content="{share_description}">',
+              text,
+              count=1,
+          )
+          text = re.sub(
+              r'<meta property="og:title" content="[^"]*">',
+              f'<meta property="og:title" content="{share_title}">',
+              text,
+              count=1,
+          )
+          text = re.sub(
+              r'<meta property="og:description" content="[^"]*">',
+              f'<meta property="og:description" content="{share_description}">',
+              text,
+              count=1,
+          )
+          text = re.sub(
+              r'<meta name="twitter:title" content="[^"]*">',
+              f'<meta name="twitter:title" content="{share_title}">',
+              text,
+              count=1,
+          )
+          text = re.sub(
+              r'<meta name="twitter:description" content="[^"]*">',
+              f'<meta name="twitter:description" content="{share_description}">',
+              text,
+              count=1,
+          )
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Remove one-time workflow
+        run: rm -f .github/workflows/one-time-home-share-copy.yml
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Refine homepage social sharing copy"
+            git push origin HEAD:main
+          fi
