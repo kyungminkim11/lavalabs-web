@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "scripts/build_social_previews.py"
+      - "scripts/fix_social_meta.py"
       - ".github/workflows/build-social-previews.yml"
   workflow_dispatch:
 
@@ -35,7 +36,9 @@ jobs:
           pip install pillow
 
       - name: Generate page-specific social previews
-        run: python scripts/build_social_previews.py
+        run: |
+          python scripts/build_social_previews.py
+          python scripts/fix_social_meta.py
 
       - name: Commit generated previews and metadata
         run: |
