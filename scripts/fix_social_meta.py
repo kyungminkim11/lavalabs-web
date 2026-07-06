@@ -35,7 +35,7 @@ def update_page(slug: str, category: str, title: str, description: str) -> None:
 
     html = path.read_text(encoding="utf-8")
     url = canonical_for(slug)
-    image = f"{SITE_URL}/assets/social/{slug}.jpg?v=20260706"
+    image = f"{SITE_URL}/assets/social/{slug}.jpg?v=20260706c"
     clean_title = " ".join(title.splitlines()).strip()
     share_title = clean_title if clean_title.lower().endswith("lavalabs") else f"{clean_title} | LavaLabs"
     alt = share_title
