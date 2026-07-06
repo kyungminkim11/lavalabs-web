@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "scripts/build_social_previews.py"
+      - "scripts/build_question_bank_preview.py"
       - "scripts/fix_social_meta.py"
       - "scripts/refine_social_descriptions.py"
       - "scripts/replace_social_mark.py"
@@ -30,6 +31,7 @@ jobs:
           python scripts/replace_social_mark.py
           python scripts/fix_social_meta.py
           python scripts/refine_social_descriptions.py
+          python scripts/build_question_bank_preview.py
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
