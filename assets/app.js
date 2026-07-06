@@ -48,4 +48,5 @@ const loadScript = (src) =>
   "assets/seo-helpers.js",
   "assets/seo.js",
   "assets/insights.js",
+  "assets/insights-fix.js",
 ].reduce((promise, src) => promise.then(() => loadScript(src)), Promise.resolve());
