@@ -9,6 +9,7 @@
   };
   if (!contentPages[page]) return;
 
+  document.querySelector('script[data-seo-schema]')?.remove();
   document.querySelector(".seo-breadcrumb")?.remove();
   document.querySelector(".seo-related")?.remove();
 
