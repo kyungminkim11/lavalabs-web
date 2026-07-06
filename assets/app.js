@@ -45,4 +45,6 @@ const loadScript = (src) =>
   "assets/professional-polish.js",
   "assets/product-spin.js",
   "assets/lavaspin.js",
+  "assets/seo-helpers.js",
+  "assets/seo.js",
 ].reduce((promise, src) => promise.then(() => loadScript(src)), Promise.resolve());
