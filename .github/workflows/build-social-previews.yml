@@ -4,8 +4,10 @@ on:
   push:
     paths:
       - "scripts/build_social_previews.py"
+      - "scripts/build_social_previews_png.py"
       - "scripts/fix_social_meta.py"
       - "scripts/refine_social_descriptions.py"
+      - "scripts/use_png_social_previews.py"
       - ".github/workflows/build-social-previews.yml"
   workflow_dispatch:
 
@@ -41,6 +43,8 @@ jobs:
           python scripts/build_social_previews.py
           python scripts/fix_social_meta.py
           python scripts/refine_social_descriptions.py
+          python scripts/build_social_previews_png.py
+          python scripts/use_png_social_previews.py
 
       - name: Commit generated previews and metadata
         run: |
@@ -51,5 +55,5 @@ jobs:
             echo "No social preview changes"
             exit 0
           fi
-          git commit -m "Generate page-specific social previews [skip ci]"
+          git commit -m "Generate crisp PNG social previews [skip ci]"
           git push
