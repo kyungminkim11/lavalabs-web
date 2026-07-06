@@ -50,4 +50,5 @@ const loadScript = (src) =>
   "assets/seo-schema-fix.js",
   "assets/insights.js",
   "assets/insights-fix.js",
+  "assets/social-preview.js",
 ].reduce((promise, src) => promise.then(() => loadScript(src)), Promise.resolve());
