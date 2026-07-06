@@ -72,7 +72,7 @@
     section.className = "lavaspin-callout";
     section.innerHTML = `
       <div class="container">
-        <div class="lavaspin-callout-panel reveal">
+        <div class="lavaspin-callout-panel">
           <div>
             <small>NEW · LAVASPIN BETA</small>
             <h2>사진이나 영상을 올리면<br>360° 상품 뷰로.</h2>
