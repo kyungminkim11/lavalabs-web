@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="description" content="제품을 24~72컷으로 촬영해 마우스와 손가락으로 직접 돌려볼 수 있는 360° 제품 스핀 이미지와 인터랙티브 웹 뷰어를 제작합니다.">
+  <link rel="canonical" href="https://space.lavalabs.co.kr/product-spin.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="LavaLabs">
+  <meta property="og:title" content="360° 제품 스핀 촬영·웹 뷰어 제작 | LavaLabs">
+  <meta property="og:description" content="제품을 직접 돌려보는 인터랙티브 상품 콘텐츠. 촬영부터 이미지 최적화, 웹 뷰어와 홈페이지 삽입까지 제공합니다.">
+  <meta property="og:url" content="https://space.lavalabs.co.kr/product-spin.html">
+  <meta property="og:image" content="https://space.lavalabs.co.kr/assets/lavalabs-social-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="360° 제품 스핀 촬영·웹 뷰어 제작 | LavaLabs">
+  <meta name="twitter:description" content="24~72컷 회전 촬영, WebP 이미지 세트, 인터랙티브 상품 뷰어와 웹사이트 삽입까지.">
+  <meta name="twitter:image" content="https://space.lavalabs.co.kr/assets/lavalabs-social-preview.png">
+  <title>360° 제품 스핀 촬영·웹 뷰어 제작 | LavaLabs</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .spin-hero{padding:88px 0 92px;background:linear-gradient(180deg,#f4f4ef 0%,#e8eae2 100%)}
+    .spin-hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.9fr);gap:64px;align-items:center}
+    .spin-hero h1{margin:18px 0 22px;font-size:clamp(46px,6vw,78px);line-height:1.02;letter-spacing:-.065em;word-break:keep-all}
+    .spin-hero h1 span{color:#79818a}
+    .spin-hero p{max-width:700px;margin:0;color:#56616d;font-size:16px}
+    .spin-quickfacts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:34px}
+    .spin-quickfacts div{padding:16px;border:1px solid #d9ddd3;border-radius:16px;background:#fff}
+    .spin-quickfacts strong,.spin-quickfacts span{display:block}
+    .spin-quickfacts strong{font-size:18px}
+    .spin-quickfacts span{margin-top:4px;color:#6d7680;font-size:10px;font-weight:800}
+    .spin-demo{padding:12px;border-radius:30px;background:#0d1117;box-shadow:0 36px 80px rgba(13,17,23,.22)}
+    .spin-demo-bar{display:flex;align-items:center;justify-content:space-between;height:48px;padding:0 10px;color:#aeb5be;font-size:10px;font-weight:800}
+    .spin-demo-bar strong{color:#c9ff48}
+    .spin-demo-stage{position:relative;display:grid;place-items:center;min-height:440px;overflow:hidden;border-radius:22px;background:radial-gradient(circle at 50% 40%,#f9faf5 0,#dedfd8 62%,#c8cbc3 100%);cursor:grab;perspective:900px}
+    .spin-demo-stage:before{content:"";position:absolute;left:14%;right:14%;bottom:72px;height:28px;border-radius:50%;background:rgba(17,21,27,.18);filter:blur(14px)}
+    .spin-demo-product{--spin-angle:18deg;position:relative;width:112px;height:270px;transform-style:preserve-3d;transform:rotateY(var(--spin-angle));transition:transform .08s linear}
+    .spin-demo-product .cap{position:absolute;inset:0 5px 134px;border-radius:24px 24px 16px 16px;background:linear-gradient(90deg,#202731,#59626d 42%,#171d25 78%);box-shadow:inset 12px 0 18px rgba(255,255,255,.12),inset -12px 0 18px rgba(0,0,0,.3)}
+    .spin-demo-product .ring{position:absolute;left:0;right:0;top:132px;height:12px;border-radius:5px;background:linear-gradient(90deg,#b38b2c,#f4d574 42%,#8c6717 80%)}
+    .spin-demo-product .body{position:absolute;inset:144px 9px 0;border-radius:12px 12px 38px 38px;background:linear-gradient(90deg,#17202a,#65717e 42%,#111820 82%);box-shadow:inset 12px 0 18px rgba(255,255,255,.1),inset -12px 0 18px rgba(0,0,0,.34)}
+    .spin-demo-product .clip{position:absolute;z-index:2;top:26px;right:12px;width:7px;height:108px;border-radius:7px;background:linear-gradient(90deg,#caa547,#ffe49a,#9c7623);transform:translateZ(18px)}
+    .spin-demo-product .brand-line{position:absolute;z-index:3;left:50%;top:174px;width:44px;height:2px;background:#e4c668;transform:translateX(-50%) translateZ(20px);box-shadow:0 8px 0 #e4c668}
+    .spin-demo-guide{position:absolute;left:0;right:0;bottom:20px;text-align:center;color:#4e5965;font-size:11px;font-weight:800}
+    .spin-demo-guide b{display:inline-flex;margin-right:7px;padding:5px 8px;border-radius:99px;background:#0d1117;color:#c9ff48}
+    .spin-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .spin-flow article{padding:25px;border:1px solid #dfe1db;border-radius:22px;background:#fff}
+    .spin-flow span{color:#718100;font-size:10px;font-weight:900;letter-spacing:.12em}
+    .spin-flow h3{margin:44px 0 8px;font-size:20px}
+    .spin-flow p{margin:0;color:#66707c;font-size:12px}
+    .spin-delivery{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .spin-delivery article{padding:32px;border-radius:26px}
+    .spin-delivery .light{border:1px solid #dfe1db;background:#fff}
+    .spin-delivery .dark{background:#11161d;color:#fff}
+    .spin-delivery h3{margin:0 0 18px;font-size:27px}
+    .spin-delivery ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+    .spin-delivery li{display:grid;grid-template-columns:24px 1fr;gap:8px;font-size:13px}
+    .spin-delivery li b{color:#718100}
+    .spin-delivery .dark li b{color:#c9ff48}
+    .spin-notice{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .spin-notice article{padding:24px;border:1px solid #ffffff18;border-radius:22px;background:#ffffff08}
+    .spin-notice span{color:#c9ff48;font-size:10px;font-weight:900}
+    .spin-notice h3{margin:42px 0 9px;font-size:21px}
+    .spin-notice p{margin:0;color:#bcc4cd;font-size:12px}
+    .spin-inquiry{background:#0d1117;color:#fff}
+    .spin-inquiry-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:52px;align-items:start}
+    .spin-inquiry-copy{position:sticky;top:110px}
+    .spin-inquiry-copy h2{margin:14px 0 16px;font-size:clamp(34px,4vw,54px);line-height:1.08;letter-spacing:-.05em}
+    .spin-inquiry-copy p{color:#b7c0c9}
+    .spin-inquiry-copy ul{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:10px}
+    .spin-inquiry-copy li{font-size:12px;color:#d7dde3}
+    .spin-inquiry-copy li:before{content:"✓";margin-right:9px;color:#c9ff48;font-weight:900}
+    .spin-form{padding:30px;border:1px solid #ffffff20;border-radius:28px;background:#171c24}
+    .spin-form-section{margin-top:26px;padding-top:24px;border-top:1px solid #ffffff18}
+    .spin-form-section:first-child{margin-top:0;padding-top:0;border-top:0}
+    .spin-form-section h3{margin:0 0 15px;font-size:16px}
+    .spin-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .spin-form label{display:grid;gap:7px;margin-top:14px}
+    .spin-form label:first-child{margin-top:0}
+    .spin-form label>span,.spin-form legend{color:#cbd2da;font-size:11px;font-weight:800}
+    .spin-form input,.spin-form select,.spin-form textarea{width:100%;min-height:50px;padding:12px 14px;border:1px solid #ffffff2d;border-radius:13px;background:#0f141b;color:#fff;outline:none}
+    .spin-form textarea{min-height:116px;resize:vertical}
+    .spin-form input:focus,.spin-form select:focus,.spin-form textarea:focus{border-color:#c9ff48;box-shadow:0 0 0 3px rgba(201,255,72,.12)}
+    .spin-form option{color:#111}
+    .spin-choice{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:10px}
+    .spin-choice label{display:flex;align-items:center;gap:9px;min-height:46px;margin:0;padding:10px 12px;border:1px solid #ffffff20;border-radius:13px;background:#ffffff07;cursor:pointer}
+    .spin-choice input{width:17px;min-height:auto;accent-color:#c9ff48}
+    .spin-choice span{color:#e2e7eb!important;font-size:11px!important}
+    .spin-form-actions{display:flex;gap:10px;margin-top:24px}
+    .spin-form-note{margin:13px 0 0;color:#98a2ad;font-size:10px}
+    #product-spin-status{min-height:24px;margin-top:8px;color:#c9ff48;font-size:11px}
+    @media(max-width:960px){
+      .spin-hero-grid,.spin-inquiry-grid{grid-template-columns:1fr}
+      .spin-demo{max-width:620px;width:100%;margin-inline:auto}
+      .spin-inquiry-copy{position:static}
+      .spin-flow{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:680px){
+      .spin-hero{padding:68px 0 76px}
+      .spin-hero-grid{gap:40px}
+      .spin-hero h1{font-size:44px}
+      .spin-quickfacts{grid-template-columns:1fr}
+      .spin-demo-stage{min-height:360px}
+      .spin-flow,.spin-delivery,.spin-notice,.spin-form-grid{grid-template-columns:1fr}
+      .spin-form{padding:20px}
+      .spin-choice{grid-template-columns:1fr}
+      .spin-form-actions{flex-direction:column}
+      .spin-form-actions .button{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="spin-hero">
+      <div class="container spin-hero-grid">
+        <div>
+          <span class="eyebrow">360° PRODUCT SPIN</span>
+          <h1>제품을 사진으로만 보지 않고,<br><span>직접 돌려보게.</span></h1>
+          <p>제품을 일정한 각도로 촬영하고 최적화해, 고객이 마우스나 손가락으로 360° 회전해 볼 수 있는 인터랙티브 상품 콘텐츠를 제작합니다.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#spin-inquiry">제작 문의하기</a>
+            <a class="button button-light" href="#deliverables">납품 범위 보기</a>
+          </div>
+          <div class="spin-quickfacts">
+            <div><strong>24–72컷</strong><span>제품별 회전 프레임</span></div>
+            <div><strong>WebP</strong><span>웹 성능 최적화</span></div>
+            <div><strong>Mobile First</strong><span>손가락 드래그 지원</span></div>
+          </div>
+        </div>
+
+        <div class="spin-demo" aria-label="360도 제품 스핀 예시">
+          <div class="spin-demo-bar"><span>DRAG TO ROTATE</span><strong class="spin-demo-angle">18°</strong></div>
+          <div class="spin-demo-stage" role="application" aria-label="좌우로 드래그해 제품을 회전해 보세요">
+            <div class="spin-demo-product" aria-hidden="true">
+              <div class="cap"></div>
+              <div class="clip"></div>
+              <div class="ring"></div>
+              <div class="body"></div>
+              <div class="brand-line"></div>
+            </div>
+            <div class="spin-demo-guide"><b>↔</b>마우스 또는 손가락으로 돌려보세요</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">HOW IT WORKS</span>
+          <h2>촬영부터 웹 적용까지<br>하나의 흐름으로 진행합니다.</h2>
+          <p>단순히 한 바퀴 도는 영상을 납품하는 것이 아니라, 온라인 상품 페이지에서 실제로 작동하는 이미지 세트와 뷰어를 만듭니다.</p>
+        </div>
+        <div class="spin-flow">
+          <article><span>01 · PLAN</span><h3>제품 확인</h3><p>제품 수, 크기, 재질, 반사와 투명 여부, 사용 채널과 마감일을 확인합니다.</p></article>
+          <article><span>02 · SHOOT</span><h3>회전 촬영</h3><p>제품과 카메라를 고정하고 24·36·48·72컷 중 필요한 간격으로 촬영합니다.</p></article>
+          <article><span>03 · EDIT</span><h3>일괄 보정</h3><p>밝기, 색상, 중심 위치와 배경을 통일하고 웹용 이미지로 최적화합니다.</p></article>
+          <article><span>04 · VIEWER</span><h3>웹 뷰어 적용</h3><p>PC와 모바일에서 드래그로 회전하는 뷰어를 제작하거나 기존 사이트에 삽입합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="deliverables">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">DELIVERABLES</span>
+          <h2>필요한 범위만 선택할 수 있습니다.</h2>
+          <p>촬영 원본만 필요한 경우부터 별도 상품 페이지와 웹사이트 적용이 필요한 경우까지 구성합니다.</p>
+        </div>
+        <div class="spin-delivery">
+          <article class="light">
+            <h3>이미지 제작</h3>
+            <ul>
+              <li><b>01</b><span>제품별 24·36·48·72컷 회전 이미지</span></li>
+              <li><b>02</b><span>밝기·색상·기본 먼지 제거와 중심 정렬</span></li>
+              <li><b>03</b><span>JPG 또는 WebP 파일명 순서 정리</span></li>
+              <li><b>04</b><span>흰색·검은색·브랜드 컬러 배경 협의</span></li>
+            </ul>
+          </article>
+          <article class="dark">
+            <h3>인터랙티브 웹 적용</h3>
+            <ul>
+              <li><b>01</b><span>마우스·터치 드래그 360° 회전 뷰어</span></li>
+              <li><b>02</b><span>기존 홈페이지 또는 상품 상세 페이지 삽입</span></li>
+              <li><b>03</b><span>별도 제품 소개 페이지와 QR 연결</span></li>
+              <li><b>04</b><span>이미지 지연 로딩과 모바일 성능 최적화</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">BEFORE SHOOTING</span>
+          <h2>견적에 영향을 주는 조건</h2>
+          <p>제품 스핀은 컷수만으로 가격이 정해지지 않습니다. 제품 특성과 후반 작업 범위를 함께 확인합니다.</p>
+        </div>
+        <div class="spin-notice">
+          <article><span>MATERIAL</span><h3>재질과 표면</h3><p>유광 금속, 유리, 투명 플라스틱, 보석처럼 반사가 강한 제품은 조명과 보정 난이도가 높아집니다.</p></article>
+          <article><span>SHAPE</span><h3>크기와 고정</h3><p>제품이 길거나 무게 중심이 불안정하면 전용 받침대, 고정 장치 또는 추가 합성이 필요할 수 있습니다.</p></article>
+          <article><span>OUTPUT</span><h3>납품 범위</h3><p>이미지 세트만 필요한지, 웹 뷰어·상품 페이지·호스팅까지 필요한지에 따라 작업 범위가 달라집니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section spin-inquiry" id="spin-inquiry">
+      <div class="container spin-inquiry-grid">
+        <div class="spin-inquiry-copy">
+          <span class="eyebrow">PROJECT INQUIRY</span>
+          <h2>제품 정보를 알려주시면<br>촬영 구성을 제안합니다.</h2>
+          <p>정확한 견적을 위해 제품 종류, 마감일, 제품 수와 회전 컷수, 재질과 납품 범위를 함께 받습니다.</p>
+          <ul>
+            <li>제품 사진 또는 판매 링크가 있으면 함께 보내주세요.</li>
+            <li>반사·투명·유광 재질은 미리 알려주세요.</li>
+            <li>제품 발송과 회수 방식은 상담 후 확정합니다.</li>
+            <li>사업자 거래와 세금계산서 발행이 가능합니다.</li>
+          </ul>
+        </div>
+
+        <form class="spin-form" id="product-spin-form">
+          <div class="spin-form-section">
+            <h3>담당자 정보</h3>
+            <div class="spin-form-grid">
+              <label><span>성함 / 담당자 *</span><input name="name" required></label>
+              <label><span>업체 / 브랜드명</span><input name="company"></label>
+            </div>
+            <div class="spin-form-grid">
+              <label><span>연락처 *</span><input name="phone" required inputmode="tel"></label>
+              <label><span>이메일 *</span><input name="email" type="email" required></label>
+            </div>
+          </div>
+
+          <div class="spin-form-section">
+            <h3>제품과 촬영 조건</h3>
+            <div class="spin-form-grid">
+              <label><span>제품 종류 *</span>
+                <select name="productType" required>
+                  <option value="">선택해 주세요</option>
+                  <option>만년필·문구</option>
+                  <option>화장품·향수</option>
+                  <option>주얼리·액세서리</option>
+                  <option>전자기기·소형 가전</option>
+                  <option>식품·패키지</option>
+                  <option>의류·패션 소품</option>
+                  <option>생활용품·공예품</option>
+                  <option>기타</option>
+                </select>
+              </label>
+              <label><span>제품명 / 모델명</span><input name="productName" placeholder="예: 세일러 프로피트 21"></label>
+            </div>
+            <div class="spin-form-grid">
+              <label><span>촬영 제품 수 *</span><input name="productCount" type="number" min="1" inputmode="numeric" required placeholder="예: 5"></label>
+              <label><span>제품당 회전 컷수 *</span>
+                <select name="frameCount" required>
+                  <option value="">선택해 주세요</option>
+                  <option>24컷</option>
+                  <option>36컷</option>
+                  <option>48컷</option>
+                  <option>72컷</option>
+                  <option>상담 후 결정</option>
+                </select>
+              </label>
+            </div>
+            <div class="spin-form-grid">
+              <label><span>희망 마감일 *</span><input name="deadline" type="date" required></label>
+              <label><span>제품 크기 / 무게</span><input name="productSize" placeholder="예: 140×15mm, 약 25g"></label>
+            </div>
+            <div class="spin-form-grid">
+              <label><span>제품 재질 *</span>
+                <select name="material" required>
+                  <option value="">선택해 주세요</option>
+                  <option>무광 플라스틱·종이</option>
+                  <option>유광 플라스틱·도장</option>
+                  <option>금속·크롬·미러</option>
+                  <option>유리·투명 소재</option>
+                  <option>패브릭·가죽</option>
+                  <option>복합 소재</option>
+                  <option>잘 모르겠음</option>
+                </select>
+              </label>
+              <label><span>배경 스타일</span>
+                <select name="background">
+                  <option>흰색 배경</option>
+                  <option>검은색 배경</option>
+                  <option>투명 배경용 누끼</option>
+                  <option>브랜드 컬러 배경</option>
+                  <option>상담 후 결정</option>
+                </select>
+              </label>
+            </div>
+            <label><span>제품 전달 방식</span>
+              <select name="transfer">
+                <option>택배 발송·회수</option>
+                <option>직접 전달·수령</option>
+                <option>현장 방문 촬영</option>
+                <option>상담 후 결정</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="spin-form-section">
+            <h3>활용 채널과 납품 범위</h3>
+            <fieldset style="border:0;padding:0;margin:0">
+              <legend>사용 채널</legend>
+              <div class="spin-choice">
+                <label><input type="checkbox" name="usage" value="자사 홈페이지"><span>자사 홈페이지</span></label>
+                <label><input type="checkbox" name="usage" value="쇼핑몰 상품 페이지"><span>쇼핑몰 상품 페이지</span></label>
+                <label><input type="checkbox" name="usage" value="B2B 제안·카탈로그"><span>B2B 제안·카탈로그</span></label>
+                <label><input type="checkbox" name="usage" value="SNS·광고 콘텐츠"><span>SNS·광고 콘텐츠</span></label>
+              </div>
+            </fieldset>
+            <fieldset style="border:0;padding:0;margin:20px 0 0">
+              <legend>필요한 납품 범위 *</legend>
+              <div class="spin-choice">
+                <label><input type="checkbox" name="deliverables" value="회전 이미지 세트" required><span>회전 이미지 세트</span></label>
+                <label><input type="checkbox" name="deliverables" value="인터랙티브 웹 뷰어"><span>인터랙티브 웹 뷰어</span></label>
+                <label><input type="checkbox" name="deliverables" value="기존 사이트 삽입"><span>기존 사이트 삽입</span></label>
+                <label><input type="checkbox" name="deliverables" value="별도 상품 페이지 제작"><span>별도 상품 페이지 제작</span></label>
+              </div>
+            </fieldset>
+            <div class="spin-form-grid">
+              <label><span>예산</span>
+                <select name="budget">
+                  <option>아직 정하지 않음</option>
+                  <option>30만원 미만</option>
+                  <option>30~60만원</option>
+                  <option>60~120만원</option>
+                  <option>120만원 이상</option>
+                </select>
+              </label>
+              <label><span>제품·참고 페이지 링크</span><input name="reference" type="url" placeholder="https://"></label>
+            </div>
+            <label><span>재질, 반사, 투명 여부와 기타 조건</span><textarea name="conditions" placeholder="예: 유광 금속 클립과 투명 배럴이 있습니다. 흰 배경을 원하며 8월 신제품 공개 전에 납품이 필요합니다."></textarea></label>
+          </div>
+
+          <div class="spin-form-actions">
+            <button class="button button-primary" type="submit">이메일로 문의 보내기</button>
+            <button class="button button-outline" type="button" id="product-spin-copy">문의 내용 복사</button>
+          </div>
+          <p class="spin-form-note">입력 내용은 사이트 서버에 저장되지 않으며 사용 중인 이메일 앱으로 전달됩니다.</p>
+          <div id="product-spin-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="assets/layout.js"></script>
+  <script src="assets/app.js?v=20260706-product-spin"></script>
+</body>
+</html>
