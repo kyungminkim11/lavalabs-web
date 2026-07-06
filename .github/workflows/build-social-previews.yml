@@ -5,6 +5,7 @@ on:
     paths:
       - "scripts/build_social_previews.py"
       - "scripts/fix_social_meta.py"
+      - "scripts/refine_social_descriptions.py"
       - ".github/workflows/build-social-previews.yml"
   workflow_dispatch:
 
@@ -39,6 +40,7 @@ jobs:
         run: |
           python scripts/build_social_previews.py
           python scripts/fix_social_meta.py
+          python scripts/refine_social_descriptions.py
 
       - name: Commit generated previews and metadata
         run: |
