@@ -14,7 +14,7 @@
   const slug = filename === "index.html" ? "index" : filename.replace(/\.html$/, "");
   if (!pages.has(slug)) return;
 
-  const image = `https://space.lavalabs.co.kr/assets/social/${slug}.png?v=20260706b`;
+  const image = `https://space.lavalabs.co.kr/assets/social/${slug}.jpg?v=20260706`;
   const title = document.querySelector('meta[property="og:title"]')?.content || document.title || "LavaLabs";
   const alt = `${title.replace(/\s*\|\s*LavaLabs\s*$/i, "")} | LavaLabs`;
 
@@ -30,7 +30,7 @@
 
   setMeta("property", "og:image", image);
   setMeta("property", "og:image:secure_url", image);
-  setMeta("property", "og:image:type", "image/png");
+  setMeta("property", "og:image:type", "image/jpeg");
   setMeta("property", "og:image:width", "1200");
   setMeta("property", "og:image:height", "630");
   setMeta("property", "og:image:alt", alt);
