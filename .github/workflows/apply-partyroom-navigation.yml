@@ -21,9 +21,9 @@ jobs:
           from pathlib import Path
           path=Path('works/partyroom-360-tour/index.html')
           text=path.read_text(encoding='utf-8')
-          for old in ('navigation-fix.js?v=20260710b','navigation-fix.js?v=20260710c'):
-              text=text.replace(old,'navigation-fix.js?v=20260710d')
-          tag='<script src="navigation-fix.js?v=20260710d"></script>'
+          for old in ('navigation-fix.js?v=20260710b','navigation-fix.js?v=20260710c','navigation-fix.js?v=20260710d'):
+              text=text.replace(old,'navigation-fix.js?v=20260710e')
+          tag='<script src="navigation-fix.js?v=20260710e"></script>'
           if tag not in text:
               text=text.replace('</body>',tag+'</body>')
           path.write_text(text,encoding='utf-8')
@@ -37,6 +37,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No changes.'
           else
-            git commit -m 'Load hover-safe partyroom arrows'
+            git commit -m 'Load labeled partyroom navigation arrows'
             git push
           fi
