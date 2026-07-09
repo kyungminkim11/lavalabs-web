@@ -17,6 +17,7 @@
       transition:none!important;
       animation:none!important;
       will-change:auto!important;
+      overflow:visible!important;
     }
     .pnlm-hotspot-base.tour-arrow-fixed:before{
       content:'↑';position:absolute;inset:0;display:grid;place-items:center;
@@ -34,9 +35,34 @@
       animation:none!important;
     }
     .pnlm-hotspot-base.tour-arrow-fixed .pnlm-tooltip{display:none!important}
+    .tour-arrow-label{
+      position:absolute;
+      left:50%;
+      top:72px;
+      transform:translateX(-50%);
+      display:block;
+      min-width:max-content;
+      max-width:180px;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:999px;
+      background:rgba(13,17,23,.86);
+      color:#fff;
+      box-shadow:0 8px 22px rgba(0,0,0,.35);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      font-size:12px;
+      font-weight:850;
+      line-height:1.2;
+      letter-spacing:-.02em;
+      text-align:center;
+      white-space:nowrap;
+      pointer-events:none;
+    }
     @media(max-width:640px){
       .pnlm-hotspot-base.tour-arrow-fixed{width:54px!important;height:54px!important;margin-left:-27px!important;margin-top:-27px!important}
       .pnlm-hotspot-base.tour-arrow-fixed:before{font-size:29px}
+      .tour-arrow-label{top:64px;padding:7px 10px;font-size:11px;max-width:150px}
     }
   `;
   document.head.appendChild(style);
@@ -72,7 +98,12 @@
     hotspot.setAttribute('role','button');
     hotspot.setAttribute('tabindex','0');
     hotspot.setAttribute('aria-label',args.text+'으로 이동');
-    hotspot.setAttribute('title',args.text+'으로 이동');
+
+    const label=document.createElement('span');
+    label.className='tour-arrow-label';
+    label.textContent=args.text;
+    hotspot.appendChild(label);
+
     hotspot.addEventListener('keydown',event=>{
       if(event.key==='Enter'||event.key===' '){
         event.preventDefault();
