@@ -10,10 +10,12 @@
       margin-left:-31px!important;margin-top:-31px!important;
       border:2px solid rgba(255,255,255,.96)!important;
       border-radius:50%!important;
-      background:rgba(13,17,23,.82)!important;
+      background-color:rgba(13,17,23,.86)!important;
+      background-image:none!important;
       box-shadow:0 12px 30px rgba(0,0,0,.48),0 0 0 7px rgba(255,255,255,.09)!important;
       cursor:pointer!important;
-      transition:background-color .15s ease,box-shadow .15s ease!important;
+      transition:none!important;
+      animation:none!important;
       will-change:auto!important;
     }
     .pnlm-hotspot-base.tour-arrow-fixed:before{
@@ -22,16 +24,16 @@
       text-shadow:0 2px 8px rgba(0,0,0,.5);
       pointer-events:none;
     }
-    .pnlm-hotspot-base.tour-arrow-fixed:hover{
-      background:rgba(13,17,23,.96)!important;
-      box-shadow:0 12px 30px rgba(0,0,0,.55),0 0 0 8px rgba(201,255,72,.22)!important;
+    .pnlm-hotspot-base.tour-arrow-fixed:hover,
+    .pnlm-hotspot-base.tour-arrow-fixed:active,
+    .pnlm-hotspot-base.tour-arrow-fixed:focus{
+      background-color:rgba(13,17,23,.86)!important;
+      background-image:none!important;
+      box-shadow:0 12px 30px rgba(0,0,0,.48),0 0 0 7px rgba(255,255,255,.09)!important;
+      transition:none!important;
+      animation:none!important;
     }
-    .pnlm-hotspot-base.tour-arrow-fixed .pnlm-tooltip{
-      top:70px!important;left:50%!important;transform:translateX(-50%)!important;
-      min-width:max-content!important;padding:8px 11px!important;border-radius:10px!important;
-      background:rgba(13,17,23,.92)!important;color:#fff!important;
-      font-size:12px!important;font-weight:850!important;white-space:nowrap!important;
-    }
+    .pnlm-hotspot-base.tour-arrow-fixed .pnlm-tooltip{display:none!important}
     @media(max-width:640px){
       .pnlm-hotspot-base.tour-arrow-fixed{width:54px!important;height:54px!important;margin-left:-27px!important;margin-top:-27px!important}
       .pnlm-hotspot-base.tour-arrow-fixed:before{font-size:29px}
@@ -62,6 +64,23 @@
     ]
   };
 
+  function goToScene(_hotspot,args){
+    viewer.loadScene(args.sceneId,-2,args.targetYaw,102);
+  }
+
+  function prepareArrow(hotspot,args){
+    hotspot.setAttribute('role','button');
+    hotspot.setAttribute('tabindex','0');
+    hotspot.setAttribute('aria-label',args.text+'으로 이동');
+    hotspot.setAttribute('title',args.text+'으로 이동');
+    hotspot.addEventListener('keydown',event=>{
+      if(event.key==='Enter'||event.key===' '){
+        event.preventDefault();
+        viewer.loadScene(args.sceneId,-2,args.targetYaw,102);
+      }
+    });
+  }
+
   Object.entries(routes).forEach(([sceneId,items])=>{
     items.forEach(item=>{
       try{viewer.removeHotSpot(item.id,sceneId)}catch(e){}
@@ -69,13 +88,12 @@
         id:item.id,
         pitch:item.pitch,
         yaw:item.yaw,
-        type:'scene',
-        sceneId:item.sceneId,
-        text:item.text,
+        type:'info',
         cssClass:'tour-arrow-fixed',
-        targetPitch:-2,
-        targetYaw:item.targetYaw,
-        targetHfov:102
+        clickHandlerFunc:goToScene,
+        clickHandlerArgs:{sceneId:item.sceneId,targetYaw:item.targetYaw},
+        createTooltipFunc:prepareArrow,
+        createTooltipArgs:{sceneId:item.sceneId,targetYaw:item.targetYaw,text:item.text}
       },sceneId);
     });
   });
