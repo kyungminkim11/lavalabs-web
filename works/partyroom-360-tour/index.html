@@ -87,5 +87,5 @@
     function syncScene(id){const s=sceneInfo[id];if(!s)return;document.getElementById('sceneBadge').textContent=s.no+' · '+s.title;document.getElementById('sceneTitle').textContent=s.title;document.getElementById('sceneDesc').textContent=s.desc;document.querySelectorAll('[data-scene]').forEach(el=>el.classList.toggle('active',el.dataset.scene===id))}
     viewer.on('scenechange',syncScene);syncScene('overview');
   </script>
-<script src="navigation-fix.js?v=20260710b"></script></body>
+<script src="navigation-fix.js?v=20260710c"></script></body>
 </html>
