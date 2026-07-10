@@ -1,98 +1,43 @@
 (()=>{
-  if(typeof viewer==='undefined' || typeof sceneInfo==='undefined') return;
-
-  sceneInfo.tablepc.title='대형 테이블';
-  sceneInfo.tablepc.desc='단체 식사, 보드게임과 모임에 활용하는 대형 테이블 구역입니다.';
-  sceneInfo.tablepc.no='03';
-  sceneInfo.pc={no:'04',title:'PC존',desc:'여러 대의 PC가 나란히 배치된 게임·공동 작업 구역입니다.'};
-  sceneInfo.kitchen.no='05';
-
-  viewer.addScene('pc',{
-    type:'equirectangular',
-    panorama:'assets/scene-pc.jpg?v=20260710-pc-zone',
-    yaw:-28,
-    pitch:-2,
-    hfov:102
-  });
-
-  const list=document.getElementById('sceneList');
-  if(list){
-    const tableButton=list.querySelector('[data-scene="tablepc"] span');
-    if(tableButton) tableButton.textContent='03 · 대형 테이블';
-    const kitchenButton=list.querySelector('[data-scene="kitchen"] span');
-    if(kitchenButton) kitchenButton.textContent='05 · 주방 · 편의시설';
-
-    if(!list.querySelector('[data-scene="pc"]')){
-      const button=document.createElement('button');
-      button.type='button';
-      button.dataset.scene='pc';
-      button.innerHTML='<span>04 · PC존</span><b>↗</b>';
-      button.addEventListener('click',()=>viewer.loadScene('pc'));
-      const kitchenRow=list.querySelector('[data-scene="kitchen"]');
-      if(kitchenRow) list.insertBefore(button,kitchenRow); else list.appendChild(button);
-    }
-  }
-
-  const map=document.querySelector('.floorplan');
-  if(map){
-    const tableMarker=map.querySelector('[data-scene="tablepc"]');
-    if(tableMarker){
-      tableMarker.textContent='03';
-      tableMarker.style.left='29%';
-      tableMarker.style.top='66%';
-      tableMarker.setAttribute('aria-label','대형 테이블로 이동');
-    }
-    const kitchenMarker=map.querySelector('[data-scene="kitchen"]');
-    if(kitchenMarker) kitchenMarker.textContent='05';
-
-    if(!map.querySelector('[data-scene="pc"]')){
-      const marker=document.createElement('button');
-      marker.className='marker';
-      marker.type='button';
-      marker.dataset.scene='pc';
-      marker.textContent='04';
-      marker.style.left='26%';
-      marker.style.top='28%';
-      marker.setAttribute('aria-label','PC존으로 이동');
-      marker.addEventListener('click',()=>viewer.loadScene('pc'));
-      map.appendChild(marker);
-    }
-  }
-
-  function go(_hotspot,args){viewer.loadScene(args.sceneId,-2,args.targetYaw,102)}
-  function decorate(hotspot,args){
-    hotspot.setAttribute('role','button');
-    hotspot.setAttribute('tabindex','0');
-    hotspot.setAttribute('aria-label',args.text+'으로 이동');
-    const label=document.createElement('span');
-    label.className='tour-arrow-label';
-    label.textContent=args.text;
-    hotspot.appendChild(label);
-    hotspot.addEventListener('keydown',event=>{
-      if(event.key==='Enter'||event.key===' '){event.preventDefault();viewer.loadScene(args.sceneId,-2,args.targetYaw,102)}
-    });
-  }
-  function arrow(scene,id,pitch,yaw,target,text,targetYaw){
-    viewer.addHotSpot({
-      id,pitch,yaw,type:'info',cssClass:'tour-arrow-fixed',
-      clickHandlerFunc:go,
-      clickHandlerArgs:{sceneId:target,targetYaw},
-      createTooltipFunc:decorate,
-      createTooltipArgs:{sceneId:target,targetYaw,text}
-    },scene);
-  }
-
-  arrow('pc','pc-overview',-16,118,'overview','전체 공간',-28);
-  arrow('pc','pc-table',-16,12,'tablepc','대형 테이블',38);
-  arrow('pc','pc-kitchen',-15,-74,'kitchen','주방 · 편의시설',176);
-  arrow('overview','overview-pc',-16,-112,'pc','PC존',-28);
-  arrow('tablepc','table-pc',-16,-102,'pc','PC존',-28);
-  arrow('lounge','lounge-pc',-15,-62,'pc','PC존',-28);
-
-  const metric=document.querySelector('.metric-grid .metric:nth-child(2) strong');
-  const metricText=document.querySelector('.metric-grid .metric:nth-child(2) span');
-  if(metric) metric.textContent='5 SCENES';
-  if(metricText) metricText.textContent='전체 공간, 라운지, 대형 테이블, PC존, 주방 장면 연결';
-
-  syncScene(viewer.getScene());
+if(typeof viewer==="undefined"||typeof sceneInfo==="undefined")return;
+const style=document.createElement("style");style.textContent=`
+.floorplan{aspect-ratio:1.75/1!important}.floorplan .map-label{font-size:19px;font-weight:900;fill:#15202b}.floorplan .map-small{font-size:14px;font-weight:850;fill:#4f5965}
+.case-photo-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.case-photo{position:relative;min-height:260px;border-radius:24px;overflow:hidden;background:#dfe4e9;margin:0}.case-photo.large{grid-column:span 7}.case-photo.medium{grid-column:span 5}.case-photo.third{grid-column:span 4}.case-photo img{width:100%;height:100%;min-height:260px;object-fit:cover;display:block}.case-photo figcaption{position:absolute;left:14px;right:14px;bottom:14px;padding:12px 14px;border-radius:14px;background:#0d1117d9;color:#fff;font-size:13px;font-weight:900}
+.live-site-box{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:center;background:#0d1117;color:#fff;border-radius:32px;padding:30px}.live-site-box img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:22px}.live-site-box h2{font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.04em;margin:0 0 14px}.live-site-box p{color:#bdc6cf;line-height:1.8}.live-site-box a{display:inline-flex;min-height:48px;align-items:center;padding:0 18px;border-radius:14px;background:#c9ff48;color:#111;text-decoration:none;font-weight:950}
+@media(max-width:900px){.case-photo.large,.case-photo.medium,.case-photo.third{grid-column:span 6}.live-site-box{grid-template-columns:1fr}}@media(max-width:640px){.floorplan{aspect-ratio:1.45/1!important}.case-photo.large,.case-photo.medium,.case-photo.third{grid-column:span 12}}`;document.head.appendChild(style);
+sceneInfo.lounge.title="TV · 노래방 · PS5 라운지";sceneInfo.lounge.desc="소파와 대형 TV, 노래방 기기, 플레이스테이션 5와 홀덤 테이블을 확인하는 엔터테인먼트 구역입니다.";
+sceneInfo.tablepc.title="다인석 테이블";sceneInfo.tablepc.desc="식사, 보드게임과 단체 모임에 활용하는 중앙 다인석 테이블입니다.";
+sceneInfo.pc={no:"04",title:"PC 게임존",desc:"여러 대의 PC와 게이밍 좌석이 나란히 배치된 게임 구역입니다."};sceneInfo.kitchen.no="05";
+try{viewer.addScene("pc",{type:"equirectangular",panorama:"assets/scene-pc.jpg?v=20260710-map",yaw:-28,pitch:-2,hfov:102});}catch(e){}
+const map=document.querySelector(".floorplan");if(map){map.innerHTML=`<svg viewBox="0 0 900 520" role="img" aria-label="실제 배치 기반 파티룸 도면">
+<rect x="28" y="30" width="824" height="455" rx="22" fill="#fff" stroke="#d6dee7" stroke-width="5"/>
+<rect x="55" y="94" width="135" height="145" rx="54" fill="#ede7ff"/><text class="map-label" x="122" y="172" text-anchor="middle">포커</text>
+<rect x="218" y="96" width="105" height="142" rx="14" fill="#e8f4ff"/><text class="map-label" x="270" y="172" text-anchor="middle">소파</text>
+<rect x="350" y="46" width="150" height="58" rx="12" fill="#fff2cf"/><text class="map-small" x="425" y="81" text-anchor="middle">전자레인지</text>
+<rect x="390" y="140" width="76" height="94" rx="10" fill="#202734"/><text x="428" y="194" text-anchor="middle" font-size="22" font-weight="950" fill="#fff">TV</text><text class="map-small" x="428" y="258" text-anchor="middle">노래방 · PS5</text>
+<rect x="480" y="168" width="232" height="102" rx="14" fill="#eaffdf"/><text class="map-label" x="596" y="226" text-anchor="middle">다인석 테이블</text>
+<rect x="575" y="48" width="92" height="52" rx="11" fill="#e9f5ff"/><text class="map-small" x="621" y="79" text-anchor="middle">싱크대</text>
+<rect x="684" y="48" width="74" height="78" rx="11" fill="#eef2f5"/><text class="map-small" x="721" y="91" text-anchor="middle">냉장고</text>
+<rect x="775" y="48" width="55" height="98" rx="11" fill="#e8f4ff"/><text class="map-small" x="802" y="101" text-anchor="middle" transform="rotate(-90 802 101)">에어컨</text>
+<rect x="786" y="182" width="44" height="172" rx="10" fill="#ffe9e9"/><text class="map-small" x="808" y="271" text-anchor="middle" transform="rotate(-90 808 271)">주방</text>
+<rect x="390" y="382" width="164" height="70" rx="12" fill="#fff2cf"/><text class="map-label" x="472" y="424" text-anchor="middle">보드게임</text>
+<rect x="598" y="382" width="168" height="70" rx="12" fill="#e9f5ff"/><text class="map-label" x="682" y="424" text-anchor="middle">PC</text>
+<path d="M852 485h-78m78 0v-78" fill="none" stroke="#8d98a5" stroke-width="5"/><path d="M774 485a78 78 0 0 1 78-78" fill="none" stroke="#c7d0d9" stroke-width="3" stroke-dasharray="8 7"/><text class="map-small" x="805" y="472" text-anchor="middle">출입문</text></svg>
+<button class="marker active" style="left:50%;top:57%" data-scene="overview">01</button><button class="marker" style="left:29%;top:42%" data-scene="lounge">02</button><button class="marker" style="left:66%;top:47%" data-scene="tablepc">03</button><button class="marker" style="left:76%;top:82%" data-scene="pc">04</button><button class="marker" style="left:88%;top:34%" data-scene="kitchen">05</button>`;map.querySelectorAll(".marker").forEach(b=>b.onclick=()=>viewer.loadScene(b.dataset.scene));}
+const list=document.getElementById("sceneList");if(list){list.innerHTML="";Object.entries(sceneInfo).forEach(([id,s])=>{const b=document.createElement("button");b.dataset.scene=id;b.innerHTML=`<span>${s.no} · ${s.title}</span><b>↗</b>`;b.onclick=()=>viewer.loadScene(id);list.appendChild(b)})}
+const actions=document.querySelector(".work-hero .hero-actions");if(actions&&!actions.querySelector('[href="/partyroom/"]')){const a=document.createElement("a");a.href="/partyroom/";a.target="_blank";a.rel="noopener";a.className="secondary";a.textContent="실제 파티룸 사이트 보기 ↗";actions.insertBefore(a,actions.children[1]||null);}
+const zone5=document.querySelector(".zone-grid .zone-card:nth-child(5) p");if(zone5)zone5.textContent="대형 TV, 노래방 기기, 플레이스테이션 5, 홀덤 테이블과 보드게임을 함께 보여줍니다.";
+const tour=document.getElementById("tour");if(tour&&!document.getElementById("casePhotos")){const sec=document.createElement("section");sec.className="section";sec.id="casePhotos";sec.innerHTML=`<div class="container"><div class="section-title center"><span>ON-SITE PHOTOGRAPHY</span><h2>360 장면과 일반 사진을<br>구역별로 함께 구성했습니다.</h2><p>전체 구조는 360 투어로 전달하고 시설의 상태와 디테일은 일반 사진으로 보완했습니다.</p></div><div class="case-photo-grid">
+<figure class="case-photo large"><img src="assets/scene-overview.png" alt="전체 공간 360 촬영본"><figcaption>전체 공간 · 360 촬영본</figcaption></figure>
+<figure class="case-photo medium"><img data-partyroom-photo="lounge" alt="TV와 소파 라운지"><figcaption>TV · 소파 · 노래방 · PS5</figcaption></figure>
+<figure class="case-photo third"><img data-partyroom-photo="poker" alt="홀덤 테이블"><figcaption>홀덤 테이블</figcaption></figure>
+<figure class="case-photo third"><img data-partyroom-photo="dining" alt="다인석 테이블"><figcaption>다인석 테이블</figcaption></figure>
+<figure class="case-photo third"><img data-partyroom-photo="pc" alt="PC 게임존"><figcaption>PC 게임존</figcaption></figure>
+<figure class="case-photo large"><img data-partyroom-photo="kitchen" alt="주방과 싱크대"><figcaption>주방 · 싱크대 · 냉장고</figcaption></figure></div></div>`;tour.after(sec);}
+const workflow=[...document.querySelectorAll(".section.dark")].find(x=>x.querySelector(".process"));if(workflow&&!document.getElementById("livePartyroomSite")){const sec=document.createElement("section");sec.className="section";sec.id="livePartyroomSite";sec.innerHTML=`<div class="container"><div class="live-site-box"><img src="assets/scene-overview.png" alt="퓨처스페이스 게임파티룸 실제 사이트"><div><h2>포트폴리오와 별도로<br>실사용 사이트를 제작했습니다.</h2><p>이 페이지는 라바랩스의 제작 사례입니다. 실제 고객용 사이트에서는 공간 소개, 사진, 360 투어와 현장 안내책자를 바탕으로 정리한 이용 가이드를 제공합니다.</p><a href="/partyroom/" target="_blank" rel="noopener">실제 파티룸 사이트 보러가기 ↗</a></div></div></div>`;workflow.before(sec);}
+function loadScripts(files,i=0){if(i>=files.length){const s=document.createElement("script");s.src="/partyroom/photo-data.js?v=20260710";document.body.appendChild(s);return}const s=document.createElement("script");s.src=files[i]+"?v=20260710";s.onload=()=>loadScripts(files,i+1);document.body.appendChild(s)}
+loadScripts(["/partyroom/photos/lounge-1.js","/partyroom/photos/lounge-2.js","/partyroom/photos/poker-1.js","/partyroom/photos/poker-2.js","/partyroom/photos/dining.js","/partyroom/photos/pc.js","/partyroom/photos/kitchen.js"]);
+function addArrow(scene,id,pitch,yaw,target){try{viewer.addHotSpot({id,pitch,yaw,type:"scene",sceneId:target,cssClass:"tour-arrow"},scene)}catch(e){}}
+addArrow("overview","overview-pc",-16,-112,"pc");addArrow("tablepc","table-pc",-16,-102,"pc");addArrow("lounge","lounge-pc",-15,-62,"pc");addArrow("pc","pc-overview",-16,118,"overview");addArrow("pc","pc-table",-16,12,"tablepc");
+syncScene(viewer.getScene());
 })();
