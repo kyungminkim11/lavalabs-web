@@ -1,11 +1,13 @@
-const info={
-overview:{no:"01",title:"전체 공간",desc:"포커존, TV 라운지, 다인석 테이블, PC존과 주방이 연결되는 전체 구조입니다."},
-lounge:{no:"02",title:"TV · 노래방 · PS5",desc:"소파와 대형 TV, 노래방 기기, 플레이스테이션 5와 홀덤 테이블이 모인 구역입니다."},
-tablepc:{no:"03",title:"다인석 테이블",desc:"식사, 보드게임과 단체 모임에 활용하는 중앙 테이블입니다."},
-pc:{no:"04",title:"PC 게임존",desc:"여러 대의 PC와 게이밍 좌석이 나란히 배치된 게임 구역입니다."},
-kitchen:{no:"05",title:"주방 · 편의시설",desc:"싱크대, 냉장고, 전자레인지와 중앙 테이블 사이 동선을 확인합니다."}
+const sceneInfo={
+  overview:{no:"01",title:"전체 공간",desc:"포커존, TV 라운지, 다인석 테이블, PC존과 주방이 연결되는 전체 구조입니다."},
+  lounge:{no:"02",title:"TV · 노래방 · PS5 라운지",desc:"소파와 대형 TV, 노래방 기기, 플레이스테이션 5가 모인 엔터테인먼트 구역입니다."},
+  tablepc:{no:"03",title:"다인석 테이블",desc:"식사, 보드게임과 단체 모임에 활용하는 중앙 다인석 테이블입니다."},
+  pc:{no:"04",title:"PC 게임존",desc:"여러 대의 PC와 게이밍 좌석이 한쪽 벽면에 나란히 배치된 게임 구역입니다."},
+  kitchen:{no:"05",title:"주방 · 편의시설",desc:"싱크대, 냉장고, 전자레인지와 식기류를 확인하는 주방 구역입니다."}
 };
-document.getElementById("floorplan").innerHTML=`<svg viewBox="0 0 900 520" role="img" aria-label="퓨처스페이스 게임파티룸 공간 배치도">
+
+const floorplan=document.getElementById("floorplan");
+floorplan.innerHTML=`<svg viewBox="0 0 900 520" role="img" aria-label="퓨처스페이스 게임파티룸 공간 배치도">
 <rect x="28" y="30" width="824" height="455" rx="22" fill="#fff" stroke="#d6dee7" stroke-width="5"/>
 <rect x="55" y="94" width="135" height="145" rx="54" fill="#ede7ff"/><text class="map-label" x="122" y="172" text-anchor="middle">포커</text>
 <rect x="218" y="96" width="105" height="142" rx="14" fill="#e8f4ff"/><text class="map-label" x="270" y="172" text-anchor="middle">소파</text>
@@ -19,17 +21,78 @@ document.getElementById("floorplan").innerHTML=`<svg viewBox="0 0 900 520" role=
 <rect x="390" y="382" width="164" height="70" rx="12" fill="#fff2cf"/><text class="map-label" x="472" y="424" text-anchor="middle">보드게임</text>
 <rect x="598" y="382" width="168" height="70" rx="12" fill="#e9f5ff"/><text class="map-label" x="682" y="424" text-anchor="middle">PC</text>
 <path d="M852 485h-78m78 0v-78" fill="none" stroke="#8d98a5" stroke-width="5"/><path d="M774 485a78 78 0 0 1 78-78" fill="none" stroke="#c7d0d9" stroke-width="3" stroke-dasharray="8 7"/><text class="map-small" x="805" y="472" text-anchor="middle">출입문</text></svg>
-<button class="marker active" style="left:50%;top:57%" data-scene="overview">01</button><button class="marker" style="left:29%;top:42%" data-scene="lounge">02</button><button class="marker" style="left:66%;top:47%" data-scene="tablepc">03</button><button class="marker" style="left:76%;top:82%" data-scene="pc">04</button><button class="marker" style="left:88%;top:34%" data-scene="kitchen">05</button>`;
+<button class="marker active" style="left:50%;top:57%" data-scene="overview" aria-label="전체 공간으로 이동">01</button>
+<button class="marker" style="left:29%;top:42%" data-scene="lounge" aria-label="TV 라운지로 이동">02</button>
+<button class="marker" style="left:66%;top:47%" data-scene="tablepc" aria-label="다인석 테이블로 이동">03</button>
+<button class="marker" style="left:76%;top:82%" data-scene="pc" aria-label="PC 게임존으로 이동">04</button>
+<button class="marker" style="left:88%;top:34%" data-scene="kitchen" aria-label="주방으로 이동">05</button>`;
+
 const root="/works/partyroom-360-tour/assets/";
-const viewer=pannellum.viewer("panorama",{default:{firstScene:"overview",autoLoad:true,sceneFadeDuration:650,hfov:105,minHfov:45,maxHfov:120},scenes:{
-overview:{type:"equirectangular",panorama:root+"scene-overview.png",yaw:35,hotSpots:[{pitch:-13,yaw:72,type:"scene",sceneId:"lounge",cssClass:"tour-arrow"},{pitch:-12,yaw:-88,type:"scene",sceneId:"tablepc",cssClass:"tour-arrow"},{pitch:-11,yaw:-112,type:"scene",sceneId:"pc",cssClass:"tour-arrow"},{pitch:-11,yaw:-25,type:"scene",sceneId:"kitchen",cssClass:"tour-arrow"}]},
-lounge:{type:"equirectangular",panorama:root+"scene-lounge.png",yaw:12,hotSpots:[{pitch:-12,yaw:-88,type:"scene",sceneId:"overview",cssClass:"tour-arrow"},{pitch:-11,yaw:12,type:"scene",sceneId:"tablepc",cssClass:"tour-arrow"}]},
-tablepc:{type:"equirectangular",panorama:root+"scene-table-pc.png",yaw:20,hotSpots:[{pitch:-12,yaw:88,type:"scene",sceneId:"overview",cssClass:"tour-arrow"},{pitch:-11,yaw:-82,type:"scene",sceneId:"kitchen",cssClass:"tour-arrow"},{pitch:-16,yaw:-102,type:"scene",sceneId:"pc",cssClass:"tour-arrow"}]},
-pc:{type:"equirectangular",panorama:root+"scene-pc.jpg",yaw:-28,hotSpots:[{pitch:-16,yaw:118,type:"scene",sceneId:"overview",cssClass:"tour-arrow"},{pitch:-16,yaw:12,type:"scene",sceneId:"tablepc",cssClass:"tour-arrow"}]},
-kitchen:{type:"equirectangular",panorama:root+"scene-kitchen.png",yaw:4,hotSpots:[{pitch:-12,yaw:82,type:"scene",sceneId:"tablepc",cssClass:"tour-arrow"},{pitch:-11,yaw:8,type:"scene",sceneId:"overview",cssClass:"tour-arrow"}]}
-}});
-const list=document.getElementById("sceneList");
-Object.entries(info).forEach(([id,s])=>{const b=document.createElement("button");b.dataset.scene=id;b.innerHTML=`<span>${s.no} · ${s.title}</span><b>↗</b>`;b.onclick=()=>viewer.loadScene(id);list.appendChild(b)});
-document.querySelectorAll(".marker").forEach(b=>b.onclick=()=>viewer.loadScene(b.dataset.scene));
-function sync(id){const s=info[id];if(!s)return;sceneBadge.textContent=`${s.no} · ${s.title}`;sceneTitle.textContent=s.title;sceneDesc.textContent=s.desc;document.querySelectorAll("[data-scene]").forEach(e=>e.classList.toggle("active",e.dataset.scene===id))}
-viewer.on("scenechange",sync);sync("overview");
+const viewer=pannellum.viewer("panorama",{
+  default:{firstScene:"overview",autoLoad:true,sceneFadeDuration:650,showControls:true,compass:false,hfov:102,minHfov:45,maxHfov:120},
+  scenes:{
+    overview:{type:"equirectangular",panorama:root+"scene-overview.png?v=20260710hq",yaw:35,pitch:-2,hotSpots:[
+      {pitch:-13,yaw:72,type:"scene",sceneId:"lounge",text:"TV 라운지",cssClass:"tour-arrow"},
+      {pitch:-12,yaw:-88,type:"scene",sceneId:"tablepc",text:"다인석 테이블",cssClass:"tour-arrow"},
+      {pitch:-11,yaw:-112,type:"scene",sceneId:"pc",text:"PC 게임존",cssClass:"tour-arrow"},
+      {pitch:-11,yaw:-25,type:"scene",sceneId:"kitchen",text:"주방",cssClass:"tour-arrow"}]},
+    lounge:{type:"equirectangular",panorama:root+"scene-lounge.png?v=20260710hq",yaw:12,pitch:-2,hotSpots:[
+      {pitch:-12,yaw:-88,type:"scene",sceneId:"overview",text:"전체 공간",cssClass:"tour-arrow"},
+      {pitch:-11,yaw:12,type:"scene",sceneId:"tablepc",text:"다인석 테이블",cssClass:"tour-arrow"},
+      {pitch:-15,yaw:-62,type:"scene",sceneId:"pc",text:"PC 게임존",cssClass:"tour-arrow"}]},
+    tablepc:{type:"equirectangular",panorama:root+"scene-table-pc.png?v=20260710hq",yaw:20,pitch:-2,hotSpots:[
+      {pitch:-12,yaw:88,type:"scene",sceneId:"overview",text:"전체 공간",cssClass:"tour-arrow"},
+      {pitch:-11,yaw:-82,type:"scene",sceneId:"kitchen",text:"주방",cssClass:"tour-arrow"},
+      {pitch:-16,yaw:-102,type:"scene",sceneId:"pc",text:"PC 게임존",cssClass:"tour-arrow"}]},
+    pc:{type:"equirectangular",panorama:root+"scene-pc.jpg?v=20260710hq",yaw:-28,pitch:-2,hotSpots:[
+      {pitch:-16,yaw:118,type:"scene",sceneId:"overview",text:"전체 공간",cssClass:"tour-arrow"},
+      {pitch:-16,yaw:12,type:"scene",sceneId:"tablepc",text:"다인석 테이블",cssClass:"tour-arrow"},
+      {pitch:-15,yaw:-74,type:"scene",sceneId:"kitchen",text:"주방",cssClass:"tour-arrow"}]},
+    kitchen:{type:"equirectangular",panorama:root+"scene-kitchen.png?v=20260710hq",yaw:4,pitch:-2,hotSpots:[
+      {pitch:-12,yaw:82,type:"scene",sceneId:"tablepc",text:"다인석 테이블",cssClass:"tour-arrow"},
+      {pitch:-11,yaw:8,type:"scene",sceneId:"overview",text:"전체 공간",cssClass:"tour-arrow"}]}
+  }
+});
+
+const sceneList=document.getElementById("sceneList");
+Object.entries(sceneInfo).forEach(([id,s])=>{
+  const button=document.createElement("button");
+  button.type="button";button.dataset.scene=id;
+  button.innerHTML=`<span>${s.no} · ${s.title}</span><b aria-hidden="true">↗</b>`;
+  button.addEventListener("click",()=>viewer.loadScene(id));
+  sceneList.appendChild(button);
+});
+document.querySelectorAll(".marker").forEach(button=>button.addEventListener("click",()=>viewer.loadScene(button.dataset.scene)));
+
+function syncScene(id){
+  const s=sceneInfo[id]; if(!s)return;
+  document.getElementById("sceneBadge").textContent=`${s.no} · ${s.title}`;
+  document.getElementById("sceneNumber").textContent=`SCENE ${s.no}`;
+  document.getElementById("sceneTitle").textContent=s.title;
+  document.getElementById("sceneDesc").textContent=s.desc;
+  document.querySelectorAll("[data-scene]").forEach(el=>el.classList.toggle("active",el.dataset.scene===id));
+}
+viewer.on("scenechange",syncScene);syncScene("overview");
+
+const menuToggle=document.querySelector(".menu-toggle");
+const nav=document.getElementById("primaryNav");
+menuToggle.addEventListener("click",()=>{
+  const open=menuToggle.getAttribute("aria-expanded")==="true";
+  menuToggle.setAttribute("aria-expanded",String(!open));
+  nav.classList.toggle("open",!open);
+  document.body.classList.toggle("menu-open",!open);
+});
+nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{menuToggle.setAttribute("aria-expanded","false");nav.classList.remove("open");document.body.classList.remove("menu-open")}));
+
+const lightbox=document.getElementById("lightbox");
+const lightboxImage=lightbox.querySelector("img");
+const lightboxCaption=lightbox.querySelector("p");
+let lastFocus=null;
+function closeLightbox(){lightbox.hidden=true;lightboxImage.src="";document.body.style.overflow="";if(lastFocus)lastFocus.focus()}
+document.querySelectorAll("[data-lightbox-src]").forEach(button=>button.addEventListener("click",()=>{
+  lastFocus=button;lightboxImage.src=button.dataset.lightboxSrc;lightboxImage.alt=button.dataset.lightboxAlt||"";
+  lightboxCaption.textContent=button.dataset.lightboxAlt||"";lightbox.hidden=false;document.body.style.overflow="hidden";lightbox.querySelector(".lightbox-close").focus();
+}));
+lightbox.querySelector(".lightbox-close").addEventListener("click",closeLightbox);
+lightbox.addEventListener("click",e=>{if(e.target===lightbox)closeLightbox()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!lightbox.hidden)closeLightbox()});
