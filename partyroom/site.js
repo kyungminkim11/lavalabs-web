@@ -37,7 +37,6 @@ function syncScene(id){
   document.querySelectorAll("[data-scene]").forEach(el=>el.classList.toggle("active",el.dataset.scene===id));
 }
 function loadScene(id){if(viewer)viewer.loadScene(id);else syncScene(id)}
-
 const sceneList=document.getElementById("sceneList");
 Object.entries(sceneInfo).forEach(([id,s])=>{
   const button=document.createElement("button");
@@ -62,29 +61,56 @@ if(window.pannellum){
   });
   viewer.on("scenechange",syncScene);
 }else{
-  document.getElementById("panorama").innerHTML='<div class="viewer-fallback" style="position:absolute;inset:0;display:grid;place-content:center;gap:8px;text-align:center;padding:24px;color:#fff;background:linear-gradient(135deg,#07111f,#16283d)"><b style="font-size:18px">360° 투어를 불러오지 못했습니다.</b><span style="color:#b8c7d7;font-size:13px">네트워크를 확인한 뒤 새로고침해 주세요.</span></div>';
+  document.getElementById("panorama").innerHTML='<div class="viewer-fallback"><b>360° 투어를 불러오지 못했습니다.</b><span>네트워크를 확인한 뒤 새로고침해 주세요.</span></div>';
 }
 syncScene("overview");
 
 const menuToggle=document.querySelector(".menu-toggle");
 const nav=document.getElementById("primaryNav");
-menuToggle.addEventListener("click",()=>{
-  const open=menuToggle.getAttribute("aria-expanded")==="true";
-  menuToggle.setAttribute("aria-expanded",String(!open));
-  nav.classList.toggle("open",!open);
-  document.body.classList.toggle("menu-open",!open);
+function closeMenu(){menuToggle.setAttribute("aria-expanded","false");nav.classList.remove("open");document.body.classList.remove("menu-open")}
+menuToggle.addEventListener("click",()=>{const open=menuToggle.getAttribute("aria-expanded")==="true";menuToggle.setAttribute("aria-expanded",String(!open));nav.classList.toggle("open",!open);document.body.classList.toggle("menu-open",!open)});
+nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeMenu));
+window.addEventListener("resize",()=>{if(innerWidth>720)closeMenu()});
+
+const config=window.PARTYROOM_CONFIG||{};
+document.querySelectorAll("[data-config-text]").forEach(el=>{const value=config[el.dataset.configText];if(value)el.textContent=value});
+document.querySelectorAll("[data-config-link]").forEach(el=>{
+  const key=el.dataset.configLink;const value=config[key];
+  if(!value)return;
+  el.hidden=false;
+  el.href=el.dataset.linkType==="tel"?`tel:${String(value).replace(/[^0-9+]/g,"")}`:value;
+  if(!el.href.startsWith("tel:")){el.target="_blank";el.rel="noopener"}
 });
-nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{menuToggle.setAttribute("aria-expanded","false");nav.classList.remove("open");document.body.classList.remove("menu-open")}));
+const bookingButton=document.getElementById("bookingPrimary");
+if(config.bookingUrl){bookingButton.href=config.bookingUrl;bookingButton.textContent=config.bookingLabel||"온라인 예약";bookingButton.target="_blank";bookingButton.rel="noopener"}else{bookingButton.setAttribute("aria-disabled","true");bookingButton.textContent="예약 채널 연결 예정"}
+
+const shareData={title:document.title,text:"퓨처스페이스 게임파티룸을 사진과 360° 투어로 둘러보세요.",url:location.href};
+document.querySelectorAll(".share-button").forEach(button=>button.addEventListener("click",async()=>{
+  try{if(navigator.share)await navigator.share(shareData);else{await navigator.clipboard.writeText(location.href);const old=button.textContent;button.textContent="링크 복사 완료";setTimeout(()=>button.textContent=old,1800)}}catch(error){if(error.name!=="AbortError")console.warn(error)}
+}));
 
 const lightbox=document.getElementById("lightbox");
 const lightboxImage=lightbox.querySelector("img");
-const lightboxCaption=lightbox.querySelector("p");
-let lastFocus=null;
-function closeLightbox(){lightbox.hidden=true;lightboxImage.src="";document.body.style.overflow="";if(lastFocus)lastFocus.focus()}
-document.querySelectorAll("[data-lightbox-src]").forEach(button=>button.addEventListener("click",()=>{
-  lastFocus=button;lightboxImage.src=button.dataset.lightboxSrc;lightboxImage.alt=button.dataset.lightboxAlt||"";
-  lightboxCaption.textContent=button.dataset.lightboxAlt||"";lightbox.hidden=false;document.body.style.overflow="hidden";lightbox.querySelector(".lightbox-close").focus();
-}));
+const lightboxCaption=lightbox.querySelector("figcaption");
+const lightboxItems=[...document.querySelectorAll("[data-lightbox-src]")];
+let currentIndex=0,lastFocus=null;
+function renderLightbox(index){currentIndex=(index+lightboxItems.length)%lightboxItems.length;const item=lightboxItems[currentIndex];lightboxImage.src=item.dataset.lightboxSrc;lightboxImage.alt=item.dataset.lightboxAlt||"";lightboxCaption.textContent=item.dataset.lightboxAlt||""}
+function openLightbox(index){lastFocus=lightboxItems[index];renderLightbox(index);lightbox.hidden=false;document.body.style.overflow="hidden";lightbox.querySelector(".lightbox-close").focus()}
+function closeLightbox(){lightbox.hidden=true;lightboxImage.src="";document.body.style.overflow="";lastFocus?.focus()}
+lightboxItems.forEach((button,index)=>button.addEventListener("click",()=>openLightbox(index)));
 lightbox.querySelector(".lightbox-close").addEventListener("click",closeLightbox);
-lightbox.addEventListener("click",e=>{if(e.target===lightbox)closeLightbox()});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!lightbox.hidden)closeLightbox()});
+lightbox.querySelector(".prev").addEventListener("click",()=>renderLightbox(currentIndex-1));
+lightbox.querySelector(".next").addEventListener("click",()=>renderLightbox(currentIndex+1));
+lightbox.addEventListener("click",event=>{if(event.target===lightbox)closeLightbox()});
+document.addEventListener("keydown",event=>{
+  if(lightbox.hidden)return;
+  if(event.key==="Escape")closeLightbox();
+  if(event.key==="ArrowLeft")renderLightbox(currentIndex-1);
+  if(event.key==="ArrowRight")renderLightbox(currentIndex+1);
+  if(event.key==="Tab"){
+    const focusables=[...lightbox.querySelectorAll("button:not([disabled])")];const first=focusables[0],last=focusables.at(-1);
+    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+  }
+});
+
+document.querySelectorAll("img").forEach(img=>img.addEventListener("error",()=>{img.closest("picture")?.classList.add("image-error");img.alt="이미지를 불러오지 못했습니다."}));

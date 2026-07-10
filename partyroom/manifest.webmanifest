@@ -1,0 +1,11 @@
+{
+  "name": "퓨처스페이스 게임파티룸",
+  "short_name": "퓨처스페이스",
+  "description": "PC, PS5, 노래방, 홀덤과 보드게임을 즐기는 프라이빗 게임파티룸",
+  "start_url": "/partyroom/",
+  "scope": "/partyroom/",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
+  "icons": [{"src":"/assets/favicon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]
+}
