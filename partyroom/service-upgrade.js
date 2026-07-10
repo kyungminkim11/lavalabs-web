@@ -8,57 +8,61 @@
 
   const styleLink=document.createElement("link");
   styleLink.rel="stylesheet";
-  styleLink.href="/partyroom/service-upgrade.css?v=20260710-location-games";
+  styleLink.href="/partyroom/service-upgrade.css?v=20260710-entry-mobile";
   document.head.appendChild(styleLink);
 
   const floorplan=document.getElementById("floorplan");
   if(floorplan){
     floorplan.classList.add("floorplan-v2");
-    floorplan.innerHTML=`<svg viewBox="0 0 960 600" role="img" aria-label="퓨처스페이스 게임파티룸 실제 배치 기반 도면">
-      <rect class="wall" x="34" y="34" width="892" height="516" rx="18"/>
-      <text class="room-hint" x="58" y="64">안쪽 벽면</text>
+    floorplan.innerHTML=`<div class="floorplan-scroll-hint" aria-hidden="true">← 좌우로 밀어 전체 도면 확인 →</div>
+    <div class="floorplan-canvas">
+      <svg viewBox="0 0 960 600" role="img" aria-label="퓨처스페이스 게임파티룸 실제 배치 기반 도면. 출입문은 왼쪽 아래에 있습니다.">
+        <rect class="wall" x="34" y="34" width="892" height="516" rx="18"/>
+        <text class="room-hint" x="58" y="64">안쪽 벽면</text>
 
-      <ellipse class="fixture" cx="150" cy="205" rx="92" ry="118" fill="#eee7ff"/>
-      <text class="zone-label" x="150" y="210" text-anchor="middle">홀덤</text>
-      <text class="zone-small" x="150" y="234" text-anchor="middle">포커 테이블</text>
+        <ellipse class="fixture" cx="150" cy="205" rx="92" ry="118" fill="#eee7ff"/>
+        <text class="zone-label" x="150" y="210" text-anchor="middle">홀덤</text>
+        <text class="zone-small" x="150" y="234" text-anchor="middle">포커 테이블</text>
 
-      <rect class="fixture" x="270" y="122" width="86" height="180" rx="16" fill="#e7f4ff"/>
-      <text class="zone-label" x="313" y="205" text-anchor="middle" transform="rotate(-90 313 205)">소파</text>
+        <rect class="fixture" x="270" y="122" width="86" height="180" rx="16" fill="#e7f4ff"/>
+        <text class="zone-label" x="313" y="205" text-anchor="middle" transform="rotate(-90 313 205)">소파</text>
 
-      <rect class="fixture" x="405" y="52" width="168" height="78" rx="13" fill="#fff1cc"/>
-      <text class="zone-small" x="489" y="97" text-anchor="middle">전자레인지</text>
+        <rect class="fixture" x="405" y="52" width="168" height="78" rx="13" fill="#fff1cc"/>
+        <text class="zone-small" x="489" y="97" text-anchor="middle">전자레인지</text>
 
-      <rect x="500" y="160" width="78" height="120" rx="11" fill="#202936"/>
-      <text x="539" y="222" text-anchor="middle" font-size="25" font-weight="950" fill="#fff">TV</text>
-      <text class="zone-small" x="539" y="302" text-anchor="middle">노래방 · PS5</text>
+        <rect x="500" y="160" width="78" height="120" rx="11" fill="#202936"/>
+        <text x="539" y="222" text-anchor="middle" font-size="25" font-weight="950" fill="#fff">TV</text>
+        <text class="zone-small" x="539" y="302" text-anchor="middle">노래방 · PS5</text>
 
-      <rect class="fixture" x="625" y="176" width="240" height="112" rx="15" fill="#e7f9dd"/>
-      <text class="zone-label" x="745" y="237" text-anchor="middle">다인석 테이블</text>
+        <rect class="fixture" x="625" y="176" width="240" height="112" rx="15" fill="#e7f9dd"/>
+        <text class="zone-label" x="745" y="237" text-anchor="middle">다인석 테이블</text>
 
-      <rect class="fixture" x="642" y="52" width="98" height="66" rx="12" fill="#e6f4ff"/>
-      <text class="zone-small" x="691" y="91" text-anchor="middle">싱크대</text>
-      <rect class="fixture" x="755" y="52" width="86" height="92" rx="12" fill="#eef1f5"/>
-      <text class="zone-small" x="798" y="104" text-anchor="middle">냉장고</text>
-      <rect class="fixture" x="856" y="52" width="48" height="116" rx="11" fill="#e6f4ff"/>
-      <text class="zone-small" x="880" y="113" text-anchor="middle" transform="rotate(-90 880 113)">에어컨</text>
+        <rect class="fixture" x="642" y="52" width="98" height="66" rx="12" fill="#e6f4ff"/>
+        <text class="zone-small" x="691" y="91" text-anchor="middle">싱크대</text>
+        <rect class="fixture" x="755" y="52" width="86" height="92" rx="12" fill="#eef1f5"/>
+        <text class="zone-small" x="798" y="104" text-anchor="middle">냉장고</text>
+        <rect class="fixture" x="856" y="52" width="48" height="116" rx="11" fill="#e6f4ff"/>
+        <text class="zone-small" x="880" y="113" text-anchor="middle" transform="rotate(-90 880 113)">에어컨</text>
 
-      <rect class="fixture" x="858" y="198" width="46" height="180" rx="11" fill="#ffe9e9"/>
-      <text class="zone-small" x="881" y="290" text-anchor="middle" transform="rotate(-90 881 290)">주방 수납</text>
+        <rect class="fixture" x="858" y="198" width="46" height="180" rx="11" fill="#ffe9e9"/>
+        <text class="zone-small" x="881" y="290" text-anchor="middle" transform="rotate(-90 881 290)">주방 수납</text>
 
-      <rect class="fixture" x="430" y="430" width="190" height="82" rx="14" fill="#fff1cc"/>
-      <text class="zone-label" x="525" y="478" text-anchor="middle">보드게임</text>
-      <rect class="fixture" x="680" y="430" width="190" height="82" rx="14" fill="#e6f4ff"/>
-      <text class="zone-label" x="775" y="478" text-anchor="middle">PC 게임존</text>
+        <rect class="fixture" x="430" y="430" width="190" height="82" rx="14" fill="#fff1cc"/>
+        <text class="zone-label" x="525" y="478" text-anchor="middle">보드게임</text>
+        <rect class="fixture" x="680" y="430" width="190" height="82" rx="14" fill="#e6f4ff"/>
+        <text class="zone-label" x="775" y="478" text-anchor="middle">PC 게임존</text>
 
-      <path class="door-line" d="M926 550h-92M926 550v-92"/>
-      <path class="door-swing" d="M834 550a92 92 0 0 1 92-92"/>
-      <text class="entry-label" x="868" y="536" text-anchor="middle">출입문</text>
-    </svg>
-    <button class="marker active" style="left:53%;top:59%" data-scene="overview" aria-label="전체 공간으로 이동">01</button>
-    <button class="marker" style="left:37%;top:42%" data-scene="lounge" aria-label="TV 라운지로 이동">02</button>
-    <button class="marker" style="left:73%;top:46%" data-scene="tablepc" aria-label="다인석 테이블로 이동">03</button>
-    <button class="marker" style="left:80%;top:82%" data-scene="pc" aria-label="PC 게임존으로 이동">04</button>
-    <button class="marker" style="left:89%;top:35%" data-scene="kitchen" aria-label="주방으로 이동">05</button>`;
+        <path class="door-gap" d="M34 550H198"/>
+        <path class="door-line" d="M198 550V386"/>
+        <path class="door-swing" d="M34 550A164 164 0 0 1 198 386"/>
+        <text class="entry-label" x="112" y="536" text-anchor="middle">출입문</text>
+      </svg>
+      <button class="marker active" style="left:53%;top:59%" data-scene="overview" aria-label="전체 공간으로 이동">01</button>
+      <button class="marker" style="left:37%;top:42%" data-scene="lounge" aria-label="TV 라운지로 이동">02</button>
+      <button class="marker" style="left:73%;top:46%" data-scene="tablepc" aria-label="다인석 테이블로 이동">03</button>
+      <button class="marker" style="left:80%;top:82%" data-scene="pc" aria-label="PC 게임존으로 이동">04</button>
+      <button class="marker" style="left:89%;top:35%" data-scene="kitchen" aria-label="주방으로 이동">05</button>
+    </div>`;
     floorplan.querySelectorAll(".marker").forEach(button=>button.addEventListener("click",()=>{
       if(typeof window.loadScene==="function")window.loadScene(button.dataset.scene);
       document.querySelectorAll("[data-scene]").forEach(el=>el.classList.toggle("active",el.dataset.scene===button.dataset.scene));
@@ -89,7 +93,7 @@
           </div>
         </article>
         <article class="game-card">
-          <div class="game-card__media"><img src="/partyroom/assets/boardgames-1400.webp?v=20260710-service" alt="보드게임 진열장" loading="lazy"></div>
+          <div class="game-card__media game-card__media--contain"><img src="/partyroom/assets/boardgames-1400.webp?v=20260710-service" alt="보드게임 진열장" loading="lazy"></div>
           <div class="game-card__body">
             <p class="game-card__eyebrow">BOARD GAMES</p>
             <h3>파티·전략 보드게임</h3>
