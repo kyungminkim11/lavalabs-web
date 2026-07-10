@@ -73,7 +73,7 @@ nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeMenu));
 window.addEventListener("resize",()=>{if(innerWidth>720)closeMenu()});
 
 const config=window.PARTYROOM_CONFIG||{};
-document.querySelectorAll("[data-config-text]").forEach(el=>{const value=config[el.dataset.configText];if(value)el.textContent=value});
+document.querySelectorAll("[data-config-text]").forEach(el=>{const value=config[el.dataset.configText];el.textContent=value||"—";el.classList.toggle("is-pending",!value)});
 document.querySelectorAll("[data-config-link]").forEach(el=>{
   const key=el.dataset.configLink;const value=config[key];
   if(!value)return;
@@ -82,7 +82,18 @@ document.querySelectorAll("[data-config-link]").forEach(el=>{
   if(!el.href.startsWith("tel:")){el.target="_blank";el.rel="noopener"}
 });
 const bookingButton=document.getElementById("bookingPrimary");
-if(config.bookingUrl){bookingButton.href=config.bookingUrl;bookingButton.textContent=config.bookingLabel||"온라인 예약";bookingButton.target="_blank";bookingButton.rel="noopener"}else{bookingButton.setAttribute("aria-disabled","true");bookingButton.textContent="예약 채널 연결 예정"}
+if(config.bookingUrl){bookingButton.href=config.bookingUrl;bookingButton.textContent=config.bookingLabel||"온라인 예약";bookingButton.target="_blank";bookingButton.rel="noopener"}else{bookingButton.setAttribute("aria-disabled","true");bookingButton.textContent="예약 링크 확인 중";bookingButton.addEventListener("click",event=>event.preventDefault())}
+
+
+const reviewFieldMap={
+  businessName:"businessName",bookingUrl:"bookingUrl",address:"address",price:"price",capacity:"capacity",hours:"hours",parking:"parking",
+  contact:"phone",checkin:"checkin",refund:"refund",rules:"rules",sellingPoints:"sellingPoints"
+};
+document.querySelectorAll("[data-review-field]").forEach(el=>{
+  const field=el.dataset.reviewField;let value=config[reviewFieldMap[field]||field]||"";
+  if(field==="contact")value=[config.phone,config.kakaoUrl,config.instagramUrl].filter(Boolean).join(" · ");
+  el.textContent=value||"확인 필요";el.classList.toggle("is-complete",Boolean(value));
+});
 
 const shareData={title:document.title,text:"퓨처스페이스 게임파티룸을 사진과 360° 투어로 둘러보세요.",url:location.href};
 document.querySelectorAll(".share-button").forEach(button=>button.addEventListener("click",async()=>{
