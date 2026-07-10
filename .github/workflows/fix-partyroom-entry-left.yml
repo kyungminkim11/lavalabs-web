@@ -1,0 +1,79 @@
+name: Fix partyroom entry location
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-partyroom-entry-left.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix-entry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Move entry door to bottom-left
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          # Customer-facing site: move the doorway to the lower-left wall.
+          upgrade = Path('partyroom/service-upgrade.js')
+          text = upgrade.read_text(encoding='utf-8')
+          text = text.replace('/partyroom/service-upgrade.css?v=20260710-entry-mobile', '/partyroom/service-upgrade.css?v=20260710-entry-left-v2')
+          text = text.replace(
+              '<path class="door-gap" d="M34 550H198"/>\n        <path class="door-line" d="M198 550V386"/>\n        <path class="door-swing" d="M34 550A164 164 0 0 1 198 386"/>\n        <text class="entry-label" x="112" y="536" text-anchor="middle">출입문</text>',
+              '<path class="door-gap" d="M70 550H220"/>\n        <path class="door-line" d="M220 550V400"/>\n        <path class="door-swing" d="M70 550A150 150 0 0 1 220 400"/>\n        <text class="entry-label" x="145" y="535" text-anchor="middle">출입문</text>'
+          )
+          upgrade.write_text(text, encoding='utf-8')
+
+          css = Path('partyroom/service-upgrade.css')
+          css_text = css.read_text(encoding='utf-8')
+          if '.floorplan .door-gap{' not in css_text:
+              css_text += '.floorplan .door-gap{stroke:#fff;stroke-width:11;fill:none;stroke-linecap:butt}.floorplan .entry-label{paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}\n'
+          css.write_text(css_text, encoding='utf-8')
+
+          # Bust the customer-site script cache.
+          site_index = Path('partyroom/index.html')
+          text = site_index.read_text(encoding='utf-8')
+          text = re.sub(r'/partyroom/site\.js\?v=[^"\']+', '/partyroom/site.js?v=20260710-entry-left-v2', text)
+          site_index.write_text(text, encoding='utf-8')
+
+          site_js = Path('partyroom/site.js')
+          text = site_js.read_text(encoding='utf-8')
+          text = re.sub(r'/partyroom/service-upgrade\.js\?v=[^"\']+', '/partyroom/service-upgrade.js?v=20260710-entry-left-v2', text)
+          site_js.write_text(text, encoding='utf-8')
+
+          # Portfolio case study: remove the old lower-right doorway and add the lower-left doorway.
+          case_js = Path('works/partyroom-360-tour/case.js')
+          text = case_js.read_text(encoding='utf-8')
+          old = '<path d="M852 485h-78m78 0v-78" fill="none" stroke="#8d98a5" stroke-width="5"/><path d="M774 485a78 78 0 0 1 78-78" fill="none" stroke="#c7d0d9" stroke-width="3" stroke-dasharray="8 7"/><text class="map-small" x="805" y="472" text-anchor="middle">출입문</text></svg>'
+          new = '<path d="M60 485H200" fill="none" stroke="#fff" stroke-width="11"/><path d="M200 485V345" fill="none" stroke="#8d98a5" stroke-width="5"/><path d="M60 485A140 140 0 0 1 200 345" fill="none" stroke="#c7d0d9" stroke-width="3" stroke-dasharray="8 7"/><text class="map-small" x="130" y="470" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5">출입문</text></svg>'
+          if old not in text:
+              raise SystemExit('Expected portfolio doorway markup was not found')
+          text = text.replace(old, new)
+          case_js.write_text(text, encoding='utf-8')
+
+          case_index = Path('works/partyroom-360-tour/index.html')
+          text = case_index.read_text(encoding='utf-8')
+          text = re.sub(r'/works/partyroom-360-tour/case\.js\?v=[^"\']+', '/works/partyroom-360-tour/case.js?v=20260710-entry-left-v2', text)
+          case_index.write_text(text, encoding='utf-8')
+          PY
+
+          rm -f .github/workflows/fix-partyroom-entry-left.yml
+
+      - name: Commit doorway correction
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add partyroom/service-upgrade.js partyroom/service-upgrade.css partyroom/site.js partyroom/index.html works/partyroom-360-tour/case.js works/partyroom-360-tour/index.html .github/workflows
+          git commit -m 'Move partyroom entrance to lower-left floorplan wall'
+          git push
