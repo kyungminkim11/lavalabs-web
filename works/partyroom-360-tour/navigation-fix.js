@@ -67,24 +67,38 @@
   `;
   document.head.appendChild(style);
 
+  if(typeof sceneInfo!=='undefined'&&sceneInfo.tablepc){
+    sceneInfo.tablepc.title='PC존 · 대형 테이블';
+    sceneInfo.tablepc.desc='여러 대의 PC와 대형 테이블이 함께 보이는 게임·작업·모임 구역입니다.';
+  }
+
+  try{viewer.removeScene('tablepc')}catch(e){}
+  viewer.addScene('tablepc',{
+    type:'equirectangular',
+    panorama:'assets/scene-table-pc.jpg?v=20260710-pczone',
+    yaw:10,
+    pitch:-2,
+    hfov:105
+  });
+
   const routes={
     overview:[
       {id:'ov-lounge',pitch:-17,yaw:168,sceneId:'lounge',text:'소파·TV 라운지',targetYaw:5},
-      {id:'ov-tablepc',pitch:-16,yaw:-47,sceneId:'tablepc',text:'대형 테이블·PC존',targetYaw:2},
+      {id:'ov-tablepc',pitch:-16,yaw:-47,sceneId:'tablepc',text:'PC존 · 대형 테이블',targetYaw:10},
       {id:'ov-kitchen',pitch:-15,yaw:-82,sceneId:'kitchen',text:'주방·편의시설',targetYaw:176}
     ],
     lounge:[
       {id:'lo-overview',pitch:-16,yaw:18,sceneId:'overview',text:'전체 공간',targetYaw:168},
-      {id:'lo-tablepc',pitch:-16,yaw:-18,sceneId:'tablepc',text:'대형 테이블·PC존',targetYaw:88},
+      {id:'lo-tablepc',pitch:-16,yaw:-18,sceneId:'tablepc',text:'PC존 · 대형 테이블',targetYaw:10},
       {id:'lo-kitchen',pitch:-14,yaw:-42,sceneId:'kitchen',text:'주방·편의시설',targetYaw:178}
     ],
     tablepc:[
-      {id:'tp-overview',pitch:-16,yaw:4,sceneId:'overview',text:'전체 공간',targetYaw:-47},
-      {id:'tp-lounge',pitch:-16,yaw:88,sceneId:'lounge',text:'소파·TV 라운지',targetYaw:18},
-      {id:'tp-kitchen',pitch:-15,yaw:-67,sceneId:'kitchen',text:'주방·편의시설',targetYaw:178}
+      {id:'tp-overview',pitch:-16,yaw:142,sceneId:'overview',text:'전체 공간',targetYaw:-47},
+      {id:'tp-lounge',pitch:-16,yaw:176,sceneId:'lounge',text:'소파·TV 라운지',targetYaw:18},
+      {id:'tp-kitchen',pitch:-15,yaw:-126,sceneId:'kitchen',text:'주방·편의시설',targetYaw:178}
     ],
     kitchen:[
-      {id:'ki-tablepc',pitch:-17,yaw:176,sceneId:'tablepc',text:'대형 테이블·PC존',targetYaw:-67},
+      {id:'ki-tablepc',pitch:-17,yaw:176,sceneId:'tablepc',text:'PC존 · 대형 테이블',targetYaw:10},
       {id:'ki-overview',pitch:-16,yaw:-92,sceneId:'overview',text:'전체 공간',targetYaw:-82},
       {id:'ki-lounge',pitch:-14,yaw:-118,sceneId:'lounge',text:'소파·TV 라운지',targetYaw:-18}
     ]
