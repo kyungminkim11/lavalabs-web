@@ -127,9 +127,9 @@ document.addEventListener("keydown",event=>{
 document.querySelectorAll("img").forEach(img=>img.addEventListener("error",()=>{img.closest("picture")?.classList.add("image-error");img.alt="이미지를 불러오지 못했습니다."}));
 
 // Service-level content: corrected floorplan, game inventory and location map.
-if (!document.querySelector(`script[src*="service-upgrade.js?v=20260710-location-games"]`)) {
+if (!document.querySelector(`script[src*="service-upgrade.js?v=20260710-entry-mobile"]`)) {
   const serviceUpgradeScript = document.createElement("script");
-  serviceUpgradeScript.src = "/partyroom/service-upgrade.js?v=20260710-location-games";
+  serviceUpgradeScript.src = "/partyroom/service-upgrade.js?v=20260710-entry-mobile";
   serviceUpgradeScript.defer = true;
   document.body.appendChild(serviceUpgradeScript);
 }
