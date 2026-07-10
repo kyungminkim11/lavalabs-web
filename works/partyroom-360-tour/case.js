@@ -323,5 +323,57 @@
     else image.alt="이미지를 불러오지 못했습니다.";
   }));
 
+
+
+  const deliverables={
+    photo:{eyebrow:"HIGH-RES PHOTOGRAPHY",title:"공간 사진",description:"대표 이미지와 시설 디테일을 선명하게 보여주고 웹, 플레이스, SNS와 예약 페이지에서 재사용합니다.",image:"/partyroom/assets/lounge-1800.webp?v=20260711-case-v5",alt:"TV와 소파가 있는 파티룸 공간 사진",items:["공간 분위기와 시설 디테일 전달","가로·세로 원본 비율 보존","다양한 채널에 재사용 가능"],href:"#photos",link:"사진 결과 보기"},
+    tour:{eyebrow:"INTERACTIVE 360 TOUR",title:"연결형 360° 투어",description:"여러 촬영 지점을 이동하며 공간 크기, 시야와 실제 동선을 직접 확인하게 합니다.",image:"/works/partyroom-360-tour/assets/scene-overview.png?v=20260710hq",alt:"파티룸 전체 공간 360 파노라마",items:["5개 장면 이동","화살표·목록·도면 연동","모바일 드래그와 확대 지원"],href:"#tour",link:"360 투어 체험하기"},
+    map:{eyebrow:"INTERACTIVE FLOORPLAN",title:"실제 배치 기반 미니맵",description:"현장 도면을 디지털 안내도로 정리하고 현재 보고 있는 360 장면과 위치를 함께 표시합니다.",image:"/partyroom/assets/dining-1800.webp?v=20260711-case-v5",alt:"다인석 테이블과 공간 배치",items:["가구와 시설 위치 표시","촬영 지점 번호 연동","출입문과 이동 방향 확인"],href:"#tour",link:"미니맵 확인하기"},
+    site:{eyebrow:"LIVE CUSTOMER SITE",title:"고객용 운영 사이트",description:"사진과 투어뿐 아니라 시설, 게임 목록, 사용법, 지도와 예약 흐름까지 실제 방문자 기준으로 구성합니다.",image:"/partyroom/assets/hero-2200.webp?v=20260711-case-v5",alt:"퓨처스페이스 고객용 사이트 대표 이미지",items:["모바일 우선 정보 구조","시설·사용법·위치 안내","예약·문의 채널 연결"],href:"/partyroom/",link:"실제 사이트 보기 ↗"}
+  };
+  const explorerButtons=[...document.querySelectorAll("[data-deliverable]")];
+  function renderDeliverable(key){
+    const data=deliverables[key];if(!data)return;
+    explorerButtons.forEach(button=>button.setAttribute("aria-selected",String(button.dataset.deliverable===key)));
+    const image=document.getElementById("explorerImage");if(image){image.src=data.image;image.alt=data.alt}
+    const eyebrow=document.getElementById("explorerEyebrow");if(eyebrow)eyebrow.textContent=data.eyebrow;
+    const title=document.getElementById("explorerTitle");if(title)title.textContent=data.title;
+    const description=document.getElementById("explorerDescription");if(description)description.textContent=data.description;
+    const list=document.getElementById("explorerList");if(list)list.innerHTML=data.items.map(item=>`<li>${item}</li>`).join("");
+    const link=document.getElementById("explorerLink");if(link){link.href=data.href;link.textContent=data.link;if(key==="site"){link.target="_blank";link.rel="noopener"}else{link.removeAttribute("target");link.removeAttribute("rel")}}
+    track("case_deliverable_select",{deliverable:key});
+  }
+  explorerButtons.forEach((button,index)=>{
+    button.addEventListener("click",()=>renderDeliverable(button.dataset.deliverable));
+    button.addEventListener("keydown",event=>{
+      if(!["ArrowLeft","ArrowRight","Home","End"].includes(event.key))return;
+      event.preventDefault();let next=index;
+      if(event.key==="ArrowLeft")next=(index-1+explorerButtons.length)%explorerButtons.length;
+      if(event.key==="ArrowRight")next=(index+1)%explorerButtons.length;
+      if(event.key==="Home")next=0;if(event.key==="End")next=explorerButtons.length-1;
+      explorerButtons[next].focus();renderDeliverable(explorerButtons[next].dataset.deliverable);
+    });
+  });
+
+  const scopeForm=document.getElementById("scopeForm");
+  function renderScope(){
+    if(!scopeForm)return;
+    const selected=[...scopeForm.querySelectorAll('input[name="scope"]:checked')].map(input=>input.value);
+    if(!selected.length){const photo=scopeForm.querySelector('input[value="photo"]');if(photo){photo.checked=true;selected.push("photo")}}
+    let packageKey="photo";if(selected.includes("site")||selected.includes("guide"))packageKey="full";else if(selected.includes("tour")||selected.includes("map"))packageKey="tour";
+    const packages={
+      photo:{title:"공간 사진 촬영형",description:"대표 이미지와 구역별 사진이 필요한 공간에 적합합니다.",items:["고해상도 공간 사진","웹·플레이스용 이미지"],service:"space-photo"},
+      tour:{title:"사진·360 투어형",description:"사진과 함께 공간 크기와 동선을 직접 보여주고 싶은 경우에 적합합니다.",items:["고해상도 공간 사진","연결형 360° 장면","도면·장면 선택 UI"],service:"partyroom-360-tour"},
+      full:{title:"통합 웹 구축형",description:"공간 소개부터 시설 안내, 지도와 예약 연결까지 한 페이지에서 운영하려는 경우에 적합합니다.",items:["사진·360° 투어·미니맵","시설·게임·이용 안내","지도·예약·문의 동선"],service:"partyroom-360-tour"}
+    };
+    const data=packages[packageKey];
+    const title=document.getElementById("scopeTitle");if(title)title.textContent=data.title;
+    const description=document.getElementById("scopeDescription");if(description)description.textContent=data.description;
+    const summary=document.getElementById("scopeSummary");if(summary)summary.innerHTML=data.items.map(item=>`<li>${item}</li>`).join("");
+    const contact=document.getElementById("scopeContact");if(contact){const url=new URL("/contact.html",location.origin);url.searchParams.set("service",data.service);url.searchParams.set("package",packageKey);url.searchParams.set("scope",selected.join(","));allowedUtm.forEach(key=>{if(currentParams.has(key))url.searchParams.set(key,currentParams.get(key))});url.searchParams.set("utm_content","scope_builder");contact.href=url.pathname+url.search}
+  }
+  scopeForm?.addEventListener("change",()=>{renderScope();track("case_scope_change",{scope:[...scopeForm.querySelectorAll('input[name="scope"]:checked')].map(input=>input.value).join(",")})});
+  renderScope();
+
   track("case_view",{path:location.pathname,referrer:document.referrer||"direct"});
 })();
