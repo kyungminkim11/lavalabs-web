@@ -16,22 +16,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download branded partyroom panoramas
+      - name: Download partyroom panoramas
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p works/partyroom-360-tour/assets
           curl -L --fail --retry 3 'https://at.adobe.com/JthcWeqe0r1DjzAl' -o works/partyroom-360-tour/assets/scene-overview.png
           curl -L --fail --retry 3 'https://at.adobe.com/0evkhgukwtEd1jq7' -o works/partyroom-360-tour/assets/scene-lounge.png
-          curl -L --fail --retry 3 'https://at.adobe.com/ZnhYpkz49lptqWKZ' -o works/partyroom-360-tour/assets/scene-table-pc.png
+          curl -L --fail --retry 3 'https://at.adobe.com/Wumr1ghkrBJMW3Qd' -o works/partyroom-360-tour/assets/scene-table-pc.jpg
           curl -L --fail --retry 3 'https://at.adobe.com/W7z4fZifbLcNxHbE' -o works/partyroom-360-tour/assets/scene-kitchen.png
           test -s works/partyroom-360-tour/assets/scene-overview.png
           test -s works/partyroom-360-tour/assets/scene-lounge.png
-          test -s works/partyroom-360-tour/assets/scene-table-pc.png
+          test -s works/partyroom-360-tour/assets/scene-table-pc.jpg
           test -s works/partyroom-360-tour/assets/scene-kitchen.png
-          file works/partyroom-360-tour/assets/*.png
+          file works/partyroom-360-tour/assets/scene-overview.png
+          file works/partyroom-360-tour/assets/scene-lounge.png
+          file works/partyroom-360-tour/assets/scene-table-pc.jpg
+          file works/partyroom-360-tour/assets/scene-kitchen.png
 
-      - name: Point viewer to branded assets
+      - name: Point viewer to current assets
         shell: bash
         run: |
           python - <<'PY'
@@ -41,7 +44,8 @@ jobs:
           replacements={
             'assets/scene-overview.jpg':'assets/scene-overview.png?v=20260710-logo',
             'assets/scene-lounge.jpg':'assets/scene-lounge.png?v=20260710-logo',
-            'assets/scene-table-pc.jpg':'assets/scene-table-pc.png?v=20260710-logo',
+            'assets/scene-table-pc.png?v=20260710-logo':'assets/scene-table-pc.jpg?v=20260710-pczone',
+            'assets/scene-table-pc.jpg':'assets/scene-table-pc.jpg?v=20260710-pczone',
             'assets/scene-kitchen.jpg':'assets/scene-kitchen.png?v=20260710-logo',
           }
           for old,new in replacements.items():
@@ -49,7 +53,7 @@ jobs:
           path.write_text(text,encoding='utf-8')
           PY
 
-      - name: Commit branded assets
+      - name: Commit partyroom assets
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
@@ -58,6 +62,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No asset changes.'
           else
-            git commit -m 'Add LavaLabs nadir logo to partyroom tour'
+            git commit -m 'Replace partyroom PC zone panorama'
             git push
           fi
