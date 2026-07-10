@@ -1,0 +1,55 @@
+name: Add partyroom PC zone scene
+
+on:
+  push:
+    paths:
+      - 'works/partyroom-360-tour/pc-zone-trigger.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  add-pc-zone:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download PC zone panorama
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p works/partyroom-360-tour/assets
+          curl -L --fail --retry 3 'https://at.adobe.com/Wumr1ghkrBJMW3Qd' -o works/partyroom-360-tour/assets/scene-pc.jpg
+          test -s works/partyroom-360-tour/assets/scene-pc.jpg
+          file works/partyroom-360-tour/assets/scene-pc.jpg
+
+      - name: Load PC zone scene script
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path=Path('works/partyroom-360-tour/index.html')
+          text=path.read_text(encoding='utf-8')
+          tag='<script src="pc-zone.js?v=20260710b"></script>'
+          if tag not in text:
+              text=text.replace('</body>',tag+'</body>')
+          text=text.replace('실제 촬영본 4개 장면 연결 완료','실제 촬영본 5개 장면 연결 완료')
+          text=text.replace('공간 전체, 라운지, 대형 테이블·PC존, 주방','공간 전체, 라운지, 대형 테이블, PC존, 주방')
+          text=text.replace('실제 촬영한 360 사진 4장','실제 촬영한 360 사진 5장')
+          path.write_text(text,encoding='utf-8')
+          PY
+
+      - name: Commit PC zone scene
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add works/partyroom-360-tour/assets/scene-pc.jpg works/partyroom-360-tour/index.html
+          if git diff --cached --quiet; then
+            echo 'No changes.'
+          else
+            git commit -m 'Add PC zone to partyroom map and tour'
+            git push
+          fi
