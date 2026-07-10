@@ -25,16 +25,23 @@ floorplan.innerHTML=`<svg viewBox="0 0 900 520" role="img" aria-label="실제 �
 <button class="marker" style="left:66%;top:47%" data-scene="tablepc" aria-label="다인석 테이블로 이동">03</button>
 <button class="marker" style="left:76%;top:82%" data-scene="pc" aria-label="PC 게임존으로 이동">04</button>
 <button class="marker" style="left:88%;top:34%" data-scene="kitchen" aria-label="주방으로 이동">05</button>`;
-const root="/works/partyroom-360-tour/assets/";
-const viewer=pannellum.viewer("panorama",{default:{firstScene:"overview",autoLoad:true,sceneFadeDuration:650,showControls:true,hfov:102,minHfov:45,maxHfov:120},scenes:{
- overview:{type:"equirectangular",panorama:root+"scene-overview.png?v=20260710hq",yaw:35,pitch:-2,hotSpots:[{pitch:-13,yaw:72,type:"scene",sceneId:"lounge",text:"TV 라운지",cssClass:"tour-arrow"},{pitch:-12,yaw:-88,type:"scene",sceneId:"tablepc",text:"다인석 테이블",cssClass:"tour-arrow"},{pitch:-11,yaw:-112,type:"scene",sceneId:"pc",text:"PC 게임존",cssClass:"tour-arrow"},{pitch:-11,yaw:-25,type:"scene",sceneId:"kitchen",text:"주방",cssClass:"tour-arrow"}]},
- lounge:{type:"equirectangular",panorama:root+"scene-lounge.png?v=20260710hq",yaw:12,pitch:-2,hotSpots:[{pitch:-12,yaw:-88,type:"scene",sceneId:"overview",text:"전체 공간",cssClass:"tour-arrow"},{pitch:-11,yaw:12,type:"scene",sceneId:"tablepc",text:"다인석 테이블",cssClass:"tour-arrow"},{pitch:-15,yaw:-62,type:"scene",sceneId:"pc",text:"PC 게임존",cssClass:"tour-arrow"}]},
- tablepc:{type:"equirectangular",panorama:root+"scene-table-pc.png?v=20260710hq",yaw:20,pitch:-2,hotSpots:[{pitch:-12,yaw:88,type:"scene",sceneId:"overview",text:"전체 공간",cssClass:"tour-arrow"},{pitch:-11,yaw:-82,type:"scene",sceneId:"kitchen",text:"주방",cssClass:"tour-arrow"},{pitch:-16,yaw:-102,type:"scene",sceneId:"pc",text:"PC 게임존",cssClass:"tour-arrow"}]},
- pc:{type:"equirectangular",panorama:root+"scene-pc.jpg?v=20260710hq",yaw:-28,pitch:-2,hotSpots:[{pitch:-16,yaw:118,type:"scene",sceneId:"overview",text:"전체 공간",cssClass:"tour-arrow"},{pitch:-16,yaw:12,type:"scene",sceneId:"tablepc",text:"다인석 테이블",cssClass:"tour-arrow"},{pitch:-15,yaw:-74,type:"scene",sceneId:"kitchen",text:"주방",cssClass:"tour-arrow"}]},
- kitchen:{type:"equirectangular",panorama:root+"scene-kitchen.png?v=20260710hq",yaw:4,pitch:-2,hotSpots:[{pitch:-12,yaw:82,type:"scene",sceneId:"tablepc",text:"다인석 테이블",cssClass:"tour-arrow"},{pitch:-11,yaw:8,type:"scene",sceneId:"overview",text:"전체 공간",cssClass:"tour-arrow"}]}
-}});
-const list=document.getElementById("sceneList");
-Object.entries(sceneInfo).forEach(([id,s])=>{const button=document.createElement("button");button.type="button";button.dataset.scene=id;button.innerHTML=`<span>${s.no} · ${s.title}</span><b aria-hidden="true">↗</b>`;button.addEventListener("click",()=>viewer.loadScene(id));list.appendChild(button)});
-document.querySelectorAll(".marker").forEach(button=>button.addEventListener("click",()=>viewer.loadScene(button.dataset.scene)));
+let viewer=null;
 function sync(id){const s=sceneInfo[id];if(!s)return;document.getElementById("sceneBadge").textContent=`${s.no} · ${s.title}`;document.getElementById("sceneNo").textContent=`SCENE ${s.no}`;document.getElementById("sceneTitle").textContent=s.title;document.getElementById("sceneDesc").textContent=s.desc;document.querySelectorAll("[data-scene]").forEach(el=>el.classList.toggle("active",el.dataset.scene===id))}
-viewer.on("scenechange",sync);sync("overview");
+function loadScene(id){if(viewer)viewer.loadScene(id);else sync(id)}
+const list=document.getElementById("sceneList");
+Object.entries(sceneInfo).forEach(([id,s])=>{const button=document.createElement("button");button.type="button";button.dataset.scene=id;button.innerHTML=`<span>${s.no} · ${s.title}</span><b aria-hidden="true">↗</b>`;button.addEventListener("click",()=>loadScene(id));list.appendChild(button)});
+document.querySelectorAll(".marker").forEach(button=>button.addEventListener("click",()=>loadScene(button.dataset.scene)));
+if(window.pannellum){
+  const root="/works/partyroom-360-tour/assets/";
+  viewer=pannellum.viewer("panorama",{default:{firstScene:"overview",autoLoad:true,sceneFadeDuration:650,showControls:true,hfov:102,minHfov:45,maxHfov:120},scenes:{
+   overview:{type:"equirectangular",panorama:root+"scene-overview.png?v=20260710hq",yaw:35,pitch:-2,hotSpots:[{pitch:-13,yaw:72,type:"scene",sceneId:"lounge",text:"TV 라운지",cssClass:"tour-arrow"},{pitch:-12,yaw:-88,type:"scene",sceneId:"tablepc",text:"다인석 테이블",cssClass:"tour-arrow"},{pitch:-11,yaw:-112,type:"scene",sceneId:"pc",text:"PC 게임존",cssClass:"tour-arrow"},{pitch:-11,yaw:-25,type:"scene",sceneId:"kitchen",text:"주방",cssClass:"tour-arrow"}]},
+   lounge:{type:"equirectangular",panorama:root+"scene-lounge.png?v=20260710hq",yaw:12,pitch:-2,hotSpots:[{pitch:-12,yaw:-88,type:"scene",sceneId:"overview",text:"전체 공간",cssClass:"tour-arrow"},{pitch:-11,yaw:12,type:"scene",sceneId:"tablepc",text:"다인석 테이블",cssClass:"tour-arrow"},{pitch:-15,yaw:-62,type:"scene",sceneId:"pc",text:"PC 게임존",cssClass:"tour-arrow"}]},
+   tablepc:{type:"equirectangular",panorama:root+"scene-table-pc.png?v=20260710hq",yaw:20,pitch:-2,hotSpots:[{pitch:-12,yaw:88,type:"scene",sceneId:"overview",text:"전체 공간",cssClass:"tour-arrow"},{pitch:-11,yaw:-82,type:"scene",sceneId:"kitchen",text:"주방",cssClass:"tour-arrow"},{pitch:-16,yaw:-102,type:"scene",sceneId:"pc",text:"PC 게임존",cssClass:"tour-arrow"}]},
+   pc:{type:"equirectangular",panorama:root+"scene-pc.jpg?v=20260710hq",yaw:-28,pitch:-2,hotSpots:[{pitch:-16,yaw:118,type:"scene",sceneId:"overview",text:"전체 공간",cssClass:"tour-arrow"},{pitch:-16,yaw:12,type:"scene",sceneId:"tablepc",text:"다인석 테이블",cssClass:"tour-arrow"},{pitch:-15,yaw:-74,type:"scene",sceneId:"kitchen",text:"주방",cssClass:"tour-arrow"}]},
+   kitchen:{type:"equirectangular",panorama:root+"scene-kitchen.png?v=20260710hq",yaw:4,pitch:-2,hotSpots:[{pitch:-12,yaw:82,type:"scene",sceneId:"tablepc",text:"다인석 테이블",cssClass:"tour-arrow"},{pitch:-11,yaw:8,type:"scene",sceneId:"overview",text:"전체 공간",cssClass:"tour-arrow"}]}
+  }});
+  viewer.on("scenechange",sync);
+}else{
+  document.getElementById("panorama").innerHTML='<div class="viewer-fallback" style="position:absolute;inset:0;display:grid;place-content:center;gap:8px;text-align:center;padding:24px;color:#fff;background:linear-gradient(135deg,#07111f,#16283d)"><b style="font-size:18px">360° 투어를 불러오지 못했습니다.</b><span style="color:#b8c7d7;font-size:13px">네트워크를 확인한 뒤 새로고침해 주세요.</span></div>';
+}
+sync("overview");
