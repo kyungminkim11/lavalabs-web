@@ -1,0 +1,60 @@
+name: Finalize adjusted partyroom pages
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/finalize-partyroom-adjusted.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Bust image caches and correct dimensions
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          version='20260710-adjusted'
+          party=Path('partyroom/index.html')
+          case=Path('works/partyroom-360-tour/index.html')
+
+          text=party.read_text(encoding='utf-8')
+          for name in ['og-partyroom.jpg','hero-2200.webp','lounge-1800.webp','pc-1400.webp','poker-1800.webp','dining-1800.webp','kitchen-1800.webp','playstation-1800.webp','boardgames-1400.webp','karaoke-1800.webp']:
+              text=re.sub(rf'({re.escape(name)})(\?v=[^"\']+)?', rf'\1?v={version}', text)
+          text=text.replace('width="933" height="1400" alt="여러 대의 PC가 배치된 PC 게임존"','width="1067" height="1600" alt="여러 대의 PC가 배치된 PC 게임존"')
+          text=text.replace('width="933" height="1400" alt="보드게임 진열장"','width="1067" height="1600" alt="보드게임 진열장"')
+          text=text.replace('/partyroom/site.css?v=20260710hq2','/partyroom/site.css?v=20260710adjusted')
+          text=text.replace('/partyroom/site.js?v=20260710hq2','/partyroom/site.js?v=20260710adjusted')
+          text=text.replace('고화질 원본을 웹에 맞게 최적화했습니다. 작은 썸네일을 억지로 늘리지 않고, 카메라 원본에서 다시 내보낸 WebP 이미지를 사용합니다.','보정이 완료된 카메라 원본을 웹용 고화질 WebP로 다시 제작했습니다. 작은 썸네일을 확대하지 않고 각 구역의 실제 촬영본을 선명하게 제공합니다.')
+          party.write_text(text,encoding='utf-8')
+
+          text=case.read_text(encoding='utf-8')
+          for name in ['og-partyroom-case.jpg','hero-2200.webp','lounge-1800.webp','pc-1400.webp','poker-1800.webp','dining-1800.webp','kitchen-1800.webp']:
+              text=re.sub(rf'({re.escape(name)})(\?v=[^"\']+)?', rf'\1?v={version}', text)
+          text=text.replace('width="933" height="1400" alt="PC 게임존"','width="1067" height="1600" alt="PC 게임존"')
+          text=text.replace('/works/partyroom-360-tour/case.css?v=20260710hq2','/works/partyroom-360-tour/case.css?v=20260710adjusted')
+          text=text.replace('/works/partyroom-360-tour/case.js?v=20260710hq2','/works/partyroom-360-tour/case.js?v=20260710adjusted')
+          case.write_text(text,encoding='utf-8')
+          PY
+
+          rm -f .github/workflows/import-partyroom-adjusted-assets.yml
+          rm -f .github/workflows/finalize-partyroom-adjusted.yml
+
+      - name: Commit final page update
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add partyroom/index.html works/partyroom-360-tour/index.html .github/workflows
+          git commit -m 'Use adjusted camera photos across partyroom sites'
+          git push
