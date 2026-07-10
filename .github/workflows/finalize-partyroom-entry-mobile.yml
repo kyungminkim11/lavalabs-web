@@ -1,0 +1,85 @@
+name: Finalize partyroom entrance and mobile layout
+
+on:
+  push:
+    paths:
+      - '.github/workflows/finalize-partyroom-entry-mobile.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply mobile responsive overrides
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          css_path=Path('partyroom/service-upgrade.css')
+          css=css_path.read_text(encoding='utf-8')
+          marker='/* entry-mobile-v2 */'
+          override=r'''
+          /* entry-mobile-v2 */
+          .floorplan.floorplan-v2{aspect-ratio:auto;overflow:visible;border:0;background:transparent}
+          .floorplan-canvas{position:relative;width:100%;aspect-ratio:8/5;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#fdfefe,#f5f8fb)}
+          .floorplan-canvas svg{width:100%;height:100%;display:block}
+          .floorplan .door-gap{stroke:#fff;stroke-width:12;fill:none}
+          .floorplan-scroll-hint{display:none}
+          .game-card__media--contain img{object-fit:contain;background:#edf2f6}
+          .copy-address{min-height:44px}.map-actions a{min-height:48px;text-align:center}
+          @media(max-width:980px){.tour-layout{grid-template-columns:1fr}.tour-panel{grid-template-columns:1fr 1fr}.tour-panel .scene-info{grid-column:1/-1}}
+          @media(max-width:720px){
+            html,body{max-width:100%;overflow-x:hidden}
+            .hero{min-height:690px;padding-top:220px;padding-bottom:54px}
+            .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+            .hero-actions .button,.closing-actions .button{width:100%;min-height:50px}
+            .site-header nav.open{max-height:calc(100svh - 118px);overflow-y:auto;overscroll-behavior:contain}
+            .summary-grid{grid-template-columns:1fr 1fr}.summary-grid article{min-height:108px;padding:18px}
+            .section{padding:70px 0}.section-head{margin-bottom:28px}.section-head h2{font-size:clamp(32px,10vw,42px)}
+            .feature-grid{grid-template-columns:1fr}
+            .feature-card,.feature-main,.feature-card.is-portrait,.feature-card.is-wide,.feature-card.is-half{grid-column:auto;min-height:auto;aspect-ratio:auto}
+            .photo-button{position:relative;inset:auto;display:block;aspect-ratio:3/2}
+            .feature-card.is-portrait .photo-button{aspect-ratio:2/3;max-height:560px;background:#e9eef3}
+            .feature-card.is-portrait .photo-button img{object-fit:contain}
+            .feature-copy{position:relative;left:auto;right:auto;bottom:auto;margin:0;border-radius:0;background:var(--navy);backdrop-filter:none}
+            .viewer-shell{height:min(64svh,520px);min-height:420px;border-radius:22px}
+            .tour-panel{grid-template-columns:1fr}.tour-panel .scene-info{grid-column:auto}
+            .floorplan.floorplan-v2{display:block;max-width:100%;overflow-x:auto;overflow-y:hidden;padding:0 0 10px;-webkit-overflow-scrolling:touch;overscroll-behavior-inline:contain}
+            .floorplan-scroll-hint{position:sticky;left:0;z-index:3;display:inline-flex;margin:0 0 8px;padding:7px 10px;border-radius:999px;background:#eef4f8;color:#53667a;font-size:11px;font-weight:850}
+            .floorplan-canvas{width:680px;max-width:none}.floorplan .marker{width:34px;height:34px}
+            .game-card{border-radius:22px}.game-card__body{padding:21px}.game-card h3{font-size:23px}.game-tag-list{gap:7px}.game-tag-list li{padding:8px 10px;font-size:11px}
+            .location-info-card{padding:20px;border-radius:22px}.location-info-card h3{font-size:25px}
+            .address-box{align-items:stretch;flex-direction:column}.copy-address{width:100%}
+            .map-actions{grid-template-columns:1fr}.map-actions a.primary-map{grid-column:auto}.map-frame{min-height:340px}
+            .owner-review-grid{grid-template-columns:1fr}.closing-card{padding:28px}
+            .mobile-actions{padding-bottom:max(10px,env(safe-area-inset-bottom))}
+            .lightbox{padding:72px 12px 20px}.lightbox img{max-width:96vw;max-height:74svh}
+          }
+          @media(max-width:390px){.shell{width:calc(100% - 24px)}.hero h1{font-size:44px}.floorplan-canvas{width:620px}.map-frame{min-height:300px}}
+          '''
+          if marker not in css:
+              css_path.write_text(css+'\n'+override,encoding='utf-8')
+
+          site=Path('partyroom/site.js')
+          text=site.read_text(encoding='utf-8').replace('service-upgrade.js?v=20260710-location-games','service-upgrade.js?v=20260710-entry-mobile')
+          site.write_text(text,encoding='utf-8')
+
+          index=Path('partyroom/index.html')
+          text=index.read_text(encoding='utf-8').replace('/partyroom/site.js?v=20260710-review','/partyroom/site.js?v=20260710-entry-mobile')
+          index.write_text(text,encoding='utf-8')
+          PY
+          rm -f .github/workflows/finalize-partyroom-entry-mobile.yml
+      - name: Commit final changes
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add partyroom/service-upgrade.css partyroom/site.js partyroom/index.html .github/workflows
+          git commit -m 'Finalize lower-left entrance and mobile responsive layout'
+          git push
