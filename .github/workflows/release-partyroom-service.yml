@@ -1,0 +1,50 @@
+name: Release partyroom service site
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/release-partyroom-service.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install updated pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 3 --retry-delay 2 'https://at.adobe.com/7Xn7e9zB1dnTLckC' -o /tmp/partyroom-service-release.zip
+          unzip -t /tmp/partyroom-service-release.zip
+          unzip -o /tmp/partyroom-service-release.zip -d .
+          node --check partyroom/site.js
+          node --check works/partyroom-360-tour/case.js
+          test -s partyroom/index.html
+          test -s partyroom/site.css
+          test -s partyroom/site-config.js
+          test -s partyroom/manifest.webmanifest
+          test -s works/partyroom-360-tour/index.html
+          test -s works/partyroom-360-tour/case.css
+          rm -f .github/workflows/release-partyroom-service.yml
+
+      - name: Commit production update
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add partyroom works/partyroom-360-tour .github/workflows
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Fix partyroom image ratios and production booking experience'
+          git push
