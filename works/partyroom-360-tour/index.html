@@ -5,156 +5,142 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0d1117">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <title>파티룸 360° 가상투어 제작 사례 | LavaLabs</title>
-  <meta name="description" content="예약 전에 좌석, PC존, 주방과 공간 동선을 직접 둘러볼 수 있도록 제작한 라바랩스 파티룸 360° 가상투어 사례입니다.">
+  <title>파티룸 360° 가상투어·웹사이트 제작 사례 | LavaLabs</title>
+  <meta name="description" content="고화질 공간 사진, 5개 장면 360° 가상투어, 실제 도면 기반 미니맵과 이용 안내를 하나의 파티룸 웹사이트로 제작한 LavaLabs 사례입니다.">
   <link rel="canonical" href="https://space.lavalabs.co.kr/works/partyroom-360-tour/">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="LavaLabs">
-  <meta property="og:title" content="방문 전에 둘러보는 파티룸 360° 가상투어 | LavaLabs">
-  <meta property="og:description" content="5개 촬영 지점을 이동하며 좌석, PC존, 주방과 공간 전체 동선을 직접 확인해 보세요.">
+  <meta property="og:title" content="파티룸 360° 가상투어·웹사이트 제작 사례 | LavaLabs">
+  <meta property="og:description" content="공간 촬영부터 360 투어, 실제 고객용 웹사이트와 이용 안내까지 한 번에 제작했습니다.">
   <meta property="og:url" content="https://space.lavalabs.co.kr/works/partyroom-360-tour/">
-  <meta property="og:image" content="https://space.lavalabs.co.kr/assets/social/portfolio.jpg?v=20260710-partyroom">
+  <meta property="og:image" content="https://space.lavalabs.co.kr/partyroom/assets/og-partyroom-case.jpg?v=20260710hq">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/assets/favicon.svg">
-  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="preload" as="image" href="/partyroom/assets/hero-2200.webp">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
-  <style>
-    :root{--dark:#0d1117;--acid:#c9ff48;--line:#e3e8ee;--muted:#69737f;--paper:#f4f6f8}
-    *{box-sizing:border-box} body{margin:0;background:#f7f8fa;color:#111721}
-    .topbar{position:sticky;top:0;z-index:50;background:rgba(13,17,23,.94);backdrop-filter:blur(14px);border-bottom:1px solid #ffffff14}
-    .topbar .container{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .mini-brand{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none;font-weight:950}.mini-brand i{display:grid;place-items:center;width:34px;height:34px;border-radius:12px;background:var(--acid);color:#111;font-style:normal}.mini-nav{display:flex;gap:18px}.mini-nav a{color:#d8dee5;text-decoration:none;font-size:13px;font-weight:850}
-    .work-hero{padding:88px 0 72px;background:radial-gradient(circle at 82% 8%,#c9ff4830,transparent 34%),linear-gradient(135deg,#0d1117,#171d26 58%,#0d1117);color:#fff}
-    .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.6fr);gap:48px;align-items:end}.eyebrow2{display:inline-flex;padding:9px 12px;border:1px solid #c9ff4855;border-radius:999px;background:#c9ff4814;color:var(--acid);font-size:11px;font-weight:950;letter-spacing:.13em}.work-hero h1{margin:22px 0 18px;font-size:clamp(42px,7vw,82px);line-height:.95;letter-spacing:-.06em}.work-hero p{max-width:760px;margin:0;color:#c7ced7;font-size:18px;line-height:1.75}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.hero-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:14px;text-decoration:none;font-weight:950}.primary{background:var(--acid);color:#0d1117}.secondary{border:1px solid #ffffff36;background:#ffffff0e;color:#fff}
-    .project-card{background:#ffffff12;border:1px solid #ffffff1f;border-radius:28px;padding:24px;box-shadow:0 26px 70px #0005}.project-card dl{display:grid;gap:14px;margin:0}.project-card dt{font-size:10px;color:#97a1ad;font-weight:900;letter-spacing:.13em}.project-card dd{margin:4px 0 0;color:#fff;font-size:14px;font-weight:850;line-height:1.55}
-    .section{padding:76px 0}.section.dark{background:var(--dark);color:#fff}.section.muted{background:#edf1f5}.section-title{display:grid;gap:13px;max-width:850px;margin-bottom:34px}.section-title.center{text-align:center;margin-left:auto;margin-right:auto}.section-title span{font-size:11px;font-weight:950;letter-spacing:.16em;color:#67727d}.dark .section-title span{color:var(--acid)}.section-title h2{margin:0;font-size:clamp(30px,4vw,52px);line-height:1.06;letter-spacing:-.045em}.section-title p{margin:0;color:#6c7580;font-size:16px;line-height:1.75}.dark .section-title p{color:#b8c1ca}
-    .metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.metric{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;min-height:154px}.metric strong{display:block;font-size:31px;letter-spacing:-.05em}.metric span{display:block;margin-top:8px;color:#68727d;font-size:13px;line-height:1.6}
-    .tour-grid{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:22px;align-items:start}.viewer-shell{position:relative;min-height:630px;border-radius:28px;overflow:hidden;background:#05070a;box-shadow:0 30px 82px #0006}.viewer-badge{position:absolute;left:18px;top:18px;z-index:8;padding:10px 13px;border-radius:999px;background:#0d1117c9;color:#fff;font-size:12px;font-weight:900;backdrop-filter:blur(10px)}#panorama{position:absolute;inset:0}.pnlm-container{background:#05070a}.pnlm-load-box{background:#0d1117cc;border-radius:16px}.pnlm-title-box,.pnlm-author-box{display:none!important}.pnlm-hotspot-base.tour-arrow{width:58px;height:58px;border:2px solid #fff;border-radius:50%;background:#0d1117c9;box-shadow:0 12px 28px #0008}.pnlm-hotspot-base.tour-arrow:after{content:'➜';position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:29px;font-weight:900}.pnlm-hotspot-base.tour-arrow:hover{transform:scale(1.08)}
-    .panel{display:grid;gap:16px}.card{background:#fff;border:1px solid #e2e7ed;border-radius:26px;padding:20px;box-shadow:0 18px 50px #10151d12}.card h3{margin:0 0 12px;font-size:18px}.floorplan{position:relative;aspect-ratio:1.12/1;border:1px solid #dce4ec;border-radius:20px;background:#f9fbfc;overflow:hidden}.floorplan svg{width:100%;height:100%;display:block}.marker{position:absolute;width:28px;height:28px;border:3px solid #fff;border-radius:50%;background:#111827;color:#fff;display:grid;place-items:center;font-size:10px;font-weight:950;transform:translate(-50%,-50%);box-shadow:0 8px 18px #0004;cursor:pointer}.marker.active{background:var(--acid);color:#111;box-shadow:0 0 0 6px #c9ff4847,0 10px 24px #0004}.scene-list{display:grid;gap:8px;margin-top:14px}.scene-list button{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;border:1px solid #e2e7ed;border-radius:14px;background:#fff;padding:12px 13px;text-align:left;color:#111721;font-weight:850;cursor:pointer}.scene-list button.active{background:#0d1117;color:#fff;border-color:#0d1117}.scene-desc{margin:0;color:#6c7580;font-size:14px;line-height:1.72}.hint{display:flex;gap:9px;align-items:flex-start;margin-top:12px;padding:12px;border-radius:14px;background:#f3f6f8;color:#56606b;font-size:12px;line-height:1.6}
-    .zone-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.zone-card{background:#fff;border:1px solid #e3e8ee;border-radius:28px;padding:24px;box-shadow:0 18px 50px #12161d0f}.zone-card b{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:13px;background:#0d1117;color:#fff;font-size:12px}.zone-card h3{margin:18px 0 9px;font-size:20px}.zone-card p{margin:0;color:#6d7681;font-size:14px;line-height:1.7}.process{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:item}.process article{background:#151a22;border:1px solid #ffffff12;border-radius:24px;padding:24px;min-height:178px}.process article:before{counter-increment:item;content:counter(item,decimal-leading-zero);display:grid;place-items:center;width:38px;height:38px;border-radius:13px;background:var(--acid);color:#111;font-weight:950}.process h3{margin:18px 0 8px}.process p{margin:0;color:#b9c2cb;font-size:14px;line-height:1.7}.deliverables{display:grid;grid-template-columns:1.15fr .85fr;gap:22px}.box{background:#fff;border:1px solid #e3e8ee;border-radius:28px;padding:28px}.box h3{margin:0 0 14px}.box ul{margin:0;padding:0;list-style:none;display:grid;gap:11px}.box li{display:flex;gap:10px;color:#414a55;line-height:1.6}.box li:before{content:'✓';font-weight:950}.notice{margin:16px 0 0;color:#68727e;font-size:13px;line-height:1.7}
-    @media(max-width:980px){.hero-grid,.tour-grid,.deliverables{grid-template-columns:1fr}.metric-grid,.zone-grid,.process{grid-template-columns:1fr 1fr}.viewer-shell{min-height:540px}}
-    @media(max-width:640px){.mini-nav{display:none}.work-hero{padding:72px 0 52px}.metric-grid,.zone-grid,.process{grid-template-columns:1fr}.viewer-shell{min-height:460px}.section{padding:56px 0}.panel{order:-1}}
-  </style>
+  <link rel="stylesheet" href="/works/partyroom-360-tour/case.css?v=20260710hq2">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CreativeWork",
+    "name":"파티룸 360° 가상투어 및 웹사이트 제작",
+    "creator":{"@type":"Organization","name":"LavaLabs","url":"https://space.lavalabs.co.kr/"},
+    "url":"https://space.lavalabs.co.kr/works/partyroom-360-tour/",
+    "image":"https://space.lavalabs.co.kr/partyroom/assets/og-partyroom-case.jpg",
+    "description":"고화질 공간 사진, 360° 가상투어, 도면 기반 미니맵과 실제 고객용 웹사이트를 제작한 사례"
+  }
+  </script>
 </head>
 <body>
-  <header class="topbar"><div class="container"><a class="mini-brand" href="/"><i>LL</i><span>LavaLabs</span></a><nav class="mini-nav"><a href="/portfolio.html">제작 사례</a><a href="/space.html">공간 콘텐츠</a><a href="/contact.html">프로젝트 문의</a></nav></div></header>
-  <main>
-    <section class="work-hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow2">CASE STUDY · PARTYROOM 360 TOUR</span>
-          <h1>방문 전에 둘러보는<br>파티룸 360° 가상투어</h1>
-          <p>예약 고객이 좌석 배치, PC존, 주방과 공간 전체 동선을 방문 전에 직접 확인할 수 있도록 제작했습니다. 화면을 드래그하고 이동 버튼을 누르면 실제 공간을 둘러보듯 5개 촬영 지점을 탐색할 수 있습니다.</p>
-          <div class="hero-actions"><a class="primary" href="#tour">360 투어 직접 체험하기</a><a class="secondary" href="/contact.html?service=360-space-tour">내 공간 제작 문의하기</a></div>
-        </div>
-        <aside class="project-card"><dl><div><dt>PROJECT TYPE</dt><dd>360 공간 촬영 · 인터랙티브 가상투어 · 랜딩페이지</dd></div><div><dt>SPACE</dt><dd>프라이빗 파티룸 / 복합 라운지</dd></div><div><dt>FEATURES</dt><dd>장면 이동 · 미니맵 · 현재 위치 연동 · 모바일 대응</dd></div><div><dt>STATUS</dt><dd>실제 촬영본 5개 장면 연결 완료</dd></div></dl></aside>
+<a class="skip-link" href="#main">본문으로 바로가기</a>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="/"><span>LL</span><b>LavaLabs</b></a>
+    <nav aria-label="주요 메뉴"><a href="/portfolio.html">제작 사례</a><a href="/space.html">공간 콘텐츠</a><a href="/pricing.html">가격 안내</a><a href="/contact.html">프로젝트 문의</a></nav>
+  </div>
+</header>
+<main id="main">
+  <section class="hero">
+    <picture class="hero-image" aria-hidden="true"><img src="/partyroom/assets/hero-2200.webp" alt="" width="2200" height="1467" fetchpriority="high"></picture>
+    <div class="hero-overlay"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">CASE STUDY · SPACE CONTENT & WEB</p>
+        <h1>공간을 찍고,<br><em>둘러보게 만들고,</em><br>예약 전 궁금증을 줄였습니다.</h1>
+        <p>일반 공간 사진과 5개 장면 360° 투어, 실제 배치 기반 미니맵, 안내책자 내용을 반영한 고객용 웹사이트까지 하나의 프로젝트로 구성했습니다.</p>
+        <div class="actions"><a class="button primary" href="#tour">360° 투어 체험</a><a class="button secondary" href="/partyroom/" target="_blank" rel="noopener">실제 사이트 보기 ↗</a><a class="button secondary" href="/contact.html?service=partyroom-360-tour">비슷한 공간 문의</a></div>
       </div>
-    </section>
+      <aside class="project-card">
+        <div><small>PROJECT</small><b>파티룸 공간 콘텐츠 패키지</b></div>
+        <div><small>DELIVERABLES</small><b>사진 · 360 투어 · 미니맵 · 웹사이트</b></div>
+        <div><small>SCENES</small><b>5개 촬영 지점 연결</b></div>
+        <div><small>DEVICE</small><b>모바일 · 태블릿 · PC 대응</b></div>
+      </aside>
+    </div>
+  </section>
 
-    <section class="section muted"><div class="container"><div class="metric-grid"><article class="metric"><strong>360°</strong><span>화면을 드래그하고 확대해 실제 공간을 자유롭게 확인</span></article><article class="metric"><strong>5 SCENES</strong><span>전체 공간, 라운지, 대형 테이블, PC존, 주방 장면 연결</span></article><article class="metric"><strong>LIVE MAP</strong><span>장면이 바뀌면 미니맵의 현재 위치도 함께 변경</span></article><article class="metric"><strong>MULTI USE</strong><span>홈페이지, 예약 페이지, 네이버 플레이스, QR과 SNS에서 활용</span></article></div></div></section>
+  <section class="metrics"><div class="container metric-grid">
+    <article><strong>49</strong><span>고해상도 일반 촬영 원본</span></article>
+    <article><strong>5 SCENES</strong><span>연결형 360° 공간 투어</span></article>
+    <article><strong>1 MAP</strong><span>실제 배치 기반 인터랙티브 도면</span></article>
+    <article><strong>2 SITES</strong><span>제작 사례 + 고객 실사용 사이트</span></article>
+  </div></section>
 
-    <section class="section dark" id="tour">
-      <div class="container">
-        <div class="section-title"><span>INTERACTIVE TOUR</span><h2>직접 움직이며<br>공간을 확인해 보세요.</h2><p>화면을 드래그해 주변을 둘러보고, 공간 안의 이동 버튼이나 오른쪽 미니맵을 눌러 원하는 위치로 이동할 수 있습니다.</p></div>
-        <div class="tour-grid">
-          <div class="viewer-shell"><div class="viewer-badge" id="sceneBadge">01 · 전체 공간</div><div id="panorama" aria-label="파티룸 360 가상투어"></div></div>
-          <aside class="panel">
-            <div class="card">
-              <h3>공간 미니맵</h3>
-              <div class="floorplan">
-                <svg viewBox="0 0 520 460" role="img" aria-label="사진 기반 파티룸 안내 도면"><rect x="34" y="42" width="452" height="356" rx="24" fill="#fff" stroke="#d8e0e8" stroke-width="4"/><path d="M252 42v356" stroke="#edf1f5" stroke-width="3"/><path d="M34 220h452" stroke="#edf1f5" stroke-width="3"/><rect x="54" y="64" width="164" height="128" rx="16" fill="#e9f5ff"/><text x="136" y="135" text-anchor="middle" font-size="18" font-weight="900" fill="#15202b">PC ZONE</text><rect x="56" y="246" width="180" height="112" rx="16" fill="#fff4d8"/><text x="146" y="307" text-anchor="middle" font-size="18" font-weight="900" fill="#15202b">BIG TABLE</text><rect x="280" y="58" width="166" height="122" rx="16" fill="#f2ecff"/><text x="363" y="126" text-anchor="middle" font-size="18" font-weight="900" fill="#15202b">LOUNGE</text><rect x="292" y="218" width="154" height="72" rx="16" fill="#eaffdf"/><text x="369" y="260" text-anchor="middle" font-size="17" font-weight="900" fill="#15202b">POKER · TV</text><rect x="282" y="312" width="164" height="64" rx="16" fill="#ffe9e9"/><text x="364" y="350" text-anchor="middle" font-size="18" font-weight="900" fill="#15202b">KITCHEN</text><text x="260" y="428" text-anchor="middle" font-size="12" font-weight="800" fill="#7b8490">사진 기반 안내용 도면 · 실측 도면 아님</text></svg>
-                <button class="marker active" style="left:51%;top:48%" data-scene="overview" aria-label="전체 공간으로 이동">01</button>
-                <button class="marker" style="left:71%;top:30%" data-scene="lounge" aria-label="라운지로 이동">02</button>
-                <button class="marker" style="left:29%;top:66%" data-scene="tablepc" aria-label="대형 테이블로 이동">03</button>
-                <button class="marker" style="left:26%;top:28%" data-scene="pc" aria-label="PC존으로 이동">04</button>
-                <button class="marker" style="left:71%;top:76%" data-scene="kitchen" aria-label="주방으로 이동">05</button>
-              </div>
-              <div class="scene-list" id="sceneList"></div>
-              <div class="hint"><b>TIP</b><span>휴대폰에서는 한 손가락으로 화면을 움직이고 두 손가락으로 확대·축소할 수 있습니다.</span></div>
-            </div>
-            <div class="card"><h3 id="sceneTitle">전체 공간</h3><p class="scene-desc" id="sceneDesc">좌석, PC존, 대형 테이블과 주방의 위치 및 전체 동선을 확인하는 기준 장면입니다.</p></div>
-          </aside>
-        </div>
+  <section class="section">
+    <div class="container intro-grid">
+      <header class="section-head"><p class="kicker">PROJECT GOAL</p><h2>예쁜 사진을 넘어서<br>방문 전 판단을 돕는 페이지.</h2></header>
+      <div class="intro-copy"><p>파티룸 고객은 예약 전에 좌석 수, PC 배치, TV와 게임기, 주방 시설, 공간 사이 동선을 궁금해합니다. 그래서 사진을 단순 나열하지 않고, <b>전체 구조는 360° 투어로</b>, <b>시설 디테일은 고화질 사진으로</b>, <b>사용법은 안내 가이드로</b> 나눠 전달했습니다.</p><p>같은 촬영 결과를 LavaLabs 포트폴리오와 실제 파티룸 고객용 사이트에 각각 다른 목적과 문장으로 재구성했습니다.</p></div>
+    </div>
+  </section>
+
+  <section class="section dark" id="tour">
+    <div class="container">
+      <header class="section-head light"><p class="kicker">INTERACTIVE 360 TOUR</p><h2>도면과 장면이<br>같이 움직입니다.</h2><p>360 화면의 이동 화살표, 장면 목록 또는 미니맵 번호를 누르면 같은 위치 정보가 동기화됩니다.</p></header>
+      <div class="tour-grid">
+        <div class="viewer-shell"><div class="viewer-badge" id="sceneBadge">01 · 전체 공간</div><div id="panorama" aria-label="파티룸 360도 가상투어 제작 사례"></div></div>
+        <aside class="tour-aside">
+          <section class="card"><h3>공간 미니맵</h3><div class="floorplan" id="floorplan"></div><p class="note">손으로 기록한 현장 배치를 디지털 안내 도면으로 정리했습니다.</p></section>
+          <section class="card"><h3>장면 선택</h3><div class="scene-list" id="sceneList"></div></section>
+          <section class="card"><p class="scene-no" id="sceneNo">SCENE 01</p><h3 id="sceneTitle">전체 공간</h3><p class="scene-desc" id="sceneDesc">전체 공간의 구조와 주요 구역 사이 동선을 확인하는 기준 장면입니다.</p></section>
+        </aside>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-title center"><span>SPACE INFORMATION</span><h2>예약 전에 궁금한 공간 정보를<br>장면별로 보여줍니다.</h2><p>예쁜 사진만 나열하는 대신 실제 이용에 필요한 좌석, 시설과 동선을 직접 확인할 수 있도록 구성했습니다.</p></div>
-        <div class="zone-grid">
-          <article class="zone-card"><b>01</b><h3>좌석과 모임 규모</h3><p>소파와 테이블 배치를 보여주어 인원에 맞는 공간인지 예약 전에 판단할 수 있습니다.</p></article>
-          <article class="zone-card"><b>02</b><h3>대형 테이블</h3><p>식사, 보드게임, 단체 모임과 간단한 회의에 활용할 수 있는 테이블 구역을 확인합니다.</p></article>
-          <article class="zone-card"><b>03</b><h3>PC 게임 환경</h3><p>PC 대수와 배치, 좌석 간 간격을 별도 장면으로 보여주어 게임 이용 환경을 전달합니다.</p></article>
-          <article class="zone-card"><b>04</b><h3>주방과 편의시설</h3><p>싱크대, 냉장고와 조리 보조 공간을 보여주어 음식 준비 가능 범위를 쉽게 확인합니다.</p></article>
-          <article class="zone-card"><b>05</b><h3>놀이 시설과 분위기</h3><p>TV, 포커 테이블과 보드게임 시설을 함께 보여주어 공간에서 가능한 활동을 전달합니다.</p></article>
-          <article class="zone-card"><b>06</b><h3>공간 전체 동선</h3><p>여러 촬영 지점을 연결해 입구부터 각 구역까지의 이동 구조와 실제 공간감을 전달합니다.</p></article>
-        </div>
+  <section class="section photos">
+    <div class="container">
+      <header class="section-head"><p class="kicker">HIGH-RES PHOTOGRAPHY</p><h2>작은 썸네일이 아니라<br>카메라 원본을 제대로 사용했습니다.</h2><p>6,192px급 카메라 원본에서 화면별 이미지를 1,400~2,200px WebP로 다시 내보내 화질과 로딩 속도를 함께 개선했습니다.</p></header>
+      <div class="photo-grid">
+        <figure class="photo-wide"><picture><img src="/partyroom/assets/lounge-1800.webp" width="1800" height="1200" alt="TV와 소파가 있는 파티룸 라운지" loading="lazy" decoding="async"></picture><figcaption>TV · 소파 · 노래방 · PS5</figcaption></figure>
+        <figure class="photo-tall"><picture><img src="/partyroom/assets/pc-1400.webp" width="933" height="1400" alt="PC 게임존" loading="lazy" decoding="async"></picture><figcaption>PC 게임존</figcaption></figure>
+        <figure><picture><img src="/partyroom/assets/poker-1800.webp" width="1800" height="1200" alt="홀덤 테이블" loading="lazy" decoding="async"></picture><figcaption>홀덤 테이블</figcaption></figure>
+        <figure><picture><img src="/partyroom/assets/dining-1800.webp" width="1800" height="1200" alt="다인석 테이블" loading="lazy" decoding="async"></picture><figcaption>다인석 테이블</figcaption></figure>
+        <figure><picture><img src="/partyroom/assets/kitchen-1800.webp" width="1800" height="1200" alt="주방과 냉장고" loading="lazy" decoding="async"></picture><figcaption>주방 · 편의시설</figcaption></figure>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section muted">
-      <div class="container">
-        <div class="section-title center"><span>WHY 360 TOUR</span><h2>사진 한 장으로 설명하기 어려운 공간을<br>고객이 직접 확인하게 합니다.</h2><p>예약 전 정보 부족으로 생기는 반복 문의와 공간에 대한 불안을 줄이고, 실제 이용 장면을 더 구체적으로 상상할 수 있게 합니다.</p></div>
-        <div class="deliverables">
-          <div class="box"><h3>예약 고객이 확인할 수 있는 정보</h3><ul><li>예상 인원에 맞는 좌석과 테이블 배치</li><li>PC 대수, 게임 환경과 놀이 시설</li><li>주방, 냉장고와 편의시설 구성</li><li>공간 크기와 구역 사이 이동 동선</li><li>사진만으로 파악하기 어려운 실제 공간감</li></ul></div>
-          <div class="box"><h3>공간 운영자가 얻는 효과</h3><ul><li>예약 전 반복 문의 감소</li><li>사진과 실제 공간 차이에 대한 불안 완화</li><li>예약 페이지의 정보량과 체류 경험 강화</li><li>홈페이지, 플레이스, SNS와 QR에 재활용</li><li>시설 변경 시 필요한 장면만 교체 가능</li></ul><p class="notice">완성된 투어는 별도 앱 설치 없이 링크 하나로 공유할 수 있습니다.</p></div>
-        </div>
+  <section class="section solution">
+    <div class="container">
+      <header class="section-head center"><p class="kicker">SOLUTION PACKAGE</p><h2>촬영 결과를 실제 영업 자산으로 바꿉니다.</h2></header>
+      <div class="solution-grid">
+        <article><span>01</span><h3>고화질 공간 사진</h3><p>대표 이미지와 구역별 상세 사진을 웹, 플레이스와 SNS에 재사용할 수 있게 구성합니다.</p></article>
+        <article><span>02</span><h3>360° 가상투어</h3><p>여러 촬영 지점을 연결해 고객이 공간을 직접 이동하며 확인하게 합니다.</p></article>
+        <article><span>03</span><h3>도면 기반 미니맵</h3><p>현재 위치와 공간 구역을 동시에 보여주어 360 화면의 방향 감각을 보완합니다.</p></article>
+        <article><span>04</span><h3>실사용 웹사이트</h3><p>시설, 이용수칙과 안내책자 내용을 고객이 읽기 쉬운 모바일 페이지로 정리합니다.</p></article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section dark">
-      <div class="container">
-        <div class="section-title"><span>WORKFLOW</span><h2>촬영부터 공개 링크까지<br>한 번에 제작합니다.</h2><p>공간의 특징과 고객이 궁금해할 정보를 먼저 정리한 뒤, 촬영 결과를 실제로 탐색할 수 있는 웹 콘텐츠로 연결합니다.</p></div>
-        <div class="process"><article><h3>촬영 동선 설계</h3><p>공간 구조와 주요 시설을 확인하고 고객이 이동할 촬영 지점을 정합니다.</p></article><article><h3>360 공간 촬영</h3><p>전체 공간과 핵심 구역을 실제 이용자의 눈높이에 맞춰 촬영합니다.</p></article><article><h3>투어와 미니맵 제작</h3><p>장면 이동 버튼, 위치 안내와 모바일·PC용 인터랙션을 구성합니다.</p></article><article><h3>채널 적용</h3><p>홈페이지, 예약 페이지, 네이버 플레이스, QR과 SNS에서 사용할 링크를 제공합니다.</p></article></div>
-      </div>
-    </section>
+  <section class="section workflow-section">
+    <div class="container">
+      <header class="section-head light"><p class="kicker">WORKFLOW</p><h2>현장 기록부터 공개 링크까지.</h2></header>
+      <ol class="workflow">
+        <li><b>현장 구조 확인</b><p>시설, 가구 배치와 고객이 궁금해할 지점을 기록합니다.</p></li>
+        <li><b>일반·360 촬영</b><p>전체 공간과 시설 디테일을 용도에 맞는 방식으로 촬영합니다.</p></li>
+        <li><b>이미지 최적화</b><p>고해상도 원본에서 반응형 웹 이미지를 다시 제작합니다.</p></li>
+        <li><b>투어·도면 구현</b><p>장면 연결, 이동 버튼과 위치 동기화를 구성합니다.</p></li>
+        <li><b>사이트 제작</b><p>소개, 사진, 투어, 이용 안내와 문의 동선을 정리합니다.</p></li>
+      </ol>
+    </div>
+  </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-title center"><span>DELIVERABLES</span><h2>비슷한 공간에 제공할 수 있는 결과물</h2><p>360 투어만 제작하거나 일반 사진, 랜딩페이지와 묶어 공간 홍보 콘텐츠로 구성할 수 있습니다.</p></div>
-        <div class="deliverables">
-          <div class="box"><h3>제작 산출물</h3><ul><li>인터랙티브 360 가상투어 링크</li><li>장면 이동 버튼과 위치 안내 미니맵</li><li>웹 랜딩페이지 또는 포트폴리오 페이지</li><li>홍보용 일반 사진과 대표 썸네일</li><li>2차 가공용 고해상도 360 파노라마 파일</li><li>QR 코드와 공유용 링크</li></ul></div>
-          <div class="box"><h3>추천 공간</h3><ul><li>파티룸 · 모임공간</li><li>공유오피스 · 스터디룸</li><li>카페 · 쇼룸 · 체험 공간</li><li>팝업스토어 · 전시 공간</li></ul></div>
-        </div>
-        <div class="hero-actions" style="justify-content:center"><a class="primary" href="/contact.html?service=partyroom-360-tour">내 공간도 이렇게 만들기</a><a href="/portfolio.html" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border:1px solid #d8dee5;border-radius:14px;color:#111;text-decoration:none;font-weight:950;background:#fff">다른 제작 사례 보기</a></div>
-      </div>
-    </section>
-  </main>
-  <footer class="section dark" style="padding:34px 0"><div class="container" style="display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:#aeb7c0;font-size:13px"><span>© LavaLabs Digital Studio</span><span>공간 촬영 · 360 가상투어 · 랜딩페이지 제작</span></div></footer>
-  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
-  <script>
-    const sceneInfo={
-      overview:{no:'01',title:'전체 공간',desc:'좌석, PC존, 대형 테이블과 주방의 위치 및 전체 동선을 확인하는 기준 장면입니다.'},
-      lounge:{no:'02',title:'소파 · TV 라운지',desc:'대형 TV, 소파, 포커 테이블과 보드게임 시설을 확인하는 메인 라운지 장면입니다.'},
-      tablepc:{no:'03',title:'대형 테이블',desc:'단체 식사, 보드게임과 모임에 활용하는 대형 테이블 구역입니다.'},
-      kitchen:{no:'05',title:'주방 · 편의시설',desc:'싱크대, 냉장고, 조리 보조 시설과 테이블 사이 동선을 확인하는 장면입니다.'}
-    };
-    const viewer=pannellum.viewer('panorama',{
-      default:{firstScene:'overview',autoLoad:true,sceneFadeDuration:650,showControls:true,compass:false,hfov:105,minHfov:45,maxHfov:120},
-      scenes:{
-        overview:{type:'equirectangular',panorama:'assets/scene-overview.png?v=20260710-logo',yaw:35,pitch:-2,hotSpots:[
-          {pitch:-13,yaw:72,type:'scene',sceneId:'lounge',text:'소파·TV 라운지',cssClass:'tour-arrow'},
-          {pitch:-12,yaw:-88,type:'scene',sceneId:'tablepc',text:'대형 테이블',cssClass:'tour-arrow'},
-          {pitch:-11,yaw:-25,type:'scene',sceneId:'kitchen',text:'주방·편의시설',cssClass:'tour-arrow'}]},
-        lounge:{type:'equirectangular',panorama:'assets/scene-lounge.png?v=20260710-logo',yaw:12,pitch:-2,hotSpots:[
-          {pitch:-12,yaw:-88,type:'scene',sceneId:'overview',text:'전체 공간',cssClass:'tour-arrow'},
-          {pitch:-11,yaw:12,type:'scene',sceneId:'tablepc',text:'대형 테이블',cssClass:'tour-arrow'}]},
-        tablepc:{type:'equirectangular',panorama:'assets/scene-table-pc.png?v=20260710-logo',yaw:20,pitch:-2,hotSpots:[
-          {pitch:-12,yaw:88,type:'scene',sceneId:'overview',text:'전체 공간',cssClass:'tour-arrow'},
-          {pitch:-11,yaw:-82,type:'scene',sceneId:'kitchen',text:'주방·편의시설',cssClass:'tour-arrow'}]},
-        kitchen:{type:'equirectangular',panorama:'assets/scene-kitchen.png?v=20260710-logo',yaw:4,pitch:-2,hotSpots:[
-          {pitch:-12,yaw:82,type:'scene',sceneId:'tablepc',text:'대형 테이블',cssClass:'tour-arrow'},
-          {pitch:-11,yaw:8,type:'scene',sceneId:'overview',text:'전체 공간',cssClass:'tour-arrow'}]}
-      }
-    });
-    const list=document.getElementById('sceneList');
-    Object.entries(sceneInfo).forEach(([id,s])=>{const b=document.createElement('button');b.type='button';b.dataset.scene=id;b.innerHTML='<span>'+s.no+' · '+s.title+'</span><b>↗</b>';b.addEventListener('click',()=>viewer.loadScene(id));list.appendChild(b)});
-    document.querySelectorAll('.marker').forEach(b=>b.addEventListener('click',()=>viewer.loadScene(b.dataset.scene)));
-    function syncScene(id){const s=sceneInfo[id];if(!s)return;document.getElementById('sceneBadge').textContent=s.no+' · '+s.title;document.getElementById('sceneTitle').textContent=s.title;document.getElementById('sceneDesc').textContent=s.desc;document.querySelectorAll('[data-scene]').forEach(el=>el.classList.toggle('active',el.dataset.scene===id))}
-    viewer.on('scenechange',syncScene);syncScene('overview');
-  </script>
-  <script src="navigation-fix.js?v=20260710f"></script>
-  <script src="pc-zone.js?v=20260710b"></script>
+  <section class="section live-preview">
+    <div class="container live-card">
+      <picture><img src="/partyroom/assets/hero-2200.webp" width="2200" height="1467" alt="퓨처스페이스 게임파티룸 실제 사이트 대표 화면" loading="lazy"></picture>
+      <div><p class="kicker">LIVE CUSTOMER SITE</p><h2>포트폴리오와 별도로<br>실제 고객용 사이트를 제작했습니다.</h2><p>고객용 사이트에서는 파티룸 소개, 고화질 사진, 360° 투어와 현장 안내책자를 반영한 시설 사용법을 제공합니다.</p><a class="button primary" href="/partyroom/" target="_blank" rel="noopener">실제 파티룸 사이트 보기 ↗</a></div>
+    </div>
+  </section>
+
+  <section class="section cta">
+    <div class="container cta-card"><div><p class="kicker">START A PROJECT</p><h2>내 공간도 방문 전에<br>직접 둘러보게 만드세요.</h2><p>360 촬영만 진행하거나 일반 사진, 랜딩페이지와 함께 구성할 수 있습니다.</p></div><div class="actions"><a class="button primary" href="/contact.html?service=partyroom-360-tour">프로젝트 문의하기</a><a class="button dark-button" href="/pricing.html">가격 안내 보기</a></div></div>
+  </section>
+</main>
+<footer><div class="container footer-inner"><span>© LavaLabs Digital Studio</span><span>공간 촬영 · 360 가상투어 · 웹사이트 제작</span></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+<script src="/works/partyroom-360-tour/case.js?v=20260710hq2"></script>
 </body>
 </html>
