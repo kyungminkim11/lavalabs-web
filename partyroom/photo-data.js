@@ -1,1 +1,2 @@
-PLACEHOLDER
+window.PARTYROOM_PHOTOS={};['lounge','poker','dining','pc','kitchen'].forEach(function(k){if(window._PR&&window._PR[k])window.PARTYROOM_PHOTOS[k]='data:image/jpeg;base64,'+window._PR[k];});
+(function(){function apply(){document.querySelectorAll('[data-partyroom-photo]').forEach(function(el){var key=el.getAttribute('data-partyroom-photo');var src=window.PARTYROOM_PHOTOS&&window.PARTYROOM_PHOTOS[key];if(!src)return;if(el.tagName==='IMG')el.src=src;else el.style.backgroundImage='url("'+src+'")';});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);else apply();})();
