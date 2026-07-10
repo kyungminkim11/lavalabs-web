@@ -8,7 +8,7 @@
 
   const styleLink=document.createElement("link");
   styleLink.rel="stylesheet";
-  styleLink.href="/partyroom/service-upgrade.css?v=20260710-entry-mobile";
+  styleLink.href="/partyroom/service-upgrade.css?v=20260710-entry-left-v2";
   document.head.appendChild(styleLink);
 
   const floorplan=document.getElementById("floorplan");
@@ -52,10 +52,10 @@
         <rect class="fixture" x="680" y="430" width="190" height="82" rx="14" fill="#e6f4ff"/>
         <text class="zone-label" x="775" y="478" text-anchor="middle">PC 게임존</text>
 
-        <path class="door-gap" d="M34 550H198"/>
-        <path class="door-line" d="M198 550V386"/>
-        <path class="door-swing" d="M34 550A164 164 0 0 1 198 386"/>
-        <text class="entry-label" x="112" y="536" text-anchor="middle">출입문</text>
+        <path class="door-gap" d="M70 550H220"/>
+        <path class="door-line" d="M220 550V400"/>
+        <path class="door-swing" d="M70 550A150 150 0 0 1 220 400"/>
+        <text class="entry-label" x="145" y="535" text-anchor="middle">출입문</text>
       </svg>
       <button class="marker active" style="left:53%;top:59%" data-scene="overview" aria-label="전체 공간으로 이동">01</button>
       <button class="marker" style="left:37%;top:42%" data-scene="lounge" aria-label="TV 라운지로 이동">02</button>

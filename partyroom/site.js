@@ -129,7 +129,7 @@ document.querySelectorAll("img").forEach(img=>img.addEventListener("error",()=>{
 // Service-level content: corrected floorplan, game inventory and location map.
 if (!document.querySelector(`script[src*="service-upgrade.js?v=20260710-entry-mobile"]`)) {
   const serviceUpgradeScript = document.createElement("script");
-  serviceUpgradeScript.src = "/partyroom/service-upgrade.js?v=20260710-entry-mobile";
+  serviceUpgradeScript.src = "/partyroom/service-upgrade.js?v=20260710-entry-left-v2";
   serviceUpgradeScript.defer = true;
   document.body.appendChild(serviceUpgradeScript);
 }
