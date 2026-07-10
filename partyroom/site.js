@@ -62,7 +62,7 @@ if(window.pannellum){
   });
   viewer.on("scenechange",syncScene);
 }else{
-  document.getElementById("panorama").innerHTML='<div class="viewer-fallback"><b>360° 투어를 불러오지 못했습니다.</b><span>네트워크를 확인한 뒤 새로고침해 주세요.</span></div>';
+  document.getElementById("panorama").innerHTML='<div class="viewer-fallback" style="position:absolute;inset:0;display:grid;place-content:center;gap:8px;text-align:center;padding:24px;color:#fff;background:linear-gradient(135deg,#07111f,#16283d)"><b style="font-size:18px">360° 투어를 불러오지 못했습니다.</b><span style="color:#b8c7d7;font-size:13px">네트워크를 확인한 뒤 새로고침해 주세요.</span></div>';
 }
 syncScene("overview");
 
