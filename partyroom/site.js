@@ -20,7 +20,7 @@ floorplan.innerHTML=`<svg viewBox="0 0 900 520" role="img" aria-label="퓨처스
 <rect x="786" y="182" width="44" height="172" rx="10" fill="#ffe9e9"/><text class="map-small" x="808" y="271" text-anchor="middle" transform="rotate(-90 808 271)">싱크대</text>
 <rect x="390" y="382" width="164" height="70" rx="12" fill="#fff2cf"/><text class="map-label" x="472" y="424" text-anchor="middle">보드게임</text>
 <rect x="598" y="382" width="168" height="70" rx="12" fill="#e9f5ff"/><text class="map-label" x="682" y="424" text-anchor="middle">PC</text>
-<path d="M852 485h-78m78 0v-78" fill="none" stroke="#8d98a5" stroke-width="5"/><path d="M774 485a78 78 0 0 1 78-78" fill="none" stroke="#c7d0d9" stroke-width="3" stroke-dasharray="8 7"/><text class="map-small" x="805" y="472" text-anchor="middle">출입문</text></svg>
+<path d="M58 485H200" fill="none" stroke="#fff" stroke-width="12"/><path d="M200 485V343" fill="none" stroke="#8d98a5" stroke-width="5"/><path d="M58 485A142 142 0 0 1 200 343" fill="none" stroke="#c7d0d9" stroke-width="3" stroke-dasharray="8 7"/><text class="map-small" x="129" y="470" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5">출입문</text></svg>
 <button class="marker active" style="left:50%;top:57%" data-scene="overview" aria-label="전체 공간으로 이동">01</button>
 <button class="marker" style="left:29%;top:42%" data-scene="lounge" aria-label="TV 라운지로 이동">02</button>
 <button class="marker" style="left:66%;top:47%" data-scene="tablepc" aria-label="다인석 테이블로 이동">03</button>
