@@ -63,11 +63,13 @@
     if(button&&!button.dataset.safeDecode){button.dataset.safeDecode='true';installSafeDecode(button);}
     const done=document.querySelector('#privacyV3PolygonDone');
     const cancel=document.querySelector('#privacyV3PolygonCancel');
-    if(done){done.disabled=false;done.textContent='현재 경로 완료';}
-    if(cancel)cancel.disabled=false;
+    if(done){if(done.disabled)done.disabled=false;if(done.textContent!=='현재 경로 완료')done.textContent='현재 경로 완료';}
+    if(cancel&&cancel.disabled)cancel.disabled=false;
   }
 
   const observer=new MutationObserver(finalizeUi);
-  observer.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['disabled']});
+  observer.observe(document.body,{childList:true,subtree:true});
+  document.addEventListener('pointerup',()=>setTimeout(finalizeUi,0),true);
+  document.addEventListener('click',()=>setTimeout(finalizeUi,0),true);
   finalizeUi();
 })();
