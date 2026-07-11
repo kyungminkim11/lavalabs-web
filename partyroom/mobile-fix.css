@@ -1,0 +1,95 @@
+/* Mobile layout corrections: keep the header attached to the viewport and fit the full floorplan on screen. */
+.site-header,
+.review-banner + .skip-link + .site-header {
+  top: 0 !important;
+}
+
+html {
+  scroll-padding-top: 84px !important;
+}
+
+.tour-panel,
+.panel-card,
+.floorplan.floorplan-v2 {
+  min-width: 0;
+}
+
+@media (max-width: 720px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  .review-banner {
+    margin-top: 72px !important;
+  }
+
+  .review-banner + .skip-link + .site-header {
+    top: 0 !important;
+  }
+
+  html {
+    scroll-padding-top: 84px !important;
+  }
+
+  .hero {
+    min-height: 690px;
+    padding-top: 132px !important;
+  }
+
+  .tour-panel,
+  .panel-card {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .floorplan.floorplan-v2 {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+
+  .floorplan-scroll-hint {
+    display: none !important;
+  }
+
+  .floorplan-canvas {
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 8 / 5;
+    overflow: hidden;
+    touch-action: pan-y;
+  }
+
+  .floorplan-canvas svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .floorplan .marker {
+    width: 30px !important;
+    height: 30px !important;
+    border-width: 2px;
+    font-size: 9px;
+  }
+
+  .map-note {
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 390px) {
+  .floorplan-canvas {
+    width: 100% !important;
+  }
+
+  .floorplan .marker {
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
