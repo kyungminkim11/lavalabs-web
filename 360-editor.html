@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+  <meta name="description" content="360도 카메라 이미지를 업로드해 실시간으로 둘러보고 밝기·대비·채도를 보정하며 바닥 로고와 텍스트 패치를 넣어 다운로드하는 무료 웹 도구입니다.">
+  <link rel="canonical" href="https://space.lavalabs.co.kr/360-editor.html">
+  <title>360 이미지 미리보기·간편 보정 도구 | LavaLabs</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="LavaLabs">
+  <meta property="og:title" content="360 이미지를 올리고, 바로 둘러보고, 간단히 보정하세요. | LavaLabs">
+  <meta property="og:description" content="밝기·대비·채도 보정부터 바닥 로고, 단색 패치와 텍스트 삽입까지 브라우저에서 처리하는 360 이미지 편집 도구입니다.">
+  <meta property="og:url" content="https://space.lavalabs.co.kr/360-editor.html">
+  <meta property="og:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="360 이미지 미리보기·간편 보정 도구 | LavaLabs">
+  <meta name="twitter:description" content="360 이미지를 업로드해 둘러보고 밝기와 색감을 보정하며 바닥 로고를 넣어 저장하세요.">
+  <meta name="twitter:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor">
+  <style>
+    :root{--editor-acid:#c9ff48;--editor-ink:#11161d;--editor-line:#dfe3da;--editor-muted:#66717c;--editor-bg:#eef0e9}
+    .editor-hero{padding-bottom:46px}.editor-hero .inner{max-width:940px}.editor-hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.editor-hero-badges span{padding:9px 12px;border:1px solid #ffffff24;border-radius:999px;background:#ffffff0b;color:#d8e0e7;font-size:11px;font-weight:800}
+    .tool-section{padding:30px 0 100px;background:var(--editor-bg)}.tool-shell{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(310px,.7fr);gap:18px;align-items:start}.viewer-card,.control-card{border:1px solid var(--editor-line);border-radius:25px;background:#fff;box-shadow:0 18px 60px #1d273012}.viewer-card{position:sticky;top:86px;overflow:hidden}.viewer-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid var(--editor-line)}.viewer-toolbar-left,.viewer-toolbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.tool-btn,.upload-btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:10px 13px;border:1px solid #d7dbd2;border-radius:12px;background:#f8f9f5;color:#1a2027;font:800 11px/1.2 Inter,"Noto Sans KR",sans-serif;cursor:pointer;transition:.2s}.tool-btn:hover,.upload-btn:hover{transform:translateY(-1px);border-color:#aeb8a3;background:#fff}.tool-btn.primary,.upload-btn.primary{border-color:var(--editor-ink);background:var(--editor-ink);color:#fff}.tool-btn.acid{border-color:var(--editor-acid);background:var(--editor-acid);color:#11161d}.tool-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.upload-btn input{display:none}.status-pill{display:inline-flex;align-items:center;gap:7px;padding:8px 10px;border-radius:999px;background:#edf7d1;color:#435500;font-size:10px;font-weight:900}.status-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:#84ad00;box-shadow:0 0 0 4px #a9d91e24}.status-pill.busy{background:#fff3cd;color:#775b00}.status-pill.busy::before{background:#e4ad00}.status-pill.error{background:#ffe2e0;color:#8a2520}.status-pill.error::before{background:#e24c43}.viewer-stage{position:relative;aspect-ratio:16/10;min-height:470px;background:#11161d}.viewer-stage.dragging::after{content:"여기에 360 이미지를 놓으세요";position:absolute;inset:18px;z-index:20;display:grid;place-items:center;border:2px dashed var(--editor-acid);border-radius:18px;background:#0d1117d9;color:#fff;font-size:18px;font-weight:900}.panorama{width:100%;height:100%}.viewer-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-top:1px solid var(--editor-line);background:#fbfcf8}.file-summary{min-width:0}.file-summary strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}.file-summary span{display:block;margin-top:3px;color:var(--editor-muted);font-size:10px}.view-actions{display:flex;gap:6px}.viewer-tip{position:absolute;left:16px;bottom:70px;z-index:5;padding:9px 12px;border-radius:12px;background:#0d1117c9;color:#fff;font-size:10px;font-weight:700;backdrop-filter:blur(10px);pointer-events:none}.pnlm-load-box{display:none!important}.pnlm-controls-container{top:14px!important;left:14px!important}.pnlm-about-msg{display:none!important}
+    .controls{display:grid;gap:12px}.control-card{padding:20px}.control-card h2,.control-card h3{margin:0;letter-spacing:-.03em}.control-card h2{font-size:20px}.control-card h3{font-size:15px}.control-head{display:flex;align-items:start;justify-content:space-between;gap:12px;margin-bottom:17px}.control-head p{margin:6px 0 0;color:var(--editor-muted);font-size:10px;line-height:1.6}.mini-tag{padding:6px 8px;border-radius:999px;background:#eef0e9;color:#53606b;font-size:9px;font-weight:900}.preset-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.preset-btn{padding:11px;border:1px solid var(--editor-line);border-radius:12px;background:#f8f9f5;color:#26303a;font-size:10px;font-weight:800;cursor:pointer}.preset-btn:hover{border-color:#afc95b;background:#f1f8d8}.range-row{display:grid;grid-template-columns:76px minmax(0,1fr) 46px;gap:10px;align-items:center;margin-top:13px}.range-row label{font-size:10px;font-weight:800}.range-row output{text-align:right;color:#56616d;font:800 10px Inter,sans-serif}.range-row input[type="range"]{width:100%;accent-color:#85a900}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{display:grid;gap:7px;margin-top:12px}.field label{font-size:10px;font-weight:800;color:#38434e}.field input[type="text"],.field select{width:100%;min-height:42px;padding:10px 11px;border:1px solid var(--editor-line);border-radius:11px;background:#fbfcf8;color:#1b222a;font-size:11px;font-weight:700}.field input[type="color"]{width:100%;height:42px;padding:4px;border:1px solid var(--editor-line);border-radius:11px;background:#fff}.segmented{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:5px;border-radius:14px;background:#eef0e9}.segmented button{min-height:38px;border:0;border-radius:10px;background:transparent;color:#67717a;font-size:10px;font-weight:900;cursor:pointer}.segmented button.active{background:#11161d;color:#fff;box-shadow:0 5px 18px #11161d25}.mode-panel{display:none}.mode-panel.active{display:block}.logo-drop{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding:13px;border:1px dashed #cbd1c5;border-radius:13px;background:#f8f9f5}.logo-drop span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#56616d;font-size:10px}.logo-drop label{flex:none}.privacy-note{display:flex;gap:10px;padding:13px;border-radius:14px;background:#f1f8d8;color:#475800;font-size:10px;line-height:1.65}.privacy-note b{flex:none}.export-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.export-actions{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14px}.progress{display:none;height:6px;margin-top:12px;overflow:hidden;border-radius:999px;background:#e9ece5}.progress.show{display:block}.progress i{display:block;width:35%;height:100%;border-radius:inherit;background:#89aa18;animation:progress 1.1s ease-in-out infinite alternate}@keyframes progress{to{transform:translateX(185%)}}
+    .tool-notice{margin-top:18px;padding:18px 20px;border:1px solid #d9ddd3;border-radius:18px;background:#fff;color:#56616d;font-size:11px;line-height:1.75}.tool-notice strong{color:#1a2027}.editor-benefits{padding-top:90px}.editor-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.editor-step{padding:23px;border:1px solid #dfe3da;border-radius:20px;background:#fff}.editor-step span{display:inline-grid;width:34px;height:34px;place-items:center;border-radius:10px;background:#11161d;color:#c9ff48;font:900 11px Inter,sans-serif}.editor-step h3{margin:16px 0 7px;font-size:17px}.editor-step p{margin:0;color:#66717c;font-size:11px;line-height:1.65}
+    @media(max-width:1050px){.tool-shell{grid-template-columns:1fr}.viewer-card{position:relative;top:auto}.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.control-card.export-card{grid-column:1/-1}.editor-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:720px){.tool-section{padding-top:12px}.viewer-toolbar{align-items:flex-start}.viewer-toolbar-right .tool-btn:not(.acid){display:none}.viewer-stage{min-height:58vh;aspect-ratio:auto}.viewer-bottom{align-items:flex-start}.view-actions{flex-direction:column}.controls{grid-template-columns:1fr}.control-card.export-card{grid-column:auto}.editor-steps{grid-template-columns:1fr}.two-col,.export-grid{grid-template-columns:1fr}.editor-hero-badges{gap:6px}.editor-hero-badges span{font-size:9px}.tool-btn,.upload-btn{min-height:38px;padding:9px 11px}.viewer-tip{bottom:89px}.range-row{grid-template-columns:66px minmax(0,1fr) 40px}.page-hero.editor-hero{padding-bottom:35px}}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="page-hero editor-hero">
+      <div class="container inner">
+        <span class="eyebrow">LAVA 360 STUDIO · BETA</span>
+        <h1>360 이미지를 올리고,<br>바로 둘러보고 보정하세요.</h1>
+        <p>밝기와 색감을 간단히 조절하고, 촬영 장비가 보이는 바닥에는 로고·단색·텍스트 패치를 적용해 결과물을 저장할 수 있습니다.</p>
+        <div class="editor-hero-badges"><span>브라우저 내부 처리</span><span>2:1 이미지 자동 맞춤</span><span>바닥 나디르 패치</span><span>360 메타데이터 삽입</span></div>
+      </div>
+    </section>
+
+    <section class="tool-section" id="editor">
+      <div class="container">
+        <div class="tool-shell">
+          <section class="viewer-card" aria-label="360 이미지 미리보기">
+            <div class="viewer-toolbar">
+              <div class="viewer-toolbar-left">
+                <label class="upload-btn primary">360 이미지 업로드<input id="imageInput" type="file" accept="image/jpeg,image/png,image/webp"></label>
+                <button class="tool-btn" id="demoBtn" type="button">데모 이미지</button>
+                <span class="status-pill" id="statusPill">준비됨</span>
+              </div>
+              <div class="viewer-toolbar-right">
+                <button class="tool-btn" id="beforeAfterBtn" type="button">원본 보기</button>
+                <button class="tool-btn acid" id="topDownloadBtn" type="button">다운로드</button>
+              </div>
+            </div>
+            <div class="viewer-stage" id="viewerStage">
+              <div class="panorama" id="panorama"></div>
+              <div class="viewer-tip">드래그해 둘러보고, 마우스 휠이나 두 손가락으로 확대하세요.</div>
+            </div>
+            <div class="viewer-bottom">
+              <div class="file-summary"><strong id="fileName">Lava 360 Studio 데모</strong><span id="fileMeta">2048 × 1024 · 편집 기능을 먼저 확인해보세요.</span></div>
+              <div class="view-actions"><button class="tool-btn" id="frontViewBtn" type="button">정면 보기</button><button class="tool-btn" id="floorViewBtn" type="button">바닥 확인</button></div>
+            </div>
+          </section>
+
+          <aside class="controls" aria-label="360 이미지 편집 설정">
+            <section class="control-card">
+              <div class="control-head"><div><h2>빠른 보정</h2><p>프리셋을 고른 뒤 슬라이더로 세부 조절하세요.</p></div><span class="mini-tag">LIVE</span></div>
+              <div class="preset-grid">
+                <button class="preset-btn" data-preset="natural" type="button">실내 자연스럽게</button>
+                <button class="preset-btn" data-preset="bright" type="button">밝은 상업 공간</button>
+                <button class="preset-btn" data-preset="warm" type="button">따뜻한 카페</button>
+                <button class="preset-btn" data-preset="night" type="button">야간 공간</button>
+              </div>
+              <div class="range-row"><label for="brightness">밝기</label><input id="brightness" type="range" min="60" max="150" value="100"><output for="brightness">100</output></div>
+              <div class="range-row"><label for="contrast">대비</label><input id="contrast" type="range" min="60" max="150" value="100"><output for="contrast">100</output></div>
+              <div class="range-row"><label for="saturation">채도</label><input id="saturation" type="range" min="0" max="180" value="100"><output for="saturation">100</output></div>
+              <div class="range-row"><label for="warmth">색온도</label><input id="warmth" type="range" min="-50" max="50" value="0"><output for="warmth">0</output></div>
+              <div style="display:flex;justify-content:flex-end;margin-top:15px"><button class="tool-btn" id="resetAdjustBtn" type="button">보정 초기화</button></div>
+            </section>
+
+            <section class="control-card">
+              <div class="control-head"><div><h2>바닥 패치</h2><p>삼각대 영역을 가리고 공간의 브랜드를 표시합니다.</p></div><span class="mini-tag">NADIR</span></div>
+              <div class="segmented" role="tablist" aria-label="패치 유형">
+                <button class="active" data-mode="logo" type="button">로고</button>
+                <button data-mode="color" type="button">단색</button>
+                <button data-mode="text" type="button">텍스트</button>
+              </div>
+              <div class="mode-panel active" data-panel="logo">
+                <div class="logo-drop"><span id="logoName">PNG·JPG·WebP 로고를 선택하세요.</span><label class="upload-btn">로고 선택<input id="logoInput" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"></label></div>
+                <div class="field"><label for="logoBackground">로고 배경색</label><input id="logoBackground" type="color" value="#11161d"></div>
+              </div>
+              <div class="mode-panel" data-panel="color">
+                <div class="field"><label for="solidColor">패치 색상</label><input id="solidColor" type="color" value="#11161d"></div>
+              </div>
+              <div class="mode-panel" data-panel="text">
+                <div class="field"><label for="patchText">표시할 문구</label><input id="patchText" type="text" maxlength="28" value="LavaLabs" placeholder="상호명 또는 안내 문구"></div>
+                <div class="two-col"><div class="field"><label for="textBackground">배경색</label><input id="textBackground" type="color" value="#11161d"></div><div class="field"><label for="textColor">글자색</label><input id="textColor" type="color" value="#c9ff48"></div></div>
+              </div>
+              <div class="range-row"><label for="patchSize">패치 크기</label><input id="patchSize" type="range" min="12" max="58" value="31"><output for="patchSize">31°</output></div>
+              <div class="range-row"><label for="patchRotation">회전</label><input id="patchRotation" type="range" min="-180" max="180" value="0"><output for="patchRotation">0°</output></div>
+              <div class="range-row"><label for="patchOpacity">불투명도</label><input id="patchOpacity" type="range" min="20" max="100" value="100"><output for="patchOpacity">100%</output></div>
+            </section>
+
+            <section class="control-card export-card">
+              <div class="control-head"><div><h2>결과 저장</h2><p>JPEG는 360 인식을 위한 GPano 메타데이터를 자동 삽입합니다.</p></div><span class="mini-tag">EXPORT</span></div>
+              <div class="export-grid">
+                <div class="field" style="margin-top:0"><label for="exportSize">해상도</label><select id="exportSize"><option value="original">원본 기준</option><option value="8192">8K · 8192×4096</option><option value="4096">4K · 4096×2048</option></select></div>
+                <div class="field" style="margin-top:0"><label for="exportFormat">파일 형식</label><select id="exportFormat"><option value="jpeg">JPEG · 360 메타데이터</option><option value="png">PNG · 무손실</option></select></div>
+              </div>
+              <div class="range-row"><label for="exportQuality">JPEG 품질</label><input id="exportQuality" type="range" min="70" max="98" value="92"><output for="exportQuality">92%</output></div>
+              <div class="export-actions"><button class="tool-btn primary" id="downloadBtn" type="button">편집된 360 이미지 다운로드</button><button class="tool-btn" id="resetAllBtn" type="button">전체 초기화</button></div>
+              <div class="progress" id="exportProgress"><i></i></div>
+            </section>
+
+            <div class="privacy-note"><b>LOCAL</b><span>이미지는 서버에 업로드하지 않고 현재 브라우저 안에서 처리합니다. 공사 현장이나 비공개 공간 이미지도 외부 전송 없이 편집할 수 있습니다.</span></div>
+          </aside>
+        </div>
+
+        <div class="tool-notice"><strong>권장 파일:</strong> 가로가 세로의 2배인 이퀴렉탱귤러 JPEG·PNG·WebP. 비율이 다르면 중앙을 기준으로 2:1에 맞춰 처리합니다. 초고해상도 원본은 기기 메모리에 따라 원본 저장이 어려울 수 있어 8K 또는 4K 출력을 선택할 수 있습니다. PNG는 형식 특성상 GPano 메타데이터가 삽입되지 않습니다.</div>
+
+        <div class="editor-benefits">
+          <div class="section-head"><span class="eyebrow">HOW IT WORKS</span><h2>촬영 직후 확인부터<br>납품용 이미지까지.</h2><p>복잡한 전문 편집 프로그램을 열기 전에 현장에서 결과와 바닥 로고를 빠르게 확인할 수 있습니다.</p></div>
+          <div class="editor-steps">
+            <article class="editor-step"><span>01</span><h3>360 이미지 업로드</h3><p>DJI·Insta360 등에서 내보낸 2:1 파노라마 이미지를 선택합니다.</p></article>
+            <article class="editor-step"><span>02</span><h3>실시간 둘러보기</h3><p>정면과 바닥을 회전하며 수평, 노출과 촬영 장비 노출 범위를 확인합니다.</p></article>
+            <article class="editor-step"><span>03</span><h3>보정·바닥 브랜딩</h3><p>밝기와 색감을 조절하고 로고 또는 색상·텍스트 패치를 적용합니다.</p></article>
+            <article class="editor-step"><span>04</span><h3>360 파일 다운로드</h3><p>웹용 4K, 고화질 8K 또는 원본 기준 해상도로 결과물을 저장합니다.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark"><div class="container"><div class="cta-panel"><div><h3>직접 편집이 어렵거나 여러 공간을 연결해야 하나요?</h3><p>360 촬영, 전문 보정, 바닥 로고 제작과 가상투어 웹페이지까지 한 번에 의뢰할 수 있습니다.</p></div><a class="button button-primary" data-service="360 이미지 보정·가상투어 제작" href="contact.html">전문 제작 문의</a></div></div></section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="assets/layout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js"></script>
+  <script src="assets/360-editor.js?v=20260711a"></script>
+  <script src="assets/app.js?v=20260706-industry-expand"></script>
+</body>
+</html>
