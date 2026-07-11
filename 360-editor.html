@@ -14,18 +14,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css">
-  <link rel="stylesheet" href="assets/360-editor.css?v=20260711f">
+  <link rel="stylesheet" href="assets/360-editor.css?v=20260711h">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="LavaLabs">
   <meta property="og:title" content="360 이미지를 올리고, 바로 둘러보고, 간단히 보정하세요. | LavaLabs">
   <meta property="og:description" content="대용량 360 이미지도 미리보기 크기로 직접 디코딩해 확인하고 보정할 수 있습니다.">
   <meta property="og:url" content="https://space.lavalabs.co.kr/360-editor.html">
-  <meta property="og:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor5">
+  <meta property="og:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor6">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="360 이미지 미리보기·간편 보정 도구 | LavaLabs">
   <meta name="twitter:description" content="360 이미지를 업로드해 둘러보고 밝기와 색감을 보정하며 바닥 로고를 넣어 저장하세요.">
-  <meta name="twitter:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor5">
+  <meta name="twitter:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor6">
 </head>
 <body>
   <div id="site-header"></div>
@@ -40,7 +40,7 @@
           <a class="button button-outline" href="space.html">360 촬영 서비스 보기</a>
         </div>
         <div class="editor-hero-badges" aria-label="주요 기능">
-          <span>이미지 서버 전송 없음</span><span>대용량 직접 축소 디코딩</span><span>검은 화면 자동 검사</span><span>바닥 나디르 패치</span><span>GPano 메타데이터</span>
+          <span>이미지 서버 전송 없음</span><span>대용량 직접 축소 디코딩</span><span>검은 화면 자동 검사</span><span>바닥 나디르 패치</span><span>모바일 대응</span>
         </div>
       </div>
     </section>
@@ -49,7 +49,7 @@
       <div class="container">
         <div class="editor-kicker">
           <div><span class="eyebrow">EDITOR</span><h2>한 화면에서 확인하고 편집합니다.</h2></div>
-          <div class="editor-kicker-meta"><span id="autosaveState">설정 자동 저장</span><span id="deviceHint">기기 성능 확인 중</span></div>
+          <div class="editor-kicker-meta"><span id="autosaveState">브라우저 로컬 처리</span><span id="deviceHint">기기 성능 확인 중</span></div>
         </div>
 
         <div class="tool-shell">
@@ -84,12 +84,12 @@
                 <button class="tool-btn" id="setStartViewBtn" type="button">현재 방향 저장</button>
               </div>
             </div>
-            <div class="start-view-note"><span>시작 방향</span><strong id="startViewValue">0°</strong><small>JPEG 메타데이터에 반영됩니다.</small></div>
+            <div class="start-view-note"><span>시작 방향</span><strong id="startViewValue">0°</strong><small>현재 화면에서만 사용됩니다.</small></div>
           </section>
 
           <aside class="controls" aria-label="360 이미지 편집 설정">
             <section class="control-card" data-editor-section="adjust">
-              <div class="control-head"><div><h2>빠른 보정</h2><p>손을 떼면 고화질 미리보기를 다시 생성합니다.</p></div><span class="mini-tag">LIVE</span></div>
+              <div class="control-head"><div><h2>빠른 보정</h2><p>슬라이더를 움직이면 미리보기를 다시 생성합니다.</p></div><span class="mini-tag">LIVE</span></div>
               <div class="preset-grid">
                 <button class="preset-btn" data-preset="natural" type="button">실내 자연스럽게</button>
                 <button class="preset-btn" data-preset="bright" type="button">밝은 상업 공간</button>
@@ -129,14 +129,14 @@
             </section>
 
             <section class="control-card export-card" data-editor-section="export">
-              <div class="control-head"><div><h2>결과 저장</h2><p>JPEG에는 360 인식용 GPano 정보와 시작 방향을 삽입합니다.</p></div><span class="mini-tag">EXPORT</span></div>
+              <div class="control-head"><div><h2>결과 저장</h2><p>현재 브라우저에서 처리 가능한 해상도로 저장합니다.</p></div><span class="mini-tag">EXPORT</span></div>
               <div class="export-grid">
-                <div class="field compact"><label for="exportSize">해상도</label><select id="exportSize"><option value="original">원본 기준</option><option value="8192">8K · 8192×4096</option><option value="4096">4K · 4096×2048</option><option value="2048">2K · 빠른 확인용</option></select></div>
-                <div class="field compact"><label for="exportFormat">파일 형식</label><select id="exportFormat"><option value="jpeg">JPEG · 360 메타데이터</option><option value="png">PNG · 무손실</option></select></div>
+                <div class="field compact"><label for="exportSize">해상도</label><select id="exportSize"><option value="2048">2K · 빠른 확인용</option><option value="4096">4K · 고화질</option></select></div>
+                <div class="field compact"><label for="exportFormat">파일 형식</label><select id="exportFormat"><option value="jpeg">JPEG</option><option value="png">PNG · 무손실</option></select></div>
               </div>
               <div class="field"><label for="exportName">파일명</label><input id="exportName" type="text" maxlength="80" value="lava-360-edited" placeholder="확장자 제외"></div>
               <div class="range-row" id="qualityRow"><label for="exportQuality">JPEG 품질</label><input id="exportQuality" type="range" min="70" max="98" value="92"><output for="exportQuality">92%</output></div>
-              <div class="export-safety" id="exportSafety"><strong>안전 출력</strong><span>현재 기기에서 권장 해상도를 계산하고 있습니다.</span></div>
+              <div class="export-safety" id="exportSafety"><strong>안전 출력</strong><span>모바일은 2K, 데스크톱은 최대 4K 저장을 권장합니다.</span></div>
               <div class="export-actions"><button class="tool-btn primary" id="downloadBtn" type="button">편집된 360 이미지 다운로드</button><button class="tool-btn" id="resetAllBtn" type="button">전체 초기화</button></div>
               <div class="progress" id="exportProgress" aria-hidden="true"><i id="exportProgressBar"></i></div>
               <div class="progress-copy" id="exportProgressCopy" aria-live="polite"></div>
@@ -149,10 +149,10 @@
         <div class="editor-benefits">
           <div class="section-head"><span class="eyebrow">WORKFLOW</span><h2>검은 화면을 막는<br>새로운 처리 방식.</h2><p>WebCodecs, ImageBitmap, 일반 이미지 디코더를 차례로 시도하고 실제 픽셀을 검사한 뒤 360 뷰어에 전달합니다.</p></div>
           <div class="editor-steps">
-            <article class="editor-step"><span>01</span><h3>원본 정보 읽기</h3><p>JPEG 헤더에서 원본 크기와 2:1 비율을 먼저 확인합니다.</p></article>
+            <article class="editor-step"><span>01</span><h3>원본 선택</h3><p>DJI·Insta360 등에서 내보낸 2:1 이미지를 선택합니다.</p></article>
             <article class="editor-step"><span>02</span><h3>직접 축소 디코딩</h3><p>13K 원본을 통째로 캔버스에 올리지 않고 1.5K~2K로 바로 변환합니다.</p></article>
             <article class="editor-step"><span>03</span><h3>픽셀 검사</h3><p>결과가 검게 생성되면 다른 디코더로 자동 재시도합니다.</p></article>
-            <article class="editor-step"><span>04</span><h3>안전하게 저장</h3><p>기기 성능에 맞는 해상도로 다시 디코딩하고 GPano 정보를 삽입합니다.</p></article>
+            <article class="editor-step"><span>04</span><h3>보정 후 저장</h3><p>밝기와 색감, 바닥 패치를 적용한 결과를 JPEG 또는 PNG로 저장합니다.</p></article>
           </div>
         </div>
       </div>
@@ -168,7 +168,7 @@
   <div id="site-footer"></div>
   <script src="assets/layout.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js" onerror="this.onerror=null;this.src='https://unpkg.com/pannellum@2.5.7/build/pannellum.js'"></script>
-  <script src="assets/360-editor-v5.js?v=20260711f"></script>
-  <script src="assets/app.js?v=20260711f"></script>
+  <script src="assets/360-editor-v5.js?v=20260711h"></script>
+  <script src="assets/app.js?v=20260711h"></script>
 </body>
 </html>
