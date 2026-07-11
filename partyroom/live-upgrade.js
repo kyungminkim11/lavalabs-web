@@ -30,10 +30,60 @@
   if(amenities) amenities.innerHTML="<article><b>75</b><h3>75인치 UHD TV</h3><p>TJ 노래방 기기, JBL 마이크와 PS5를 대형 화면으로 이용할 수 있습니다.</p></article><article><b>PC</b><h3>고사양 PC 5대</h3><p>27인치 200Hz 모니터와 CPU 5600X급 이상·그래픽카드 4060급 구성을 제공합니다.</p></article><article><b>♠</b><h3>10인 홀덤 테이블</h3><p>홀덤 칩과 카드, 여러 종류의 보드게임을 함께 이용할 수 있습니다.</p></article><article><b>GAME</b><h3>PS5 · Switch 2</h3><p>스포츠, 격투와 파티게임 등 여러 명이 함께 즐기기 좋은 타이틀이 준비되어 있습니다.</p></article><article><b>WiFi</b><h3>KT 인터넷 · CCTV</h3><p>무선 인터넷을 제공하며 안전을 위해 실내 CCTV가 녹화 운영됩니다.</p></article><article><b>＋</b><h3>간단 취사 · 화장실</h3><p>인덕션으로 라면 등 간단 조리가 가능하며 건물 공용 화장실을 파티룸 전용으로 이용합니다.</p></article>";
 
   const bookingHead=$("#booking .section-head");
-  if(bookingHead) bookingHead.innerHTML="<p class=\"kicker\">BOOKING & VISIT</p><h2>원하는 이용 시간을 고르고<br>온라인으로 예약하세요.</h2><p>낮·밤·올데이 이용과 밤샘 추가 옵션을 제공합니다. 단체·올데이·밤샘 이용은 미리 문의하면 더욱 원활하게 준비할 수 있습니다.</p>";
+  if(bookingHead) bookingHead.innerHTML="<p class=\"kicker\">BOOKING & VISIT</p><h2>이용 시간과 요금을<br>한눈에 비교하세요.</h2><p>낮·밤·올데이 상품의 시간과 평일·주말 요금을 비교한 뒤 원하는 예약 채널을 선택할 수 있습니다.</p>";
 
   const bookingTitle=$(".booking-main h3");
   if(bookingTitle) bookingTitle.innerHTML="현재 예약과 이용은<br>퓨처스페이스 1호 기준입니다.";
+
+  const legacyFacts=$(".booking-facts");
+  if(legacyFacts){
+    const pricing=document.createElement("div");
+    pricing.className="booking-pricing";
+    pricing.setAttribute("aria-label","퓨처스페이스 이용 요금과 운영 기준");
+    pricing.innerHTML=`
+      <div class="rate-card-grid">
+        <article class="rate-card">
+          <div class="rate-card__head"><span>DAY</span><b>6시간</b></div>
+          <h4>낮 타임</h4>
+          <p class="rate-time"><strong>11:00</strong><i>→</i><strong>17:00</strong></p>
+          <dl class="rate-prices">
+            <div><dt>평일 · 월~금</dt><dd>100,000원</dd></div>
+            <div><dt>주말 · 공휴일</dt><dd>180,000원</dd></div>
+          </dl>
+        </article>
+        <article class="rate-card rate-card--accent">
+          <div class="rate-card__head"><span>NIGHT</span><b>6시간 30분</b></div>
+          <h4>밤 타임</h4>
+          <p class="rate-time"><strong>18:30</strong><i>→</i><strong>01:00</strong></p>
+          <dl class="rate-prices">
+            <div><dt>평일 · 월~금</dt><dd>129,000원</dd></div>
+            <div><dt>주말 · 공휴일</dt><dd>209,000원</dd></div>
+          </dl>
+          <p class="rate-option">밤샘 추가 가능</p>
+        </article>
+        <article class="rate-card">
+          <div class="rate-card__head"><span>ALL DAY</span><b>14시간</b></div>
+          <h4>올데이</h4>
+          <p class="rate-time"><strong>11:00</strong><i>→</i><strong>01:00</strong></p>
+          <dl class="rate-prices">
+            <div><dt>평일 · 월~금</dt><dd>159,000원</dd></div>
+            <div><dt>주말 · 공휴일</dt><dd>239,000원</dd></div>
+          </dl>
+          <p class="rate-option">밤샘 추가 가능</p>
+        </article>
+      </div>
+      <div class="booking-essentials" aria-label="인원과 추가요금">
+        <article><span>기준 인원</span><strong>6인</strong></article>
+        <article><span>최대 인원</span><strong>20인</strong></article>
+        <article><span>인원 추가</span><strong>1인당 10,000원</strong><small>6인 초과 시</small></article>
+        <article><span>밤샘 추가</span><strong>30,000원</strong><small>다음 날 09:00 퇴실</small></article>
+      </div>
+      <div class="booking-notices">
+        <p><b>보증금</b><span>시설·청소 보증금 100,000원 별도 · 퇴실 점검 후 1~3일 내 환급</span></p>
+        <p><b>군인 할인</b><span>군인 신분 인증 시 최종 이용요금 10% 할인</span></p>
+      </div>`;
+    legacyFacts.replaceWith(pricing);
+  }
 
   const primary=document.getElementById("bookingPrimary");
   if(primary){
@@ -60,6 +110,9 @@
       actions.append(secondary);
     }
   }
+
+  const bookingNote=$(".booking-note");
+  if(bookingNote) bookingNote.textContent="예약 날짜와 상품에 따라 실제 결제 금액이 달라질 수 있으므로 예약 화면에서 최종 금액을 확인해 주세요.";
 
   const contactCard=$(".visit-grid article:nth-child(3)");
   if(contactCard){
