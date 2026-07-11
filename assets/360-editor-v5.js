@@ -6,13 +6,14 @@
   if(device)device.textContent='RUNTIME V9 · PRIVACY';
   window.__lava360b64='';
   const files=[
-    'assets/360-logo-editor.js?v=20260711p',
-    'assets/360-logo-editor-pro.js?v=20260711p',
-    'assets/360-logo-editor-pro-refresh.js?v=20260711p',
-    'assets/360-editor-privacy.js?v=20260711p',
-    'assets/360-lite-p1.js?v=20260711p',
-    'assets/360-lite-p2.js?v=20260711p',
-    'assets/360-lite-p3.js?v=20260711p'
+    'assets/360-logo-editor.js?v=20260711q',
+    'assets/360-logo-editor-pro.js?v=20260711q',
+    'assets/360-logo-editor-pro-refresh.js?v=20260711q',
+    'assets/360-editor-privacy.js?v=20260711q',
+    'assets/360-editor-privacy-hotfix.js?v=20260711q',
+    'assets/360-lite-p1.js?v=20260711q',
+    'assets/360-lite-p2.js?v=20260711q',
+    'assets/360-lite-p3.js?v=20260711q'
   ];
   const load=src=>new Promise((resolve,reject)=>{
     const script=document.createElement('script');
