@@ -11,6 +11,7 @@ const header=`
         <div class="dropdown-menu">
           <a href="web.html"><span class="dropdown-icon">WEB</span><span><strong>웹 제작</strong><small>랜딩·홈페이지·맞춤형 웹</small></span></a>
           <a href="space.html"><span class="dropdown-icon">360</span><span><strong>공간 콘텐츠</strong><small>360 가상투어·매장 사진</small></span></a>
+          <a href="360-editor.html"><span class="dropdown-icon">EDIT</span><span><strong>360 이미지 편집기</strong><small>미리보기·간편 보정·바닥 로고</small></span></a>
           <a href="store.html"><span class="dropdown-icon">QR</span><span><strong>매장 솔루션</strong><small>QR 메뉴판·주문·안내 웹</small></span></a>
           <a href="automation.html"><span class="dropdown-icon">AUTO</span><span><strong>업무 자동화</strong><small>엑셀·파이썬·데이터 도구</small></span></a>
         </div>
@@ -21,7 +22,7 @@ const header=`
     <button class="menu-toggle" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span></button>
   </div>
   <nav class="mobile-menu">
-    <a href="index.html">홈</a><a class="mobile-sub" href="web.html">웹 제작</a><a class="mobile-sub" href="space.html">공간 콘텐츠</a><a class="mobile-sub" href="store.html">매장 솔루션</a><a class="mobile-sub" href="automation.html">업무 자동화</a><a href="portfolio.html">제작 사례</a><a href="pricing.html">가격 안내</a><a href="partnership.html">파트너십</a><a href="about.html">라바랩스 소개</a><a class="button button-primary" href="contact.html">프로젝트 문의</a>
+    <a href="index.html">홈</a><a class="mobile-sub" href="web.html">웹 제작</a><a class="mobile-sub" href="space.html">공간 콘텐츠</a><a class="mobile-sub" href="360-editor.html">360 이미지 편집기</a><a class="mobile-sub" href="store.html">매장 솔루션</a><a class="mobile-sub" href="automation.html">업무 자동화</a><a href="portfolio.html">제작 사례</a><a href="pricing.html">가격 안내</a><a href="partnership.html">파트너십</a><a href="about.html">라바랩스 소개</a><a class="button button-primary" href="contact.html">프로젝트 문의</a>
   </nav>
 </header>`;
 
@@ -39,7 +40,7 @@ const footer=`
     </div>
     <div>
       <h4>SERVICES</h4>
-      <div class="footer-links"><a href="web.html">웹 제작</a><a href="space.html">360 가상투어·공간 촬영</a><a href="store.html">QR 메뉴판·매장 솔루션</a><a href="automation.html">엑셀·파이썬 자동화</a></div>
+      <div class="footer-links"><a href="web.html">웹 제작</a><a href="space.html">360 가상투어·공간 촬영</a><a href="360-editor.html">360 이미지 미리보기·보정</a><a href="store.html">QR 메뉴판·매장 솔루션</a><a href="automation.html">엑셀·파이썬 자동화</a></div>
     </div>
     <div>
       <h4>SITE MAP</h4>
