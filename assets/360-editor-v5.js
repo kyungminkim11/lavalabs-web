@@ -16,7 +16,8 @@
     'assets/360-lite-p3.js?v=20260711s'
   ];
   const postFiles=[
-    'assets/360-editor-privacy-v3.js?v=20260711s'
+    'assets/360-editor-privacy-v3.js?v=20260711s',
+    'assets/360-editor-privacy-v3-hotfix.js?v=20260711s'
   ];
 
   const load=src=>new Promise((resolve,reject)=>{
