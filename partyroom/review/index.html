@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1017">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>퓨처스페이스 홈페이지 운영 정보 확인</title>
+  <style>
+    :root{--bg:#f3f6f9;--card:#fff;--ink:#111923;--muted:#667587;--line:#dce3ea;--dark:#0b1017;--accent:#c9ff48;--accent2:#63f0ff;--danger:#c33}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Pretendard,"Noto Sans KR",Apple SD Gothic Neo,system-ui,sans-serif;word-break:keep-all}
+    button,input,textarea,select{font:inherit}a{color:inherit}.wrap{width:min(760px,calc(100% - 28px));margin:auto}.hero{padding:50px 0 34px;background:radial-gradient(circle at 90% 0,rgba(99,240,255,.14),transparent 30%),var(--dark);color:#fff}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900}.brand span{display:grid;place-items:center;width:38px;height:38px;border-radius:13px;background:var(--accent);color:#111;font-size:12px}.eyebrow{margin:34px 0 10px;color:var(--accent);font-size:11px;font-weight:950;letter-spacing:.14em}.hero h1{margin:0;font-size:clamp(34px,8vw,56px);line-height:1.03;letter-spacing:-.055em}.hero p{margin:18px 0 0;color:#c7d2dd;line-height:1.75}.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.button{min-height:48px;padding:0 17px;border:0;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:900;cursor:pointer}.primary{background:var(--accent);color:#111}.secondary{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#fff}.progress-shell{position:sticky;top:0;z-index:20;background:rgba(243,246,249,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.progress-row{height:58px;display:flex;align-items:center;justify-content:space-between;gap:16px}.progress-row b{font-size:13px}.progress{flex:1;height:8px;border-radius:999px;background:#dfe6ec;overflow:hidden}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:.2s}.status{font-size:12px;color:var(--muted);white-space:nowrap}
+    main{padding:30px 0 90px}.notice{padding:16px 18px;border:1px solid #dbe5c2;border-radius:18px;background:#f8ffe9;color:#40511c;font-size:13px;line-height:1.65}.notice b{display:block;margin-bottom:4px}.section{margin-top:18px;padding:24px;border:1px solid var(--line);border-radius:24px;background:var(--card);box-shadow:0 16px 45px rgba(15,29,45,.05)}.section-head{display:flex;align-items:flex-start;gap:13px;margin-bottom:20px}.num{display:grid;place-items:center;flex:0 0 38px;height:38px;border-radius:13px;background:var(--dark);color:var(--accent);font-size:12px;font-weight:950}.section h2{margin:0;font-size:21px;letter-spacing:-.035em}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.55}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label,.choice-title{font-size:13px;font-weight:900}.field small{color:var(--muted);font-size:11px;line-height:1.45}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:13px;background:#fbfcfd;color:var(--ink);padding:13px 14px;outline:none}.field textarea{min-height:96px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:#81a226;box-shadow:0 0 0 3px rgba(201,255,72,.23);background:#fff}.choices{display:flex;flex-wrap:wrap;gap:8px}.choices label{cursor:pointer}.choices input{position:absolute;opacity:0;pointer-events:none}.choices span{display:inline-flex;align-items:center;min-height:42px;padding:0 13px;border:1px solid var(--line);border-radius:12px;background:#fff;color:#526171;font-size:13px;font-weight:850}.choices input:checked+span{border-color:var(--dark);background:var(--dark);color:#fff}.details{margin-top:14px;border-top:1px solid var(--line);padding-top:14px}.details summary{cursor:pointer;font-weight:900;font-size:13px}.details .grid{margin-top:15px}.footer-actions{position:sticky;bottom:0;z-index:30;padding:12px 0 calc(12px + env(safe-area-inset-bottom));background:linear-gradient(180deg,transparent,rgba(243,246,249,.95) 26%)}.action-card{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;border:1px solid var(--line);border-radius:20px;background:#fff;box-shadow:0 18px 50px rgba(15,29,45,.16)}.action-card button{min-height:50px;border:0;border-radius:14px;font-weight:950;cursor:pointer}.copy{background:var(--dark);color:#fff}.share{background:var(--accent);color:#111}.preview{margin-top:18px;padding:22px;border-radius:22px;background:var(--dark);color:#fff}.preview h2{margin:0 0 12px;font-size:18px}.preview pre{margin:0;white-space:pre-wrap;color:#d1dbe5;font-family:inherit;font-size:13px;line-height:1.75}.toast{position:fixed;left:50%;bottom:92px;z-index:99;transform:translate(-50%,20px);padding:12px 16px;border-radius:999px;background:#111;color:#fff;font-size:13px;font-weight:850;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}.reset{margin-top:16px;border:0;background:none;color:var(--muted);text-decoration:underline;cursor:pointer}.required{color:var(--danger)}
+    @media(max-width:620px){.hero{padding-top:34px}.hero h1{font-size:39px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.section{padding:20px}.progress-row{height:54px}.action-card{grid-template-columns:1fr}.footer-actions{padding-top:8px}.toast{bottom:145px}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <a class="brand" href="/partyroom/"><span>FS</span><b>퓨처스페이스 홈페이지 검수</b></a>
+      <p class="eyebrow">OWNER REVIEW FORM</p>
+      <h1>홈페이지에 들어갈<br>운영 정보를 알려주세요.</h1>
+      <p>확실한 내용만 작성하고, 아직 정해지지 않은 항목은 비워두셔도 됩니다. 작성 내용은 자동 저장됩니다.</p>
+      <div class="hero-actions"><a class="button primary" href="#form">응답 시작하기</a><a class="button secondary" href="/partyroom/" target="_blank" rel="noopener">현재 홈페이지 보기 ↗</a></div>
+    </div>
+  </header>
+
+  <div class="progress-shell"><div class="wrap progress-row"><b>작성 진행률</b><div class="progress" aria-hidden="true"><i id="progressBar"></i></div><span class="status" id="progressText">0%</span></div></div>
+
+  <main class="wrap" id="form">
+    <div class="notice"><b>보안 안내</b>출입문 비밀번호, Wi-Fi 비밀번호, 계좌번호처럼 공개하면 안 되는 정보는 입력하지 마세요. 홈페이지에는 전달 방법만 적습니다.</div>
+
+    <form id="reviewForm">
+      <section class="section">
+        <div class="section-head"><span class="num">01</span><div><h2>기본 정보</h2><p>홈페이지 첫 화면과 예약 안내에 사용합니다.</p></div></div>
+        <div class="grid">
+          <div class="field"><label for="businessName">정확한 상호명 <span class="required">*</span></label><input id="businessName" name="businessName" required placeholder="예: 퓨처스페이스 게임파티룸"></div>
+          <div class="field"><label for="contact">공개할 연락처</label><input id="contact" name="contact" placeholder="전화번호 또는 카카오톡 링크"></div>
+          <div class="field full"><label for="booking">예약 방법·링크</label><input id="booking" name="booking" placeholder="네이버 예약, 스페이스클라우드, 카카오톡 등"></div>
+          <div class="field full"><label for="address">주소 확인</label><input id="address" name="address" value="경기도 파주시 송학1길 67-21"></div>
+          <div class="field full"><label for="directions">찾아오는 방법</label><textarea id="directions" name="directions" placeholder="건물명, 층·호수, 주차 후 입구 찾는 방법, 주변 표지물"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><span class="num">02</span><div><h2>요금·인원·운영시간</h2><p>모르는 내용은 비워두면 홈페이지에 ‘확인 중’으로 유지합니다.</p></div></div>
+        <div class="grid">
+          <div class="field full"><label for="price">이용 요금</label><textarea id="price" name="price" placeholder="평일·주말, 시간당 또는 패키지, 연장 요금"></textarea></div>
+          <div class="field"><label for="capacity">이용 인원</label><input id="capacity" name="capacity" placeholder="기준 인원 / 최대 인원 / 추가요금"></div>
+          <div class="field"><label for="hours">운영시간</label><input id="hours" name="hours" placeholder="예: 10:00~24:00, 최소 3시간"></div>
+          <div class="field full"><label for="parking">주차 안내</label><textarea id="parking" name="parking" placeholder="가능 대수, 무료·유료, 주차 위치와 주의사항"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><span class="num">03</span><div><h2>이용 규정</h2><p>고객이 예약 전에 꼭 확인해야 하는 내용입니다.</p></div></div>
+        <div class="grid">
+          <div class="field full"><label for="entry">입실·퇴실 방법</label><textarea id="entry" name="entry" placeholder="비대면 여부, 안내 전달 시점, 퇴실 전 해야 할 일"></textarea></div>
+          <div class="field full"><label for="cleanup">청소·쓰레기 처리</label><textarea id="cleanup" name="cleanup" placeholder="분리수거, 음식물, 정리 범위, 청소비"></textarea></div>
+          <div class="field full"><label for="refund">취소·환불 규정</label><textarea id="refund" name="refund" placeholder="전액 환불 기준, 당일 취소, 노쇼, 시간 변경"></textarea></div>
+          <div class="field full"><span class="choice-title">이용 가능 여부</span><div class="choices">
+            <label><input type="checkbox" name="policy" value="배달 가능"><span>배달</span></label>
+            <label><input type="checkbox" name="policy" value="취사 가능"><span>취사</span></label>
+            <label><input type="checkbox" name="policy" value="음주 가능"><span>음주</span></label>
+            <label><input type="checkbox" name="policy" value="미성년자 이용 가능"><span>미성년자</span></label>
+            <label><input type="checkbox" name="policy" value="반려동물 가능"><span>반려동물</span></label>
+          </div></div>
+          <div class="field full"><label for="rules">그 밖의 이용 규정</label><textarea id="rules" name="rules" placeholder="흡연, 소음, 파손·오염 배상 등"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><span class="num">04</span><div><h2>게임·시설 확인</h2><p>현재 홈페이지에 적힌 목록이 맞는지 알려주세요.</p></div></div>
+        <div class="field full"><span class="choice-title">현재 목록 확인</span><div class="choices">
+          <label><input type="radio" name="gameCheck" value="현재 목록이 맞음"><span>목록이 맞아요</span></label>
+          <label><input type="radio" name="gameCheck" value="일부 수정 필요"><span>수정 필요</span></label>
+          <label><input type="radio" name="gameCheck" value="확인 후 다시 전달"><span>나중에 확인</span></label>
+        </div></div>
+        <div class="grid" style="margin-top:15px">
+          <div class="field full"><label for="gameChanges">추가·삭제할 게임과 시설</label><textarea id="gameChanges" name="gameChanges" placeholder="예: FC 25 삭제, 닌텐도 게임 2개 추가, PC 사양 추가 등"></textarea></div>
+        </div>
+        <details class="details"><summary>현재 홈페이지에 적힌 대표 목록 보기</summary><p style="color:var(--muted);font-size:13px;line-height:1.7">PS5: 철권 8, FC 25, MLB The Show 24, ASTRO BOT<br>Switch: Nintendo Switch Sports, Super Mario Party Jamboree<br>보드게임: UNO, 스플렌더, 티켓 투 라이드, 모노폴리, 딕싯, 블로커스, 아줄 등<br>시설: PC, 노래방, 홀덤 테이블, 주방</p></details>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><span class="num">05</span><div><h2>홈페이지 검수</h2><p>사진, 360 투어와 도면에서 수정할 부분을 적어주세요.</p></div></div>
+        <div class="grid">
+          <div class="field full"><span class="choice-title">전체적인 느낌</span><div class="choices">
+            <label><input type="radio" name="overall" value="좋음"><span>좋아요</span></label>
+            <label><input type="radio" name="overall" value="일부 수정 필요"><span>일부 수정</span></label>
+            <label><input type="radio" name="overall" value="큰 수정 필요"><span>큰 수정</span></label>
+          </div></div>
+          <div class="field full"><label for="websiteChanges">수정하거나 추가할 내용</label><textarea id="websiteChanges" name="websiteChanges" placeholder="잘못된 사진, 도면 위치, 360 이동 방향, 문구 등"></textarea></div>
+          <div class="field full"><label for="strengths">꼭 강조하고 싶은 장점</label><textarea id="strengths" name="strengths" placeholder="주요 고객, 추천 모임, 다른 공간과 다른 점"></textarea></div>
+          <div class="field full"><label for="other">그 밖에 전달할 내용</label><textarea id="other" name="other"></textarea></div>
+        </div>
+      </section>
+    </form>
+
+    <section class="preview" aria-live="polite"><h2>카톡으로 전달될 답변</h2><pre id="previewText">작성하면 여기에 자동으로 정리됩니다.</pre></section>
+    <button class="reset" type="button" id="resetButton">작성 내용 모두 지우기</button>
+
+    <div class="footer-actions"><div class="action-card"><button class="copy" type="button" id="copyButton">답변 복사하기</button><button class="share" type="button" id="shareButton">카톡으로 보내기</button></div></div>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script>
+    (()=>{
+      const form=document.getElementById('reviewForm');
+      const preview=document.getElementById('previewText');
+      const progressBar=document.getElementById('progressBar');
+      const progressText=document.getElementById('progressText');
+      const toast=document.getElementById('toast');
+      const storageKey='future-space-owner-review-v1';
+      const labels={businessName:'상호명',contact:'연락처',booking:'예약 방법·링크',address:'주소',directions:'찾아오는 방법',price:'이용 요금',capacity:'이용 인원',hours:'운영시간',parking:'주차 안내',entry:'입실·퇴실',cleanup:'청소·쓰레기',refund:'취소·환불',rules:'기타 이용 규정',gameCheck:'게임·시설 목록 확인',gameChanges:'게임·시설 수정사항',overall:'홈페이지 전체 의견',websiteChanges:'홈페이지 수정사항',strengths:'강조할 장점',other:'기타 전달사항'};
+      const important=['businessName','booking','price','capacity','hours','parking','entry','refund','gameCheck','overall'];
+      function showToast(message){toast.textContent=message;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
+      function formDataObject(){const data={};new FormData(form).forEach((value,key)=>{if(data[key])data[key]=[].concat(data[key],value);else data[key]=value});return data}
+      function save(){localStorage.setItem(storageKey,JSON.stringify(formDataObject()))}
+      function restore(){try{const data=JSON.parse(localStorage.getItem(storageKey)||'{}');Object.entries(data).forEach(([name,value])=>{const fields=form.elements[name];if(!fields)return;const values=[].concat(value);if(fields instanceof RadioNodeList||fields.length){[...fields].forEach(field=>{if(field.type==='checkbox'||field.type==='radio')field.checked=values.includes(field.value);else if(values[0]!=null)field.value=values[0]})}else fields.value=values[0]||''})}catch(e){console.warn(e)}}
+      function buildText(){const data=formDataObject();const lines=['[퓨처스페이스 홈페이지 운영 정보 답변]'];Object.entries(labels).forEach(([key,label])=>{let value=data[key];if(Array.isArray(value))value=value.join(', ');if(String(value||'').trim())lines.push(`\n■ ${label}\n${String(value).trim()}`)});const policies=[].concat(data.policy||[]).filter(Boolean);if(policies.length)lines.push(`\n■ 이용 가능 항목\n${policies.join(', ')}`);lines.push('\n※ 홈페이지 검수 응답 페이지에서 작성함');return lines.join('\n')}
+      function update(){save();preview.textContent=buildText();const data=formDataObject();const done=important.filter(key=>String(data[key]||'').trim()).length;const percent=Math.round(done/important.length*100);progressBar.style.width=percent+'%';progressText.textContent=percent+'%'}
+      async function copyText(){try{await navigator.clipboard.writeText(buildText());showToast('답변을 복사했습니다. 카톡에 붙여넣어 주세요.')}catch(e){window.prompt('아래 내용을 복사해 주세요.',buildText())}}
+      form.addEventListener('input',update);form.addEventListener('change',update);
+      document.getElementById('copyButton').addEventListener('click',copyText);
+      document.getElementById('shareButton').addEventListener('click',async()=>{const text=buildText();try{if(navigator.share)await navigator.share({title:'퓨처스페이스 홈페이지 운영 정보',text});else await copyText()}catch(e){if(e.name!=='AbortError')await copyText()}});
+      document.getElementById('resetButton').addEventListener('click',()=>{if(confirm('작성한 내용을 모두 지울까요?')){form.reset();localStorage.removeItem(storageKey);update();showToast('작성 내용을 지웠습니다.')}});
+      restore();update();
+    })();
+  </script>
+</body>
+</html>
