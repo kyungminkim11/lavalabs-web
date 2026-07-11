@@ -1,0 +1,17 @@
+/* Final live-site overrides */
+.review-banner,
+.owner-review-section,
+a[href="#owner-review"]{display:none!important}
+
+.booking-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.booking-actions .booking-primary{margin-top:0}
+.booking-secondary{background:#0d223b;color:#fff;border:1px solid #0d223b}
+.booking-facts dd{overflow-wrap:anywhere}
+
+@media(max-width:720px){
+  .booking-actions{display:grid;grid-template-columns:1fr}
+  .booking-actions .button{width:100%}
+  .booking-facts{grid-template-columns:1fr}
+  .booking-facts div{border-right:0;border-bottom:1px solid var(--line)}
+  .booking-facts div:last-child{border-bottom:0}
+}
