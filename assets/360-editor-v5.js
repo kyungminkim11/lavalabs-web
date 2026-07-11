@@ -3,13 +3,13 @@
   const status=document.querySelector('#statusPill');
   const device=document.querySelector('#deviceHint');
   if(status){status.textContent='새 편집기 시작 중';status.classList.add('busy');}
-  if(device)device.textContent='RUNTIME V6 · ALPHA FIX';
+  if(device)device.textContent='RUNTIME V7 · LOGO EDITOR';
   window.__lava360b64='';
   const files=[
-    'assets/360-logo-alpha-fix.js?v=20260711j',
-    'assets/360-lite-p1.js?v=20260711j',
-    'assets/360-lite-p2.js?v=20260711j',
-    'assets/360-lite-p3.js?v=20260711j'
+    'assets/360-logo-editor.js?v=20260711k',
+    'assets/360-lite-p1.js?v=20260711k',
+    'assets/360-lite-p2.js?v=20260711k',
+    'assets/360-lite-p3.js?v=20260711k'
   ];
   const load=src=>new Promise((resolve,reject)=>{
     const script=document.createElement('script');
