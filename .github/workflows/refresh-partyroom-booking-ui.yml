@@ -1,0 +1,33 @@
+name: Refresh partyroom booking UI
+
+on:
+  push:
+    paths:
+      - '.github/workflows/refresh-partyroom-booking-ui.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh booking UI asset versions
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('partyroom/index.html')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace('/partyroom/live-upgrade.css?v=20260711-live-v1','/partyroom/live-upgrade.css?v=20260711-booking-v2')
+          text = text.replace('/partyroom/live-upgrade.js?v=20260711-live-v1','/partyroom/live-upgrade.js?v=20260711-booking-v2')
+          path.write_text(text, encoding='utf-8')
+          PY
+      - name: Commit refresh
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add partyroom/index.html
+          git diff --cached --quiet || git commit -m 'Refresh partyroom pricing card UI [skip ci]'
+          git push
