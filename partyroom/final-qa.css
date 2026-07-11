@@ -1,0 +1,35 @@
+/* Final delivery QA: conversion, accessibility and responsive hardening. */
+html,body{max-width:100%;overflow-x:clip}
+section[id]{scroll-margin-top:96px}
+.section-head h2,.hero h1,.booking-main h3{text-wrap:balance}
+.button,a,button{-webkit-tap-highlight-color:transparent}
+.hero-actions .hero-booking{background:var(--lime);color:var(--navy);box-shadow:0 14px 35px rgba(201,255,72,.22)}
+.hero-actions .hero-booking:hover{box-shadow:0 18px 42px rgba(201,255,72,.28)}
+.booking-pricing{contain:layout paint}
+.rate-card,.booking-essentials article,.visit-grid article{min-width:0}
+.rate-prices dd,.booking-essentials strong{overflow-wrap:anywhere}
+.site-header nav a[aria-current="location"]{color:var(--cyan)}
+.mobile-actions{padding-bottom:env(safe-area-inset-bottom)}
+.mobile-actions a{min-height:54px}
+
+@media(max-width:720px){
+  .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .hero-actions .hero-booking{grid-column:1/-1}
+  .hero-actions .button{width:100%;min-width:0;padding-inline:12px;text-align:center}
+  .rate-card-grid,.booking-layout,.visit-grid{min-width:0}
+  section[id]{scroll-margin-top:84px}
+}
+
+@media(max-width:420px){
+  .hero-actions{grid-template-columns:1fr}
+  .hero-actions .hero-booking{grid-column:auto}
+}
+
+@supports not (overflow:clip){
+  html,body{overflow-x:hidden}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
