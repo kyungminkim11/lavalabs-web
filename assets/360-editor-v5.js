@@ -3,17 +3,18 @@
   const status=document.querySelector('#statusPill');
   const device=document.querySelector('#deviceHint');
   if(status){status.textContent='새 편집기 시작 중';status.classList.add('busy');}
-  if(device)device.textContent='RUNTIME V9 · PRIVACY';
+  if(device)device.textContent='RUNTIME V10 · MOSAIC LIVE';
   window.__lava360b64='';
   const files=[
-    'assets/360-logo-editor.js?v=20260711q',
-    'assets/360-logo-editor-pro.js?v=20260711q',
-    'assets/360-logo-editor-pro-refresh.js?v=20260711q',
-    'assets/360-editor-privacy.js?v=20260711q',
-    'assets/360-editor-privacy-hotfix.js?v=20260711q',
-    'assets/360-lite-p1.js?v=20260711q',
-    'assets/360-lite-p2.js?v=20260711q',
-    'assets/360-lite-p3.js?v=20260711q'
+    'assets/360-logo-editor.js?v=20260711r',
+    'assets/360-logo-editor-pro.js?v=20260711r',
+    'assets/360-logo-editor-pro-refresh.js?v=20260711r',
+    'assets/360-editor-privacy.js?v=20260711r',
+    'assets/360-editor-privacy-hotfix.js?v=20260711r',
+    'assets/360-editor-privacy-v2.js?v=20260711r',
+    'assets/360-lite-p1.js?v=20260711r',
+    'assets/360-lite-p2.js?v=20260711r',
+    'assets/360-lite-p3.js?v=20260711r'
   ];
   const load=src=>new Promise((resolve,reject)=>{
     const script=document.createElement('script');
