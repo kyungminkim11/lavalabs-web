@@ -14,18 +14,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css">
-  <link rel="stylesheet" href="assets/360-editor.css?v=20260711d">
+  <link rel="stylesheet" href="assets/360-editor.css?v=20260711f">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="LavaLabs">
   <meta property="og:title" content="360 이미지를 올리고, 바로 둘러보고, 간단히 보정하세요. | LavaLabs">
-  <meta property="og:description" content="밝기·대비·채도 보정부터 바닥 로고, 단색 패치와 텍스트 삽입까지 브라우저에서 처리하는 360 이미지 편집 도구입니다.">
+  <meta property="og:description" content="대용량 360 이미지도 미리보기 크기로 직접 디코딩해 확인하고 보정할 수 있습니다.">
   <meta property="og:url" content="https://space.lavalabs.co.kr/360-editor.html">
-  <meta property="og:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor4">
+  <meta property="og:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor5">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="360 이미지 미리보기·간편 보정 도구 | LavaLabs">
   <meta name="twitter:description" content="360 이미지를 업로드해 둘러보고 밝기와 색감을 보정하며 바닥 로고를 넣어 저장하세요.">
-  <meta name="twitter:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor4">
+  <meta name="twitter:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor5">
 </head>
 <body>
   <div id="site-header"></div>
@@ -34,13 +34,13 @@
       <div class="container inner">
         <span class="eyebrow">LAVA 360 STUDIO · FREE BETA</span>
         <h1>촬영한 360 이미지를<br>현장에서 바로 확인하고 정리하세요.</h1>
-        <p>이미지를 올리면 실제 360 화면으로 둘러볼 수 있습니다. 밝기와 색감을 조절하고, 바닥의 삼각대 영역에는 로고·단색·텍스트 패치를 적용해 저장하세요.</p>
+        <p>13K·8K 대용량 원본도 미리보기 크기로 직접 디코딩합니다. 밝기와 색감을 조절하고 바닥의 삼각대 영역에는 로고·단색·텍스트 패치를 적용해 저장하세요.</p>
         <div class="editor-hero-actions">
           <a class="button button-primary" href="#editor">지금 편집하기</a>
           <a class="button button-outline" href="space.html">360 촬영 서비스 보기</a>
         </div>
         <div class="editor-hero-badges" aria-label="주요 기능">
-          <span>이미지 서버 전송 없음</span><span>안드로이드 호환 디코더</span><span>실시간 360 미리보기</span><span>바닥 나디르 패치</span><span>GPano 메타데이터</span>
+          <span>이미지 서버 전송 없음</span><span>대용량 직접 축소 디코딩</span><span>검은 화면 자동 검사</span><span>바닥 나디르 패치</span><span>GPano 메타데이터</span>
         </div>
       </div>
     </section>
@@ -71,16 +71,13 @@
             <div class="viewer-stage" id="viewerStage" tabindex="0" aria-label="360 이미지 뷰어. 드래그해 둘러볼 수 있습니다.">
               <div class="panorama" id="panorama"></div>
               <div class="warmth-preview" id="warmthPreview" aria-hidden="true"></div>
-              <div class="viewer-drop-copy"><strong>360 이미지 놓기</strong><span>JPEG · PNG · WebP, 최대 120MB</span></div>
+              <div class="viewer-drop-copy"><strong>360 이미지 놓기</strong><span>JPEG · PNG · WebP, 최대 160MB</span></div>
               <div class="viewer-tip">드래그해 둘러보고, 휠이나 두 손가락으로 확대하세요.</div>
               <div class="compare-state" id="compareState" hidden>원본</div>
             </div>
 
             <div class="viewer-bottom">
-              <div class="file-summary">
-                <strong id="fileName">Lava 360 Studio 데모</strong>
-                <span id="fileMeta">2048 × 1024 · 편집 기능을 먼저 확인해보세요.</span>
-              </div>
+              <div class="file-summary"><strong id="fileName">Lava 360 Studio 데모</strong><span id="fileMeta">2048 × 1024 · 편집 기능을 먼저 확인해보세요.</span></div>
               <div class="view-actions">
                 <button class="tool-btn" id="frontViewBtn" type="button">정면</button>
                 <button class="tool-btn" id="floorViewBtn" type="button">바닥</button>
@@ -92,7 +89,7 @@
 
           <aside class="controls" aria-label="360 이미지 편집 설정">
             <section class="control-card" data-editor-section="adjust">
-              <div class="control-head"><div><h2>빠른 보정</h2><p>슬라이더는 즉시 반영되고, 손을 떼면 고화질 미리보기를 갱신합니다.</p></div><span class="mini-tag">LIVE</span></div>
+              <div class="control-head"><div><h2>빠른 보정</h2><p>손을 떼면 고화질 미리보기를 다시 생성합니다.</p></div><span class="mini-tag">LIVE</span></div>
               <div class="preset-grid">
                 <button class="preset-btn" data-preset="natural" type="button">실내 자연스럽게</button>
                 <button class="preset-btn" data-preset="bright" type="button">밝은 상업 공간</button>
@@ -109,12 +106,8 @@
             <section class="control-card" data-editor-section="patch">
               <div class="control-head"><div><h2>바닥 패치</h2><p>삼각대 영역을 가리거나 공간 브랜드를 표시합니다.</p></div><span class="mini-tag">NADIR</span></div>
               <div class="segmented four" role="tablist" aria-label="패치 유형">
-                <button data-mode="none" type="button">없음</button>
-                <button class="active" data-mode="logo" type="button">로고</button>
-                <button data-mode="color" type="button">단색</button>
-                <button data-mode="text" type="button">텍스트</button>
+                <button data-mode="none" type="button">없음</button><button class="active" data-mode="logo" type="button">로고</button><button data-mode="color" type="button">단색</button><button data-mode="text" type="button">텍스트</button>
               </div>
-
               <div class="mode-panel active" data-panel="logo">
                 <div class="logo-drop" id="logoDrop">
                   <div><strong id="logoName">로고를 선택하세요.</strong><span>투명 PNG 권장 · JPG·WebP 지원</span></div>
@@ -122,13 +115,11 @@
                 </div>
                 <div class="two-col"><div class="field"><label for="logoBackground">배경색</label><input id="logoBackground" type="color" value="#11161d"></div><div class="field"><label for="logoScale">로고 크기</label><input id="logoScale" type="range" min="35" max="90" value="62"><output for="logoScale">62%</output></div></div>
               </div>
-
               <div class="mode-panel" data-panel="color"><div class="field"><label for="solidColor">패치 색상</label><input id="solidColor" type="color" value="#11161d"></div></div>
               <div class="mode-panel" data-panel="text">
                 <div class="field"><label for="patchText">표시할 문구</label><input id="patchText" type="text" maxlength="36" value="LavaLabs" placeholder="상호명 또는 안내 문구"></div>
                 <div class="two-col"><div class="field"><label for="textBackground">배경색</label><input id="textBackground" type="color" value="#11161d"></div><div class="field"><label for="textColor">글자색</label><input id="textColor" type="color" value="#c9ff48"></div></div>
               </div>
-
               <div class="two-col"><div class="field"><label for="patchShape">모양</label><select id="patchShape"><option value="circle">원형</option><option value="rounded">둥근 사각형</option></select></div><div class="field"><label for="borderColor">테두리색</label><input id="borderColor" type="color" value="#ffffff"></div></div>
               <div class="range-row"><label for="borderWidth">테두리</label><input id="borderWidth" type="range" min="0" max="10" value="2"><output for="borderWidth">2%</output></div>
               <div class="range-row"><label for="patchSize">패치 크기</label><input id="patchSize" type="range" min="10" max="62" value="31"><output for="patchSize">31°</output></div>
@@ -150,20 +141,18 @@
               <div class="progress" id="exportProgress" aria-hidden="true"><i id="exportProgressBar"></i></div>
               <div class="progress-copy" id="exportProgressCopy" aria-live="polite"></div>
             </section>
-
-            <div class="privacy-note"><b>LOCAL</b><span>선택한 사진과 로고는 서버로 전송하지 않습니다. 편집과 저장은 현재 브라우저 안에서 처리됩니다. 설정값만 이 기기에 자동 저장됩니다.</span></div>
+            <div class="privacy-note"><b>LOCAL</b><span>사진과 로고는 서버로 전송하지 않습니다. 편집과 저장은 현재 브라우저 안에서 처리됩니다.</span></div>
           </aside>
         </div>
 
-        <div class="tool-notice" id="toolNotice"><strong>대용량 이미지 최적화:</strong> 안드로이드에서는 호환 이미지 디코더로 원본을 읽고, 미리보기는 기기에 맞춰 축소합니다.</div>
-
+        <div class="tool-notice" id="toolNotice"><strong>대용량 안전 모드:</strong> 원본 전체를 캔버스에 올리지 않고 미리보기 크기로 직접 디코딩합니다.</div>
         <div class="editor-benefits">
-          <div class="section-head"><span class="eyebrow">WORKFLOW</span><h2>촬영 직후 확인부터<br>납품용 파일까지.</h2><p>복잡한 전문 프로그램을 열기 전에 결과를 확인하고, 반복 작업은 프리셋과 자동 저장으로 줄입니다.</p></div>
+          <div class="section-head"><span class="eyebrow">WORKFLOW</span><h2>검은 화면을 막는<br>새로운 처리 방식.</h2><p>WebCodecs, ImageBitmap, 일반 이미지 디코더를 차례로 시도하고 실제 픽셀을 검사한 뒤 360 뷰어에 전달합니다.</p></div>
           <div class="editor-steps">
-            <article class="editor-step"><span>01</span><h3>이미지 업로드</h3><p>DJI·Insta360 등에서 내보낸 2:1 파노라마를 업로드하거나 화면에 끌어 놓습니다.</p></article>
-            <article class="editor-step"><span>02</span><h3>호환 디코딩</h3><p>안드로이드의 대용량 JPEG 검은 화면 문제를 피하는 별도 디코더로 원본을 읽습니다.</p></article>
-            <article class="editor-step"><span>03</span><h3>보정·브랜딩</h3><p>빠른 프리셋과 세부 슬라이더를 적용하고 바닥 로고나 안내 문구를 넣습니다.</p></article>
-            <article class="editor-step"><span>04</span><h3>안전하게 저장</h3><p>기기 성능에 맞춰 2K·4K·8K·원본 기준으로 저장하고 JPEG 360 정보를 유지합니다.</p></article>
+            <article class="editor-step"><span>01</span><h3>원본 정보 읽기</h3><p>JPEG 헤더에서 원본 크기와 2:1 비율을 먼저 확인합니다.</p></article>
+            <article class="editor-step"><span>02</span><h3>직접 축소 디코딩</h3><p>13K 원본을 통째로 캔버스에 올리지 않고 1.5K~2K로 바로 변환합니다.</p></article>
+            <article class="editor-step"><span>03</span><h3>픽셀 검사</h3><p>결과가 검게 생성되면 다른 디코더로 자동 재시도합니다.</p></article>
+            <article class="editor-step"><span>04</span><h3>안전하게 저장</h3><p>기기 성능에 맞는 해상도로 다시 디코딩하고 GPano 정보를 삽입합니다.</p></article>
           </div>
         </div>
       </div>
@@ -173,16 +162,13 @@
   </main>
 
   <nav class="mobile-editor-dock" aria-label="모바일 편집 메뉴">
-    <button class="active" data-mobile-tab="preview" type="button"><span>◉</span>미리보기</button>
-    <button data-mobile-tab="adjust" type="button"><span>☼</span>보정</button>
-    <button data-mobile-tab="patch" type="button"><span>◆</span>바닥</button>
-    <button data-mobile-tab="export" type="button"><span>↓</span>저장</button>
+    <button class="active" data-mobile-tab="preview" type="button"><span>◉</span>미리보기</button><button data-mobile-tab="adjust" type="button"><span>☼</span>보정</button><button data-mobile-tab="patch" type="button"><span>◆</span>바닥</button><button data-mobile-tab="export" type="button"><span>↓</span>저장</button>
   </nav>
   <div class="editor-toast" id="editorToast" role="status" aria-live="polite"></div>
   <div id="site-footer"></div>
   <script src="assets/layout.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js" onerror="this.onerror=null;this.src='https://unpkg.com/pannellum@2.5.7/build/pannellum.js'"></script>
-  <script src="assets/360-editor-v4.js?v=20260711d"></script>
-  <script src="assets/app.js?v=20260711d"></script>
+  <script src="assets/360-editor-v5.js?v=20260711f"></script>
+  <script src="assets/app.js?v=20260711f"></script>
 </body>
 </html>
