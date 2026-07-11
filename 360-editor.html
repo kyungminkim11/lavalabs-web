@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0d1117">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
-  <meta name="description" content="360도 카메라 이미지를 브라우저에서 확인하고 밝기·색감을 보정하며 얼굴·번호판 모자이크와 바닥 로고를 적용하는 무료 웹 도구입니다.">
+  <meta name="description" content="360도 카메라 이미지를 브라우저에서 바로 둘러보고 밝기·대비·채도를 보정하며 개인정보 모자이크와 바닥 로고를 적용해 저장하는 무료 웹 도구입니다.">
   <link rel="canonical" href="https://space.lavalabs.co.kr/360-editor.html">
   <title>360 이미지 미리보기·간편 보정 도구 | LavaLabs</title>
   <link rel="icon" href="assets/favicon.svg">
@@ -14,18 +14,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css">
-  <link rel="stylesheet" href="assets/360-editor.css?v=20260711p">
+  <link rel="stylesheet" href="assets/360-editor.css?v=20260711r">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="LavaLabs">
-  <meta property="og:title" content="360 이미지를 올리고, 바로 둘러보고, 개인정보까지 가리세요. | LavaLabs">
-  <meta property="og:description" content="대용량 360 이미지 보정, 얼굴·번호판 모자이크, 로고 배경 제거와 바닥 패치를 브라우저에서 처리합니다.">
+  <meta property="og:title" content="360 이미지를 올리고, 바로 둘러보고, 간단히 보정하세요. | LavaLabs">
+  <meta property="og:description" content="대용량 360 이미지 보정, 개인정보 모자이크, 로고 배경 제거와 바닥 패치를 브라우저에서 처리합니다.">
   <meta property="og:url" content="https://space.lavalabs.co.kr/360-editor.html">
-  <meta property="og:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor9">
+  <meta property="og:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor10">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="360 이미지 미리보기·개인정보 가리기 도구 | LavaLabs">
-  <meta name="twitter:description" content="360 이미지의 얼굴·번호판을 모자이크하고 로고 배경 제거와 색보정까지 적용하세요.">
-  <meta name="twitter:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor9">
+  <meta name="twitter:title" content="360 이미지 미리보기·간편 보정 도구 | LavaLabs">
+  <meta name="twitter:description" content="360 이미지에 실제 픽셀 모자이크와 블러를 적용하고 로고까지 편집하세요.">
+  <meta name="twitter:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260711-editor10">
 </head>
 <body>
   <div id="site-header"></div>
@@ -34,13 +34,13 @@
       <div class="container inner">
         <span class="eyebrow">LAVA 360 STUDIO · FREE BETA</span>
         <h1>촬영한 360 이미지를<br>현장에서 바로 확인하고 정리하세요.</h1>
-        <p>13K·8K 대용량 원본도 미리보기 크기로 직접 디코딩합니다. 밝기와 색감을 조절하고 얼굴·자동차 번호판 등 개인정보를 가린 뒤, 바닥에는 편집한 로고·단색·텍스트 패치를 적용해 저장하세요.</p>
+        <p>13K·8K 대용량 원본도 미리보기 크기로 직접 디코딩합니다. 개인정보는 실제 픽셀 모자이크·블러로 가리고, 밝기와 색감 보정 및 편집한 바닥 로고까지 적용해 저장하세요.</p>
         <div class="editor-hero-actions">
           <a class="button button-primary" href="#editor">지금 편집하기</a>
           <a class="button button-outline" href="space.html">360 촬영 서비스 보기</a>
         </div>
         <div class="editor-hero-badges" aria-label="주요 기능">
-          <span>이미지 서버 전송 없음</span><span>대용량 직접 축소 디코딩</span><span>얼굴·번호판 모자이크</span><span>로고 배경 제거</span><span>모바일 대응</span>
+          <span>이미지 서버 전송 없음</span><span>대용량 직접 축소 디코딩</span><span>실시간 개인정보 모자이크</span><span>로고 배경 제거</span><span>모바일 대응</span>
         </div>
       </div>
     </section>
@@ -147,10 +147,10 @@
 
         <div class="tool-notice" id="toolNotice"><strong>대용량 안전 모드:</strong> 원본 전체를 캔버스에 올리지 않고 미리보기 크기로 직접 디코딩합니다.</div>
         <div class="editor-benefits">
-          <div class="section-head"><span class="eyebrow">WORKFLOW</span><h2>확인부터 개인정보 보호까지<br>한 번에 처리합니다.</h2><p>WebCodecs 기반 대용량 미리보기와 평면 개인정보 편집기를 함께 사용해 현장에서 바로 납품 가능한 360 이미지를 만듭니다.</p></div>
+          <div class="section-head"><span class="eyebrow">WORKFLOW</span><h2>확인부터 개인정보 보호까지<br>한 번에 처리합니다.</h2><p>대용량 미리보기와 평면 개인정보 편집기를 함께 사용해 현장에서 바로 납품 가능한 360 이미지를 만듭니다.</p></div>
           <div class="editor-steps">
             <article class="editor-step"><span>01</span><h3>원본 선택</h3><p>DJI·Insta360 등에서 내보낸 2:1 이미지를 선택합니다.</p></article>
-            <article class="editor-step"><span>02</span><h3>개인정보 가리기</h3><p>얼굴·번호판·주소·화면을 사각형, 타원, 브러시로 모자이크합니다.</p></article>
+            <article class="editor-step"><span>02</span><h3>실제 모자이크</h3><p>얼굴·번호판·주소·화면을 사각형, 타원, 브러시로 실시간 모자이크합니다.</p></article>
             <article class="editor-step"><span>03</span><h3>보정·로고 편집</h3><p>밝기와 색감을 조절하고 로고 배경 제거와 바닥 패치를 적용합니다.</p></article>
             <article class="editor-step"><span>04</span><h3>결과 저장</h3><p>가림과 보정, 바닥 패치를 합친 결과를 JPEG 또는 PNG로 저장합니다.</p></article>
           </div>
@@ -168,7 +168,7 @@
   <div id="site-footer"></div>
   <script src="assets/layout.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js" onerror="this.onerror=null;this.src='https://unpkg.com/pannellum@2.5.7/build/pannellum.js'"></script>
-  <script src="assets/360-editor-v5.js?v=20260711p"></script>
-  <script src="assets/app.js?v=20260711p"></script>
+  <script src="assets/360-editor-v5.js?v=20260711r"></script>
+  <script src="assets/app.js?v=20260711r"></script>
 </body>
 </html>
