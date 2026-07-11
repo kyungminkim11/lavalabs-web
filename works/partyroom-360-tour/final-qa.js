@@ -50,7 +50,9 @@
   });
   document.addEventListener("keydown",event=>{if(event.key==="Escape")closeMenu()});
 
-  window.setTimeout(()=>{
-    document.querySelectorAll(".reveal-section:not(.is-visible)").forEach(section=>section.classList.add("is-visible"));
-  },1800);
+  if(typeof window.loadScene!=="function"){
+    window.setTimeout(()=>{
+      document.querySelectorAll(".reveal-section:not(.is-visible)").forEach(section=>section.classList.add("is-visible"));
+    },1200);
+  }
 })();
