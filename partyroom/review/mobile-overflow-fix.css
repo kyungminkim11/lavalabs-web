@@ -1,0 +1,210 @@
+/* Prevent horizontal scrolling and min-content overflow on the owner review page. */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+}
+
+*,
+*::before,
+*::after {
+  min-width: 0;
+}
+
+body {
+  position: relative;
+}
+
+.wrap,
+.hero,
+.progress-shell,
+.progress-row,
+main,
+form,
+.section,
+.section-head,
+.grid,
+.field,
+.choices,
+.details,
+.preview,
+.footer-actions,
+.action-card,
+.howto,
+.notice {
+  width: 100%;
+  max-width: 100%;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+textarea,
+select,
+button,
+a,
+pre,
+code {
+  max-width: 100%;
+}
+
+input,
+textarea,
+select {
+  min-width: 0;
+}
+
+.hero h1,
+.hero-copy,
+.section h2,
+.section-head p,
+.notice,
+.field label,
+.field small,
+.choices span,
+.preview pre,
+.action-card button,
+.button {
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.preview {
+  overflow: hidden;
+}
+
+.preview pre {
+  width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  overflow-x: hidden;
+}
+
+.choices {
+  overflow: hidden;
+}
+
+.choices label {
+  max-width: 100%;
+}
+
+.choices span {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+
+.progress {
+  min-width: 0;
+}
+
+.toast {
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  white-space: normal;
+  text-align: center;
+}
+
+@media (max-width: 620px) {
+  .wrap {
+    width: calc(100% - 24px);
+    max-width: calc(100% - 24px);
+  }
+
+  .hero {
+    overflow: hidden;
+  }
+
+  .hero-actions,
+  .howto,
+  .grid,
+  .action-card {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .hero-actions {
+    display: grid;
+  }
+
+  .hero-actions .button,
+  .action-card button {
+    width: 100%;
+  }
+
+  .progress-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px 12px;
+    height: auto;
+    min-height: 64px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+  }
+
+  .progress-copy {
+    min-width: 0;
+  }
+
+  .progress {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+  }
+
+  .status {
+    justify-self: end;
+  }
+
+  .section {
+    overflow: hidden;
+  }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .field.full {
+    grid-column: auto;
+  }
+
+  .choices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .choices label,
+  .choices span {
+    width: 100%;
+  }
+
+  .footer-actions {
+    left: 0;
+    right: 0;
+    overflow: hidden;
+  }
+
+  .action-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .choices {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+}
