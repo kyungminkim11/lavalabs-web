@@ -1,0 +1,34 @@
+name: Patch review native share
+
+on:
+  push:
+    paths:
+      - '.github/workflows/patch-review-native-share.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add native share script
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('partyroom/review/index.html')
+          text = path.read_text(encoding='utf-8')
+          snippet = '  <script src="/partyroom/review/native-share.js?v=20260711-native-share-v1"></script>\n'
+          if 'native-share.js' not in text:
+              text = text.replace('</body>', snippet + '</body>', 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add partyroom/review/index.html
+          git diff --cached --quiet || git commit -m 'Use native mobile share sheet for review answers [skip ci]'
+          git push
