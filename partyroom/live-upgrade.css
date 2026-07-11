@@ -3,15 +3,70 @@
 .owner-review-section,
 a[href="#owner-review"]{display:none!important}
 
+.booking-layout{grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr)}
+.booking-main{padding:34px}
+.booking-main h3{margin-bottom:22px}
+
+.booking-pricing{display:grid;gap:18px}
+.rate-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.rate-card{position:relative;padding:19px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,#fff,#f7fafc);box-shadow:0 12px 30px rgba(7,17,31,.06)}
+.rate-card--accent{border-color:#a5d43a;background:linear-gradient(180deg,#fbffe9,#f4fadf);box-shadow:0 16px 38px rgba(118,154,37,.14)}
+.rate-card__head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rate-card__head span{color:#567390;font-size:9px;font-weight:950;letter-spacing:.15em}
+.rate-card__head b{padding:6px 8px;border-radius:999px;background:#eaf0f5;color:#32475b;font-size:10px}
+.rate-card--accent .rate-card__head b{background:#dff4a8;color:#355200}
+.rate-card h4{margin:15px 0 7px;font-size:24px;letter-spacing:-.04em}
+.rate-time{display:flex;align-items:center;gap:8px;margin:0 0 16px;color:#1c2b39}
+.rate-time strong{font-size:17px}
+.rate-time i{color:#8493a2;font-style:normal}
+.rate-prices{display:grid;gap:8px;margin:0}
+.rate-prices div{padding:11px 12px;border:1px solid #e1e8ee;border-radius:14px;background:#fff}
+.rate-prices dt{color:#788696;font-size:10px;font-weight:850}
+.rate-prices dd{margin:5px 0 0;font-size:18px;font-weight:950;letter-spacing:-.03em}
+.rate-option{display:inline-flex;margin:12px 0 0;padding:7px 9px;border-radius:999px;background:#0d223b;color:#fff;font-size:10px;font-weight:900}
+
+.booking-essentials{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:hidden;border:1px solid var(--line);border-radius:20px;background:#f8fafc}
+.booking-essentials article{min-height:112px;padding:17px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--line)}
+.booking-essentials article:last-child{border-right:0}
+.booking-essentials span{color:#7b8998;font-size:10px;font-weight:850}
+.booking-essentials strong{display:block;margin-top:7px;font-size:20px;line-height:1.25;letter-spacing:-.035em}
+.booking-essentials small{display:block;margin-top:5px;color:#748291;font-size:10px;line-height:1.45}
+
+.booking-notices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.booking-notices p{margin:0;padding:14px 16px;border-radius:16px;background:#0d223b;color:#fff;display:grid;gap:5px}
+.booking-notices b{color:var(--lime);font-size:11px}
+.booking-notices span{color:#d4dfeb;font-size:12px;line-height:1.55}
+
 .booking-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 .booking-actions .booking-primary{margin-top:0}
 .booking-secondary{background:#0d223b;color:#fff;border:1px solid #0d223b}
-.booking-facts dd{overflow-wrap:anywhere}
+.booking-note{max-width:760px}
+
+@media(max-width:1040px){
+  .booking-layout{grid-template-columns:1fr}
+  .visit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 
 @media(max-width:720px){
+  .booking-main{padding:22px}
+  .rate-card-grid{grid-template-columns:1fr}
+  .rate-card{padding:18px}
+  .rate-card h4{font-size:23px}
+  .rate-prices{grid-template-columns:1fr 1fr}
+  .rate-prices dd{font-size:16px}
+  .booking-essentials{grid-template-columns:1fr 1fr}
+  .booking-essentials article:nth-child(2){border-right:0}
+  .booking-essentials article:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .booking-essentials article{min-height:96px}
+  .booking-notices{grid-template-columns:1fr}
   .booking-actions{display:grid;grid-template-columns:1fr}
   .booking-actions .button{width:100%}
-  .booking-facts{grid-template-columns:1fr}
-  .booking-facts div{border-right:0;border-bottom:1px solid var(--line)}
-  .booking-facts div:last-child{border-bottom:0}
+  .visit-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:420px){
+  .rate-prices{grid-template-columns:1fr}
+  .booking-essentials{grid-template-columns:1fr}
+  .booking-essentials article{border-right:0;border-bottom:1px solid var(--line)!important}
+  .booking-essentials article:last-child{border-bottom:0!important}
 }
