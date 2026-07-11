@@ -16,9 +16,7 @@
   };
 
   document.addEventListener("click",event=>{
-    if(!nav||!toggle||!nav.classList.contains("open"))return;
-    if(nav.contains(event.target)||toggle.contains(event.target))return;
-    closeMenu();
+    if(nav&&toggle&&nav.classList.contains("open")&&!nav.contains(event.target)&&!toggle.contains(event.target))closeMenu();
   });
 
   document.addEventListener("keydown",event=>{
@@ -36,6 +34,17 @@
     },{rootMargin:"-30% 0px -58%",threshold:[0,.12,.3]});
     sections.forEach(section=>observer.observe(section));
   }
+
+  document.querySelectorAll(".copy-address").forEach(button=>button.addEventListener("click",async()=>{
+    const address=button.dataset.address||window.PARTYROOM_CONFIG?.address||"경기도 파주시 송학1길 67-21, 1층";
+    const original=button.textContent;
+    try{
+      if(navigator.clipboard)await navigator.clipboard.writeText(address);
+      else window.prompt("주소를 복사해 주세요.",address);
+      button.textContent="복사 완료";
+      window.setTimeout(()=>button.textContent=original,1600);
+    }catch(error){window.prompt("주소를 복사해 주세요.",address)}
+  }));
 
   document.querySelectorAll('a[target="_blank"]').forEach(link=>{
     if(!link.rel.includes("noopener"))link.rel=`${link.rel} noopener`.trim();
