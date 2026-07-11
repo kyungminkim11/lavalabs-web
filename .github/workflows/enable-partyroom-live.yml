@@ -1,0 +1,40 @@
+name: Enable partyroom live site
+
+on:
+  push:
+    paths:
+      - '.github/workflows/enable-partyroom-live.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  enable:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enable live assets and search indexing
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('partyroom/index.html')
+          text=p.read_text(encoding='utf-8')
+          text=text.replace('<meta name="robots" content="noindex,nofollow,noarchive">','<meta name="robots" content="index,follow,max-image-preview:large">')
+          text=text.replace('<title>퓨처스페이스 게임파티룸 | PC · PS5 · 노래방 · 홀덤</title>','<title>야당역 파티룸 | 퓨처스페이스 게임파티룸</title>')
+          text=text.replace('대형 TV, 노래방, PS5, PC 게임존, 홀덤 테이블, 보드게임과 주방을 한 공간에서 즐기는 프라이빗 게임파티룸입니다. 실제 촬영 사진과 360° 투어로 공간을 미리 확인하세요.','야당역 도보 약 1분, 30평대 넓은 게임 파티룸. 고사양 PC 5대, 75인치 UHD TV, PS5, Switch 2, TJ 노래방, 10인 홀덤 테이블과 무료주차 2대를 제공합니다.')
+          text=text.replace('게임도, 노래방도, 모임도 한 공간에서. 실제 사진과 360° 투어로 미리 둘러보세요.','야당역 도보 약 1분. 고사양 PC 5대, PS5·Switch 2, 노래방, 홀덤과 보드게임을 갖춘 30평대 프라이빗 파티룸입니다.')
+          text=text.replace('/partyroom/site-config.js?v=20260711-owner-info-v1','/partyroom/site-config.js?v=20260711-live-v2')
+          if 'live-upgrade.css' not in text:
+              text=text.replace('</head>','  <link rel="stylesheet" href="/partyroom/live-upgrade.css?v=20260711-live-v1">\n</head>',1)
+          if 'live-upgrade.js' not in text:
+              text=text.replace('</body>','  <script src="/partyroom/live-upgrade.js?v=20260711-live-v1"></script>\n</body>',1)
+          p.write_text(text,encoding='utf-8')
+          PY
+      - name: Commit live enablement
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add partyroom/index.html
+          git diff --cached --quiet || git commit -m 'Enable partyroom live site [skip ci]'
+          git push
