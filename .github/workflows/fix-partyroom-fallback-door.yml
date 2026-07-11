@@ -1,0 +1,39 @@
+name: Fix partyroom fallback floorplan door
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-partyroom-fallback-door.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Correct fallback door location
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('partyroom/site.js')
+          text = path.read_text(encoding='utf-8')
+          old = '<path d="M852 485h-78m78 0v-78" fill="none" stroke="#8d98a5" stroke-width="5"/><path d="M774 485a78 78 0 0 1 78-78" fill="none" stroke="#c7d0d9" stroke-width="3" stroke-dasharray="8 7"/><text class="map-small" x="805" y="472" text-anchor="middle">출입문</text></svg>'
+          new = '<path d="M58 485H200" fill="none" stroke="#fff" stroke-width="12"/><path d="M200 485V343" fill="none" stroke="#8d98a5" stroke-width="5"/><path d="M58 485A142 142 0 0 1 200 343" fill="none" stroke="#c7d0d9" stroke-width="3" stroke-dasharray="8 7"/><text class="map-small" x="129" y="470" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5">출입문</text></svg>'
+          if old not in text:
+              raise SystemExit('Expected fallback door markup not found')
+          path.write_text(text.replace(old, new), encoding='utf-8')
+
+          index = Path('partyroom/index.html')
+          html = index.read_text(encoding='utf-8').replace('/partyroom/site.js?v=20260711-final-v1','/partyroom/site.js?v=20260711-final-v2')
+          index.write_text(html, encoding='utf-8')
+          PY
+      - name: Commit correction
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add partyroom/site.js partyroom/index.html
+          git diff --cached --quiet || git commit -m 'Align fallback floorplan door with final layout [skip ci]'
+          git push
