@@ -14,10 +14,10 @@ floorplan.innerHTML=`<svg viewBox="0 0 900 520" role="img" aria-label="퓨처스
 <rect x="350" y="46" width="150" height="58" rx="12" fill="#fff2cf"/><text class="map-small" x="425" y="81" text-anchor="middle">전자레인지</text>
 <rect x="390" y="140" width="76" height="94" rx="10" fill="#202734"/><text x="428" y="194" text-anchor="middle" font-size="22" font-weight="950" fill="#fff">TV</text><text class="map-small" x="428" y="258" text-anchor="middle">노래방 · PS5</text>
 <rect x="480" y="168" width="232" height="102" rx="14" fill="#eaffdf"/><text class="map-label" x="596" y="226" text-anchor="middle">다인석 테이블</text>
-<rect x="575" y="48" width="92" height="52" rx="11" fill="#e9f5ff"/><text class="map-small" x="621" y="79" text-anchor="middle">싱크대</text>
+<rect x="575" y="48" width="92" height="52" rx="11" fill="#e9f5ff"/><text class="map-small" x="621" y="79" text-anchor="middle">행거</text>
 <rect x="684" y="48" width="74" height="78" rx="11" fill="#eef2f5"/><text class="map-small" x="721" y="91" text-anchor="middle">냉장고</text>
 <rect x="775" y="48" width="55" height="98" rx="11" fill="#e8f4ff"/><text class="map-small" x="802" y="101" text-anchor="middle" transform="rotate(-90 802 101)">에어컨</text>
-<rect x="786" y="182" width="44" height="172" rx="10" fill="#ffe9e9"/><text class="map-small" x="808" y="271" text-anchor="middle" transform="rotate(-90 808 271)">주방</text>
+<rect x="786" y="182" width="44" height="172" rx="10" fill="#ffe9e9"/><text class="map-small" x="808" y="271" text-anchor="middle" transform="rotate(-90 808 271)">싱크대</text>
 <rect x="390" y="382" width="164" height="70" rx="12" fill="#fff2cf"/><text class="map-label" x="472" y="424" text-anchor="middle">보드게임</text>
 <rect x="598" y="382" width="168" height="70" rx="12" fill="#e9f5ff"/><text class="map-label" x="682" y="424" text-anchor="middle">PC</text>
 <path d="M852 485h-78m78 0v-78" fill="none" stroke="#8d98a5" stroke-width="5"/><path d="M774 485a78 78 0 0 1 78-78" fill="none" stroke="#c7d0d9" stroke-width="3" stroke-dasharray="8 7"/><text class="map-small" x="805" y="472" text-anchor="middle">출입문</text></svg>
@@ -127,9 +127,9 @@ document.addEventListener("keydown",event=>{
 document.querySelectorAll("img").forEach(img=>img.addEventListener("error",()=>{img.closest("picture")?.classList.add("image-error");img.alt="이미지를 불러오지 못했습니다."}));
 
 // Service-level content: corrected floorplan, game inventory and location map.
-if (!document.querySelector(`script[src*="service-upgrade.js?v=20260710-entry-mobile"]`)) {
+if (!document.querySelector(`script[src*="service-upgrade.js?v=20260711-final-v1"]`)) {
   const serviceUpgradeScript = document.createElement("script");
-  serviceUpgradeScript.src = "/partyroom/service-upgrade.js?v=20260710-entry-left-v2";
+  serviceUpgradeScript.src = "/partyroom/service-upgrade.js?v=20260711-final-v1";
   serviceUpgradeScript.defer = true;
   document.body.appendChild(serviceUpgradeScript);
 }

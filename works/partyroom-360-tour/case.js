@@ -27,13 +27,13 @@
       <rect x="506" y="166" width="226" height="104" rx="14" fill="#eaffdf" stroke="#cfe3c6" stroke-width="2"/>
       <text class="map-label" x="619" y="224" text-anchor="middle">다인석 테이블</text>
       <rect x="566" y="48" width="92" height="52" rx="11" fill="#e9f5ff" stroke="#cedbe5" stroke-width="2"/>
-      <text class="map-small" x="612" y="79" text-anchor="middle">싱크대</text>
+      <text class="map-small" x="612" y="79" text-anchor="middle">행거</text>
       <rect x="675" y="48" width="76" height="80" rx="11" fill="#eef2f5" stroke="#d6dde3" stroke-width="2"/>
       <text class="map-small" x="713" y="93" text-anchor="middle">냉장고</text>
       <rect x="770" y="48" width="56" height="100" rx="11" fill="#e8f4ff" stroke="#cedbe5" stroke-width="2"/>
       <text class="map-small" x="798" y="102" text-anchor="middle" transform="rotate(-90 798 102)">에어컨</text>
       <rect x="784" y="182" width="42" height="174" rx="10" fill="#ffe9e9" stroke="#e5cfcf" stroke-width="2"/>
-      <text class="map-small" x="805" y="271" text-anchor="middle" transform="rotate(-90 805 271)">주방 수납</text>
+      <text class="map-small" x="805" y="271" text-anchor="middle" transform="rotate(-90 805 271)">싱크대</text>
       <rect x="390" y="382" width="164" height="70" rx="12" fill="#fff2cf" stroke="#e3d5ab" stroke-width="2"/>
       <text class="map-label" x="472" y="424" text-anchor="middle">보드게임</text>
       <rect x="598" y="382" width="168" height="70" rx="12" fill="#e9f5ff" stroke="#cedbe5" stroke-width="2"/>

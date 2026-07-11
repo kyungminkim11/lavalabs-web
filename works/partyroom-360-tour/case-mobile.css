@@ -800,3 +800,39 @@
     max-height: 68dvh;
   }
 }
+
+
+/* final-delivery-v1: preserve original media proportions */
+.photo-grid figure,
+.photo-grid .photo-landscape,
+.photo-grid .photo-portrait {
+  aspect-ratio: auto !important;
+}
+.photo-grid .photo-open,
+.detail-card .photo-open,
+.detail-card-wide .photo-open,
+.detail-card-tall .photo-open,
+.detail-card button,
+.detail-card-wide button,
+.detail-card-tall button {
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+}
+.photo-grid picture,
+.photo-grid img,
+.detail-card picture,
+.detail-card img {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+}
+.photo-grid figure,
+.detail-card {
+  align-self: start;
+}
+.explorer-media img {
+  object-fit: contain !important;
+  background: #e9eef2;
+}

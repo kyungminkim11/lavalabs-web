@@ -38,14 +38,14 @@
         <text class="zone-label" x="745" y="237" text-anchor="middle">다인석 테이블</text>
 
         <rect class="fixture" x="642" y="52" width="98" height="66" rx="12" fill="#e6f4ff"/>
-        <text class="zone-small" x="691" y="91" text-anchor="middle">싱크대</text>
+        <text class="zone-small" x="691" y="91" text-anchor="middle">행거</text>
         <rect class="fixture" x="755" y="52" width="86" height="92" rx="12" fill="#eef1f5"/>
         <text class="zone-small" x="798" y="104" text-anchor="middle">냉장고</text>
         <rect class="fixture" x="856" y="52" width="48" height="116" rx="11" fill="#e6f4ff"/>
         <text class="zone-small" x="880" y="113" text-anchor="middle" transform="rotate(-90 880 113)">에어컨</text>
 
         <rect class="fixture" x="858" y="198" width="46" height="180" rx="11" fill="#ffe9e9"/>
-        <text class="zone-small" x="881" y="290" text-anchor="middle" transform="rotate(-90 881 290)">주방 수납</text>
+        <text class="zone-small" x="881" y="290" text-anchor="middle" transform="rotate(-90 881 290)">싱크대</text>
 
         <rect class="fixture" x="430" y="430" width="190" height="82" rx="14" fill="#fff1cc"/>
         <text class="zone-label" x="525" y="478" text-anchor="middle">보드게임</text>
