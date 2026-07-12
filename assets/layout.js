@@ -63,7 +63,7 @@ document.getElementById('site-footer')?.insertAdjacentHTML('afterbegin',footer);
 
 if(location.pathname.toLowerCase().endsWith('automation-pos-live.html')){
   const script=document.createElement('script');
-  script.src='assets/automation-upload-template-addon.js?v=20260712b';
+  script.src='assets/automation-upload-template-addon.js?v=20260712c';
   script.defer=true;
   document.head.append(script);
 }
