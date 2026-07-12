@@ -1,1 +1,0 @@
-The actual binary workbook will replace downloads/POS_Upload_Template.xlsx. This note can be removed after verification.
