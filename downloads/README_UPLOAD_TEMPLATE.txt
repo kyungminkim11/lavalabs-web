@@ -1,1 +1,0 @@
-POS upload template binary deployment placeholder.
