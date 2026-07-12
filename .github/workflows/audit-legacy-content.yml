@@ -1,0 +1,71 @@
+name: Audit legacy retail content
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/audit-legacy-content.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Scan public source files
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          patterns = {
+              '블루블랙': re.compile(r'블루블랙', re.I),
+              'BlueBlack': re.compile(r'Blue\s*Black', re.I),
+              '만년필': re.compile(r'만년필', re.I),
+              '펜촉': re.compile(r'펜촉', re.I),
+              '세일러': re.compile(r'세일러', re.I),
+              'Sailor': re.compile(r'\bSailor\b', re.I),
+              '시필펜': re.compile(r'시필펜', re.I),
+              '병잉크': re.compile(r'병잉크', re.I),
+              'Pen Buffet': re.compile(r'Pen\s*Buffet', re.I),
+              'Fountain Pen': re.compile(r'Fountain\s*Pens?', re.I),
+              '투명 배럴': re.compile(r'투명\s*배럴', re.I),
+              '프로기어/프로피트': re.compile(r'프로기어|프로피트', re.I),
+          }
+          allowed = {'.html', '.js', '.css', '.json', '.xml'}
+          excluded = {
+              Path('assets/content-neutralizer.js'),
+              Path('.github/workflows/audit-legacy-content.yml'),
+          }
+          matches = []
+          checked = 0
+          for path in Path('.').rglob('*'):
+              if not path.is_file() or '.git' in path.parts or path.suffix.lower() not in allowed or path in excluded:
+                  continue
+              checked += 1
+              try:
+                  text = path.read_text(encoding='utf-8')
+              except UnicodeDecodeError:
+                  continue
+              for label, pattern in patterns.items():
+                  for found in pattern.finditer(text):
+                      line = text.count('\n', 0, found.start()) + 1
+                      matches.append({'file': str(path), 'line': line, 'pattern': label, 'text': found.group(0)})
+          report = {'status': 'PASS' if not matches else 'FAIL', 'checked_files': checked, 'match_count': len(matches), 'matches': matches}
+          Path('_legacy-content-audit.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps(report, ensure_ascii=False, indent=2))
+          PY
+      - name: Commit audit report
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _legacy-content-audit.json
+          git commit -m "Audit public pages for legacy fountain pen content"
+          git push
