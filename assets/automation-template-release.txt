@@ -1,0 +1,2 @@
+Release: 2026-07-12
+Feature: POS upload template download and validation
