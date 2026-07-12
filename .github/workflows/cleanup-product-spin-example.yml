@@ -1,0 +1,78 @@
+name: Cleanup product spin sample
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cleanup-product-spin-example.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Replace pen-shaped sample and residual dimensions
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          text_replacements = [
+              ('140×15mm, 약 25g', '120×80×60mm, 약 250g'),
+              ('유광 금속 클립과 투명 용기', '유광 패키지와 투명 용기'),
+              ('유광 금속 클립, 투명 용기, 길이 140mm', '유광 패키지, 투명 용기, 높이 140mm'),
+              ('유광 금속 클립, 투명 용기, 길이 140mm, 흰 배경 희망', '유광 패키지, 투명 용기, 높이 140mm, 흰 배경 희망'),
+          ]
+
+          targets = [Path('product-spin.html'), Path('assets/product-spin.js')]
+          for path in targets:
+              text = path.read_text(encoding='utf-8')
+              updated = text
+              for old, new in text_replacements:
+                  updated = updated.replace(old, new)
+              if path.name == 'product-spin.html':
+                  updated = updated.replace(
+                      '.spin-demo-product{--spin-angle:18deg;position:relative;width:112px;height:270px;',
+                      '.spin-demo-product{--spin-angle:18deg;position:relative;width:176px;height:220px;'
+                  )
+                  updated = updated.replace(
+                      '.spin-demo-product .cap{position:absolute;inset:0 5px 134px;border-radius:24px 24px 16px 16px;background:linear-gradient(90deg,#202731,#59626d 42%,#171d25 78%);',
+                      '.spin-demo-product .cap{position:absolute;inset:0 40px 164px;border-radius:18px 18px 8px 8px;background:linear-gradient(90deg,#23435a,#7ba2b6 46%,#183044 82%);'
+                  )
+                  updated = updated.replace(
+                      '.spin-demo-product .ring{position:absolute;left:0;right:0;top:132px;height:12px;',
+                      '.spin-demo-product .ring{position:absolute;left:28px;right:28px;top:52px;height:10px;'
+                  )
+                  updated = updated.replace(
+                      '.spin-demo-product .body{position:absolute;inset:144px 9px 0;border-radius:12px 12px 38px 38px;background:linear-gradient(90deg,#17202a,#65717e 42%,#111820 82%);',
+                      '.spin-demo-product .body{position:absolute;inset:62px 10px 0;border-radius:24px 24px 38px 38px;background:linear-gradient(90deg,#315d70,#91bdc7 45%,#244b61 82%);'
+                  )
+                  updated = updated.replace(
+                      '.spin-demo-product .clip{position:absolute;z-index:2;top:26px;right:12px;width:7px;height:108px;',
+                      '.spin-demo-product .clip{display:none;position:absolute;z-index:2;top:26px;right:12px;width:7px;height:108px;'
+                  )
+                  updated = updated.replace(
+                      '.spin-demo-product .brand-line{position:absolute;z-index:3;left:50%;top:174px;width:44px;height:2px;',
+                      '.spin-demo-product .brand-line{position:absolute;z-index:3;left:50%;top:128px;width:72px;height:3px;'
+                  )
+              if updated != text:
+                  path.write_text(updated, encoding='utf-8')
+                  print(f'updated {path}')
+          PY
+      - name: Commit cleanup
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add product-spin.html assets/product-spin.js
+          if git diff --cached --quiet; then
+            echo "No residual sample content found."
+          else
+            git commit -m "Use a neutral package example for product spin"
+            git push
+          fi
