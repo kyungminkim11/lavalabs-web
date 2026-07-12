@@ -25,12 +25,12 @@
     .spin-demo-bar strong{color:#c9ff48}
     .spin-demo-stage{position:relative;display:grid;place-items:center;min-height:440px;overflow:hidden;border-radius:22px;background:radial-gradient(circle at 50% 40%,#f9faf5 0,#dedfd8 62%,#c8cbc3 100%);cursor:grab;perspective:900px}
     .spin-demo-stage:before{content:"";position:absolute;left:14%;right:14%;bottom:72px;height:28px;border-radius:50%;background:rgba(17,21,27,.18);filter:blur(14px)}
-    .spin-demo-product{--spin-angle:18deg;position:relative;width:112px;height:270px;transform-style:preserve-3d;transform:rotateY(var(--spin-angle));transition:transform .08s linear}
-    .spin-demo-product .cap{position:absolute;inset:0 5px 134px;border-radius:24px 24px 16px 16px;background:linear-gradient(90deg,#202731,#59626d 42%,#171d25 78%);box-shadow:inset 12px 0 18px rgba(255,255,255,.12),inset -12px 0 18px rgba(0,0,0,.3)}
-    .spin-demo-product .ring{position:absolute;left:0;right:0;top:132px;height:12px;border-radius:5px;background:linear-gradient(90deg,#b38b2c,#f4d574 42%,#8c6717 80%)}
-    .spin-demo-product .body{position:absolute;inset:144px 9px 0;border-radius:12px 12px 38px 38px;background:linear-gradient(90deg,#17202a,#65717e 42%,#111820 82%);box-shadow:inset 12px 0 18px rgba(255,255,255,.1),inset -12px 0 18px rgba(0,0,0,.34)}
-    .spin-demo-product .clip{position:absolute;z-index:2;top:26px;right:12px;width:7px;height:108px;border-radius:7px;background:linear-gradient(90deg,#caa547,#ffe49a,#9c7623);transform:translateZ(18px)}
-    .spin-demo-product .brand-line{position:absolute;z-index:3;left:50%;top:174px;width:44px;height:2px;background:#e4c668;transform:translateX(-50%) translateZ(20px);box-shadow:0 8px 0 #e4c668}
+    .spin-demo-product{--spin-angle:18deg;position:relative;width:176px;height:220px;transform-style:preserve-3d;transform:rotateY(var(--spin-angle));transition:transform .08s linear}
+    .spin-demo-product .cap{position:absolute;inset:0 40px 164px;border-radius:18px 18px 8px 8px;background:linear-gradient(90deg,#23435a,#7ba2b6 46%,#183044 82%);box-shadow:inset 12px 0 18px rgba(255,255,255,.12),inset -12px 0 18px rgba(0,0,0,.3)}
+    .spin-demo-product .ring{position:absolute;left:28px;right:28px;top:52px;height:10px;border-radius:5px;background:linear-gradient(90deg,#b38b2c,#f4d574 42%,#8c6717 80%)}
+    .spin-demo-product .body{position:absolute;inset:62px 10px 0;border-radius:24px 24px 38px 38px;background:linear-gradient(90deg,#315d70,#91bdc7 45%,#244b61 82%);box-shadow:inset 12px 0 18px rgba(255,255,255,.1),inset -12px 0 18px rgba(0,0,0,.34)}
+    .spin-demo-product .clip{display:none;position:absolute;z-index:2;top:26px;right:12px;width:7px;height:108px;border-radius:7px;background:linear-gradient(90deg,#caa547,#ffe49a,#9c7623);transform:translateZ(18px)}
+    .spin-demo-product .brand-line{position:absolute;z-index:3;left:50%;top:128px;width:72px;height:3px;background:#e4c668;transform:translateX(-50%) translateZ(20px);box-shadow:0 8px 0 #e4c668}
     .spin-demo-guide{position:absolute;left:0;right:0;bottom:20px;text-align:center;color:#4e5965;font-size:11px;font-weight:800}
     .spin-demo-guide b{display:inline-flex;margin-right:7px;padding:5px 8px;border-radius:99px;background:#0d1117;color:#c9ff48}
     .spin-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -257,7 +257,7 @@
             </div>
             <div class="spin-form-grid">
               <label><span>희망 마감일 *</span><input name="deadline" type="date" required></label>
-              <label><span>제품 크기 / 무게</span><input name="productSize" placeholder="예: 140×15mm, 약 25g"></label>
+              <label><span>제품 크기 / 무게</span><input name="productSize" placeholder="예: 120×80×60mm, 약 250g"></label>
             </div>
             <div class="spin-form-grid">
               <label><span>제품 재질 *</span>
@@ -324,7 +324,7 @@
               </label>
               <label><span>제품·참고 페이지 링크</span><input name="reference" type="url" placeholder="https://"></label>
             </div>
-            <label><span>재질, 반사, 투명 여부와 기타 조건</span><textarea name="conditions" placeholder="예: 유광 금속 클립과 투명 용기이 있습니다. 흰 배경을 원하며 8월 신제품 공개 전에 납품이 필요합니다."></textarea></label>
+            <label><span>재질, 반사, 투명 여부와 기타 조건</span><textarea name="conditions" placeholder="예: 유광 패키지와 투명 용기이 있습니다. 흰 배경을 원하며 8월 신제품 공개 전에 납품이 필요합니다."></textarea></label>
           </div>
 
           <div class="spin-form-actions">

@@ -179,7 +179,7 @@
         </label>
       </div>
       <label><span>재질·크기·반사·투명 여부 등 기타 조건</span>
-        <textarea name="spinConditions" rows="4" placeholder="예: 유광 금속 클립, 투명 용기, 길이 140mm, 흰 배경 희망, 택배 전달 예정"></textarea>
+        <textarea name="spinConditions" rows="4" placeholder="예: 유광 패키지, 투명 용기, 높이 140mm, 흰 배경 희망, 택배 전달 예정"></textarea>
       </label>
     `;
 
