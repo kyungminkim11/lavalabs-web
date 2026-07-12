@@ -1,0 +1,1 @@
+fixed binary template upload in progress
