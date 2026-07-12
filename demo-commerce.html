@@ -1,1 +1,240 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#201a16"><meta name="robots" content="index,follow"><meta name="description" content="가상의 티 브랜드를 기준으로 만든 상품 옵션 구성과 소분 가격 계산·장바구니 데모입니다."><link rel="canonical" href="https://space.lavalabs.co.kr/demo-commerce.html"><title>샘플 상품 구성·가격 계산 데모 | LavaLabs</title><link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="assets/styles.css"><style>:root{--ink:#201a16;--cream:#f6f0e7;--tea:#7d8d48;--line:#ddd5c9}.hero-demo{padding:76px 0 42px;background:linear-gradient(135deg,#201a16,#5f4534);color:#fff}.hero-demo .flag{display:inline-flex;padding:7px 11px;border:1px solid #ffffff32;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.08em}.hero-demo h1{margin:18px 0 12px;font-size:clamp(36px,7vw,72px);line-height:1;letter-spacing:-.055em}.hero-demo p{max-width:700px;margin:0;color:#eadfd7;line-height:1.75}.commerce{padding:28px 0 100px;background:var(--cream)}.tabs{display:flex;gap:8px;overflow:auto}.tab{padding:11px 16px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:900;white-space:nowrap}.tab.active{background:var(--ink);color:#fff}.panel{display:none;margin-top:16px}.panel.active{display:block}.layout{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}.card{padding:24px;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:0 14px 34px rgba(32,26,22,.06)}.product-stage{display:flex;min-height:410px;align-items:center;justify-content:center;border-radius:18px;background:linear-gradient(145deg,#e5d8c6,#f9f3e9);position:relative;overflow:hidden}.pack{width:210px;height:260px;padding:28px 22px;border-radius:20px 20px 28px 28px;background:#7d8d48;color:#fff;box-shadow:0 28px 50px rgba(32,26,22,.22);transform:rotate(-3deg);transition:.25s}.pack small,.pack strong,.pack span{display:block}.pack small{font-size:9px;letter-spacing:.15em}.pack strong{margin-top:42px;font-size:30px;line-height:1.05}.pack span{margin-top:18px;color:#eaf1d0;font-size:11px}.controls{display:grid;gap:18px}.field label{display:block;margin-bottom:8px;font-size:11px;font-weight:900}.choice{display:flex;flex-wrap:wrap;gap:8px}.choice button{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#faf8f4;font-weight:800}.choice button.active{background:#201a16;color:#fff}.summary{padding:16px;border-radius:16px;background:#f3f5ed}.summary div{display:flex;justify-content:space-between;gap:14px;padding:6px 0}.summary strong{font-size:18px}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.product{padding:18px;border:1px solid var(--line);border-radius:18px;background:#fff}.product h3{margin:16px 0 5px;font-size:19px}.product p{margin:0;color:#776e66;font-size:10px;line-height:1.6}.product select{width:100%;margin-top:14px;padding:10px;border:1px solid var(--line);border-radius:11px;background:#fff}.product button{width:100%;margin-top:9px;padding:10px;border:0;border-radius:11px;background:#201a16;color:#fff;font-weight:900}.dot{width:46px;height:46px;border-radius:50%;background:#7d8d48}.cart{margin-top:16px;padding:20px;border:1px solid var(--line);border-radius:18px;background:#fff}.cart h2{margin:0 0 12px;font-size:22px}.cart-row{display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:10px 0;border-top:1px solid #eee7de;font-size:11px}.cart-row button{border:0;background:none;color:#a33}.empty{color:#7d746d;font-size:11px}.total{display:flex;justify-content:space-between;margin-top:13px;padding-top:13px;border-top:2px solid #201a16}.total strong{font-size:21px}.notice{margin-top:16px;padding:16px 18px;border:1px dashed #bcb1a5;border-radius:16px;background:#fff;color:#766d65;font-size:11px;line-height:1.7}.footer-demo{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-top:18px;padding:20px;border-radius:18px;background:#201a16;color:#fff}.footer-demo p{margin:0;color:#d9cec6;font-size:11px}.footer-demo a{padding:11px 15px;border-radius:12px;background:#dff7a4;color:#201a16;font-weight:900}@media(max-width:820px){.layout{grid-template-columns:1fr}.products{grid-template-columns:1fr 1fr}}@media(max-width:520px){.hero-demo{padding:54px 0 34px}.commerce{padding-bottom:72px}.card{padding:16px}.products{grid-template-columns:1fr}.footer-demo{display:block}.footer-demo a{display:block;margin-top:12px;text-align:center}}</style></head><body><div id="site-header"></div><main><section class="hero-demo"><div class="container"><span class="flag">PUBLIC DEMO · DUMMY PRODUCTS</span><h1>샘플 티 스튜디오<br>상품 구성·가격 계산</h1><p>실제 브랜드·상품·가격과 무관한 공개용 더미 데모입니다. 옵션을 선택해 상품 구성을 미리 보고, 소분 단위별 가격을 계산해 장바구니에 담는 흐름을 보여줍니다.</p></div></section><section class="commerce"><div class="container"><nav class="tabs"><button class="tab active" data-tab="builder">상품 구성</button><button class="tab" data-tab="price">가격·장바구니</button></nav><section class="panel active" data-panel="builder"><div class="layout"><article class="card"><div class="product-stage"><div class="pack" id="pack"><small>SAMPLE TEA STUDIO</small><strong id="packName">FOREST BLEND</strong><span id="packMeta">Green · 12 bags · Gift sleeve</span></div></div></article><aside class="card controls"><div class="field"><label>블렌드</label><div class="choice" data-choice="blend"><button class="active" data-name="FOREST BLEND">포레스트</button><button data-name="SUNSET BLEND">선셋</button><button data-name="MORNING BLEND">모닝</button></div></div><div class="field"><label>패키지 색상</label><div class="choice" data-choice="color"><button class="active" data-color="#7d8d48">그린</button><button data-color="#b76f52">코랄</button><button data-color="#4f6684">블루</button></div></div><div class="field"><label>수량</label><div class="choice" data-choice="qty"><button class="active" data-qty="12" data-price="24000">12개입</button><button data-qty="24" data-price="42000">24개입</button><button data-qty="36" data-price="59000">36개입</button></div></div><div class="field"><label>포장</label><div class="choice" data-choice="wrap"><button class="active" data-wrap="Gift sleeve" data-extra="3000">기프트 슬리브</button><button data-wrap="Basic box" data-extra="0">기본 박스</button><button data-wrap="Premium case" data-extra="7000">프리미엄 케이스</button></div></div><div class="summary"><div><span>선택 구성</span><b id="config">포레스트 · 12개입 · 기프트 슬리브</b></div><div><span>예상 가격</span><strong id="price">27,000원</strong></div></div></aside></div></section><section class="panel" data-panel="price"><div class="products" id="products"></div><div class="cart"><h2>샘플 장바구니</h2><div id="cartBody" class="empty">상품을 담아보세요.</div><div class="total"><span>합계</span><strong id="total">0원</strong></div></div><div class="notice">상품명, 용량과 가격은 기능 시연을 위한 허구의 데이터입니다. 실제 판매·결제는 이루어지지 않습니다.</div></section><div class="footer-demo"><p>이 페이지는 공개 포트폴리오용으로 새로 만든 익명화된 쇼핑 UI 데모입니다.</p><a href="commerce.html">쇼핑몰 제작 보기</a></div></div></section></main><div id="site-footer"></div><script src="assets/layout.js"></script><script>const state={blend:'포레스트',name:'FOREST BLEND',color:'#7d8d48',qty:12,base:24000,wrap:'기프트 슬리브',wrapEn:'Gift sleeve',extra:3000};const update=()=>{document.querySelector('#pack').style.background=state.color;document.querySelector('#packName').textContent=state.name;document.querySelector('#packMeta').textContent=`${state.qty} bags · ${state.wrapEn}`;document.querySelector('#config').textContent=`${state.blend} · ${state.qty}개입 · ${state.wrap}`;document.querySelector('#price').textContent=(state.base+state.extra).toLocaleString()+'원'};document.querySelectorAll('[data-choice] button').forEach(b=>b.onclick=()=>{b.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');if(b.dataset.name){state.name=b.dataset.name;state.blend=b.textContent}if(b.dataset.color)state.color=b.dataset.color;if(b.dataset.qty){state.qty=+b.dataset.qty;state.base=+b.dataset.price}if(b.dataset.wrap){state.wrap=b.textContent;state.wrapEn=b.dataset.wrap;state.extra=+b.dataset.extra}update()});document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('[data-panel]').forEach(x=>x.classList.toggle('active',x.dataset.panel===b.dataset.tab))});const items=[['Meadow Leaf','산뜻한 허브 블렌드','#7d8d48'],['Amber Rooibos','고소한 루이보스 블렌드','#b76f52'],['Blue Evening','은은한 저녁 블렌드','#4f6684']];const cart=[];const prices={10:6000,20:11000,40:20000};document.querySelector('#products').innerHTML=items.map((x,i)=>`<article class="product"><div class="dot" style="background:${x[2]}"></div><h3>${x[0]}</h3><p>${x[1]} · 공개용 샘플 제품</p><select id="size${i}"><option value="10">10g · 6,000원</option><option value="20">20g · 11,000원</option><option value="40">40g · 20,000원</option></select><button data-add="${i}">담기</button></article>`).join('');const draw=()=>{const body=document.querySelector('#cartBody');if(!cart.length){body.className='empty';body.textContent='상품을 담아보세요.'}else{body.className='';body.innerHTML=cart.map((x,i)=>`<div class="cart-row"><span>${x.name} · ${x.size}g</span><b>${x.price.toLocaleString()}원</b><button data-remove="${i}">삭제</button></div>`).join('');body.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.remove,1);draw()})}document.querySelector('#total').textContent=cart.reduce((s,x)=>s+x.price,0).toLocaleString()+'원'};document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{const i=+b.dataset.add,size=+document.querySelector('#size'+i).value;cart.push({name:items[i][0],size,price:prices[size]});draw()});update();</script></body></html>
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#211813">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="가상의 티 브랜드를 기준으로 만든 상품 옵션 구성, 가격 계산, 상품 비교와 장바구니 체험 데모입니다.">
+  <link rel="canonical" href="https://space.lavalabs.co.kr/demo-commerce.html">
+  <title>샘플 상품 구성·가격 계산 데모 | LavaLabs</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    :root{--ink:#211813;--cream:#f5efe6;--tea:#7d8d48;--lime:#dff7a4;--line:#ded5c9;--muted:#756c65;--surface:#fff;--shadow:0 18px 45px rgba(43,29,20,.08)}
+    *{box-sizing:border-box}.commerce-hero{position:relative;overflow:hidden;padding:86px 0 55px;background:linear-gradient(135deg,#201713 0%,#5d3f2f 58%,#9a6b49 100%);color:#fff}.commerce-hero:after{content:"";position:absolute;right:-100px;top:-170px;width:430px;height:430px;border-radius:50%;border:1px solid #ffffff24;box-shadow:0 0 0 70px #ffffff08,0 0 0 140px #ffffff05}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:44px;align-items:end}.flag{display:inline-flex;padding:7px 11px;border:1px solid #ffffff32;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.08em}.commerce-hero h1{margin:19px 0 14px;font-size:clamp(40px,7vw,78px);line-height:.98;letter-spacing:-.06em}.commerce-hero p{max-width:720px;margin:0;color:#eddfd4;line-height:1.75}.hero-proof{display:grid;grid-template-columns:1fr 1fr;gap:10px}.proof{padding:18px;border:1px solid #ffffff1f;border-radius:18px;background:#ffffff0d;backdrop-filter:blur(12px)}.proof strong,.proof span{display:block}.proof strong{font-size:20px}.proof span{margin-top:5px;color:#dccbc0;font-size:10px}.commerce{padding:28px 0 110px;background:var(--cream)}.intro-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:-46px;position:relative;z-index:2}.intro-item{min-height:90px;padding:17px;border:1px solid #ffffff66;border-radius:18px;background:#fff;box-shadow:var(--shadow)}.intro-item b,.intro-item span{display:block}.intro-item b{font-size:12px}.intro-item span{margin-top:6px;color:var(--muted);font-size:10px;line-height:1.45}.tabs{position:sticky;top:72px;z-index:7;display:flex;gap:8px;overflow:auto;margin-top:28px;padding:8px;border:1px solid var(--line);border-radius:18px;background:#fffdf9e8;backdrop-filter:blur(14px);box-shadow:0 12px 30px rgba(43,29,20,.05)}.tab{min-height:46px;padding:11px 17px;border:0;border-radius:12px;background:transparent;color:#756b64;font-weight:900;white-space:nowrap}.tab.active{background:var(--ink);color:#fff}.panel{display:none;margin-top:18px}.panel.active{display:block}.builder-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(330px,.95fr);gap:16px}.card{padding:22px;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:var(--shadow)}.stage{position:relative;display:flex;min-height:480px;align-items:center;justify-content:center;overflow:hidden;border-radius:20px;background:radial-gradient(circle at 70% 25%,#fff 0 8%,transparent 9%),linear-gradient(145deg,#dfd0bc,#f9f3e9)}.stage:after{content:"SAMPLE / NOT FOR SALE";position:absolute;left:20px;bottom:18px;color:#7d7066;font-size:9px;font-weight:900;letter-spacing:.13em}.pack-wrap{position:relative;width:250px;height:335px}.pack-shadow{position:absolute;left:35px;right:22px;bottom:5px;height:36px;border-radius:50%;background:#2d1e1640;filter:blur(16px)}.pack{position:absolute;inset:0;padding:30px 26px;border-radius:23px 23px 34px 34px;background:var(--tea);color:#fff;box-shadow:0 31px 60px rgba(45,29,20,.26);transform:rotate(-3deg);transition:.25s}.pack:before{content:"";position:absolute;inset:13px;border:1px solid #ffffff44;border-radius:15px 15px 26px 26px}.pack small,.pack strong,.pack span{position:relative;z-index:1;display:block}.pack small{font-size:9px;letter-spacing:.16em}.pack strong{margin-top:62px;font-size:34px;line-height:1.02}.pack span{margin-top:19px;color:#eff4df;font-size:11px;line-height:1.6}.pack-badge{position:absolute;right:24px;bottom:28px;z-index:1;display:grid;width:58px;height:58px;place-items:center;border:1px solid #ffffff55;border-radius:50%;font-size:9px;font-weight:900;text-align:center}.builder-side{display:grid;gap:14px}.builder-head{display:flex;justify-content:space-between;gap:16px;align-items:start}.builder-head h2{margin:0;font-size:27px;letter-spacing:-.04em}.builder-head span{padding:6px 9px;border-radius:999px;background:#f2f3e9;color:#6b772a;font-size:9px;font-weight:900}.field{padding-top:14px;border-top:1px solid #eee8df}.field:first-of-type{padding-top:0;border:0}.field label{display:block;margin-bottom:9px;font-size:11px;font-weight:900}.choice{display:flex;flex-wrap:wrap;gap:8px}.choice button{min-height:42px;padding:9px 12px;border:1px solid var(--line);border-radius:12px;background:#faf8f4;font-weight:850}.choice button.active{background:var(--ink);color:#fff;border-color:var(--ink)}.swatch{display:inline-block;width:13px;height:13px;margin-right:6px;border-radius:50%;vertical-align:-2px}.summary{padding:17px;border-radius:17px;background:#f2f5e8}.summary-row{display:flex;justify-content:space-between;gap:14px;padding:6px 0}.summary-row strong{font-size:13px}.summary-total{margin-top:6px;padding-top:12px;border-top:1px solid #d8dfc9}.summary-total strong{font-size:22px}.builder-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.builder-actions button{min-height:47px;border:1px solid var(--line);border-radius:13px;background:#fff;font-weight:900}.builder-actions button.primary{background:var(--ink);color:#fff;border-color:var(--ink)}.catalog-tools{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:12px;margin-bottom:14px}.catalog-tools input{min-height:48px;padding:0 15px;border:1px solid var(--line);border-radius:13px;background:#fff}.filters{display:flex;gap:7px;overflow:auto}.filters button{min-height:44px;padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:850;white-space:nowrap}.filters button.active{background:var(--ink);color:#fff}.catalog-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px}.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.product{display:flex;min-height:315px;flex-direction:column;padding:18px;border:1px solid var(--line);border-radius:19px;background:#fff}.product-top{display:flex;justify-content:space-between;gap:10px;align-items:start}.dot{width:54px;height:54px;border-radius:16px}.product-tag{padding:5px 8px;border-radius:999px;background:#f2f0ec;color:#756d67;font-size:8px;font-weight:900}.product h3{margin:20px 0 5px;font-size:19px}.product p{margin:0;color:#776e66;font-size:10px;line-height:1.65}.product-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}.product-meta span{padding:5px 7px;border-radius:999px;background:#f4f5ed;color:#69732f;font-size:8px;font-weight:850}.product select{width:100%;margin-top:auto;padding:11px;border:1px solid var(--line);border-radius:11px;background:#fff}.product-actions{display:grid;grid-template-columns:1fr auto;gap:7px;margin-top:8px}.product-actions button{min-height:42px;border:0;border-radius:11px;background:var(--ink);color:#fff;font-weight:900}.product-actions button.compare{width:44px;background:#f2eee8;color:#5f554e;border:1px solid var(--line)}.product-actions button.compare.active{background:var(--lime);color:#2f3912}.cart-panel{position:sticky;top:145px;align-self:start;padding:21px;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:var(--shadow)}.cart-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.cart-head h2{margin:0;font-size:23px}.cart-count{padding:6px 9px;border-radius:999px;background:var(--ink);color:#fff;font-size:9px;font-weight:900}.cart-list{display:grid;gap:8px;margin-top:14px}.cart-row{display:grid;grid-template-columns:1fr auto;gap:10px;padding:12px;border-radius:13px;background:#f7f4f0}.cart-row strong,.cart-row span{display:block}.cart-row strong{font-size:11px}.cart-row span{margin-top:4px;color:#786e66;font-size:9px}.cart-row button{grid-row:1/3;grid-column:2;border:0;background:none;color:#a24e43}.empty{padding:24px 10px;color:#80766e;font-size:11px;text-align:center}.price-lines{margin-top:14px;padding-top:12px;border-top:1px solid #e9e2da}.price-line{display:flex;justify-content:space-between;gap:12px;padding:5px 0;color:#746a63;font-size:10px}.price-line.total{margin-top:5px;padding-top:12px;border-top:1px solid #d8cfc5;color:var(--ink);font-size:14px;font-weight:900}.checkout{width:100%;min-height:47px;margin-top:12px;border:0;border-radius:13px;background:var(--lime);color:#26320d;font-weight:900}.compare-box{margin-top:16px;padding:18px;border:1px solid var(--line);border-radius:20px;background:#fff}.compare-box h2{margin:0 0 12px;font-size:22px}.compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.compare-item{padding:14px;border-radius:15px;background:#f7f4f0}.compare-item strong,.compare-item span{display:block}.compare-item strong{font-size:12px}.compare-item span{margin-top:5px;color:#776e66;font-size:9px}.notice{margin-top:16px;padding:16px 18px;border:1px dashed #bcb1a5;border-radius:16px;background:#fff;color:#766d65;font-size:11px;line-height:1.7}.demo-footer{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-top:18px;padding:22px;border-radius:20px;background:var(--ink);color:#fff}.demo-footer p{margin:0;color:#d9cec6;font-size:11px;line-height:1.6}.demo-footer a{padding:12px 16px;border-radius:12px;background:var(--lime);color:#2a3412;font-weight:900}.mobile-cart{display:none}.toast{position:fixed;right:18px;bottom:18px;z-index:20;max-width:320px;padding:13px 15px;border-radius:14px;background:#111820;color:#fff;box-shadow:0 18px 40px rgba(0,0,0,.2);font-size:11px;opacity:0;transform:translateY(15px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:none}
+    @media(max-width:960px){.hero-grid,.builder-layout,.catalog-layout{grid-template-columns:1fr}.intro-strip{grid-template-columns:1fr 1fr}.products{grid-template-columns:1fr 1fr}.cart-panel{position:static}.compare-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:620px){.commerce-hero{padding:58px 0 74px}.hero-grid{gap:24px}.hero-proof{grid-template-columns:1fr 1fr}.intro-strip{margin-top:-52px}.intro-item{min-height:82px;padding:14px}.commerce{padding-bottom:104px}.tabs{top:62px;margin-top:20px}.tab{flex:1;padding:10px 12px}.card{padding:15px}.stage{min-height:365px}.pack-wrap{width:205px;height:280px}.pack{padding:25px 22px}.pack strong{margin-top:48px;font-size:28px}.builder-actions{grid-template-columns:1fr}.catalog-tools{grid-template-columns:1fr}.products,.compare-grid{grid-template-columns:1fr}.demo-footer{display:block}.demo-footer a{display:block;margin-top:13px;text-align:center}.mobile-cart{position:fixed;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));z-index:15;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 14px;border-radius:16px;background:var(--ink);color:#fff;box-shadow:0 18px 45px rgba(0,0,0,.24)}.mobile-cart span,.mobile-cart strong{display:block}.mobile-cart span{color:#cfc2b8;font-size:9px}.mobile-cart strong{margin-top:2px}.mobile-cart button{min-height:42px;padding:0 14px;border:0;border-radius:11px;background:var(--lime);font-weight:900}.toast{left:14px;right:14px;bottom:82px;max-width:none}}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main>
+    <section class="commerce-hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="flag">PUBLIC DEMO · FICTIONAL PRODUCTS & PRICES</span>
+          <h1>샘플 티 스튜디오<br>상품 구성·가격 계산</h1>
+          <p>제품 옵션을 조합하고, 가격 변화를 확인하고, 여러 상품을 비교해 장바구니에 담아보세요. 브랜드·상품·가격은 모두 공개 체험을 위해 새로 만든 더미 데이터입니다.</p>
+        </div>
+        <div class="hero-proof">
+          <div class="proof"><strong>4단계</strong><span>블렌드·색상·수량·포장</span></div>
+          <div class="proof"><strong>6개</strong><span>샘플 상품 카탈로그</span></div>
+          <div class="proof"><strong>실시간</strong><span>가격·합계 자동 계산</span></div>
+          <div class="proof"><strong>0건</strong><span>실제 주문·결제 데이터</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="commerce">
+      <div class="container">
+        <div class="intro-strip">
+          <div class="intro-item"><b>옵션 조합</b><span>선택에 따라 패키지와 가격이 즉시 바뀝니다.</span></div>
+          <div class="intro-item"><b>상품 탐색</b><span>향·카페인·용량 조건으로 샘플 상품을 찾습니다.</span></div>
+          <div class="intro-item"><b>상품 비교</b><span>최대 3개 상품의 특징과 가격을 나란히 봅니다.</span></div>
+          <div class="intro-item"><b>장바구니</b><span>단위 가격과 배송비 포함 합계를 확인합니다.</span></div>
+        </div>
+
+        <nav class="tabs" aria-label="쇼핑 데모 메뉴">
+          <button class="tab active" data-tab="builder" aria-selected="true">상품 구성</button>
+          <button class="tab" data-tab="catalog" aria-selected="false">가격·장바구니</button>
+          <button class="tab" data-tab="compare" aria-selected="false">상품 비교</button>
+        </nav>
+
+        <section class="panel active" data-panel="builder" id="builder">
+          <div class="builder-layout">
+            <article class="card">
+              <div class="stage">
+                <div class="pack-wrap">
+                  <div class="pack-shadow"></div>
+                  <div class="pack" id="pack">
+                    <small>SAMPLE TEA STUDIO</small>
+                    <strong id="packName">FOREST<br>BLEND</strong>
+                    <span id="packMeta">12 bags · Gift sleeve<br>Herbal · Caffeine free</span>
+                    <div class="pack-badge" id="packBadge">12<br>BAGS</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <aside class="card builder-side">
+              <div class="builder-head"><h2>나만의 샘플 구성</h2><span>실시간 미리보기</span></div>
+              <div class="field">
+                <label>1. 블렌드</label>
+                <div class="choice" data-choice="blend">
+                  <button class="active" data-name="FOREST BLEND" data-ko="포레스트" data-desc="Herbal · Caffeine free">포레스트</button>
+                  <button data-name="SUNSET BLEND" data-ko="선셋" data-desc="Rooibos · Caffeine free">선셋</button>
+                  <button data-name="MORNING BLEND" data-ko="모닝" data-desc="Black tea · Caffeinated">모닝</button>
+                </div>
+              </div>
+              <div class="field">
+                <label>2. 패키지 색상</label>
+                <div class="choice" data-choice="color">
+                  <button class="active" data-color="#7d8d48" data-label="그린"><i class="swatch" style="background:#7d8d48"></i>그린</button>
+                  <button data-color="#b76f52" data-label="코랄"><i class="swatch" style="background:#b76f52"></i>코랄</button>
+                  <button data-color="#4f6684" data-label="블루"><i class="swatch" style="background:#4f6684"></i>블루</button>
+                </div>
+              </div>
+              <div class="field">
+                <label>3. 수량</label>
+                <div class="choice" data-choice="qty">
+                  <button class="active" data-qty="12" data-price="24000">12개입</button>
+                  <button data-qty="24" data-price="42000">24개입</button>
+                  <button data-qty="36" data-price="59000">36개입</button>
+                </div>
+              </div>
+              <div class="field">
+                <label>4. 포장</label>
+                <div class="choice" data-choice="wrap">
+                  <button class="active" data-wrap="Gift sleeve" data-ko="기프트 슬리브" data-extra="3000">기프트 슬리브 +3,000</button>
+                  <button data-wrap="Basic box" data-ko="기본 박스" data-extra="0">기본 박스</button>
+                  <button data-wrap="Premium case" data-ko="프리미엄 케이스" data-extra="7000">프리미엄 +7,000</button>
+                </div>
+              </div>
+              <div class="summary">
+                <div class="summary-row"><span>선택 구성</span><strong id="config">포레스트 · 그린 · 12개입</strong></div>
+                <div class="summary-row"><span>상품 금액</span><strong id="basePrice">24,000원</strong></div>
+                <div class="summary-row"><span>포장 추가</span><strong id="extraPrice">3,000원</strong></div>
+                <div class="summary-row summary-total"><span>예상 합계</span><strong id="builderPrice">27,000원</strong></div>
+              </div>
+              <div class="builder-actions">
+                <button class="primary" id="builderAdd" type="button">이 구성 장바구니에 담기</button>
+                <button id="copyConfig" type="button">구성 코드 복사</button>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="catalog" id="price">
+          <div class="catalog-tools">
+            <input id="productSearch" type="search" placeholder="상품명이나 특징 검색" aria-label="상품 검색">
+            <div class="filters" aria-label="카페인 필터">
+              <button class="active" data-filter="all">전체</button>
+              <button data-filter="free">카페인 없음</button>
+              <button data-filter="low">저카페인</button>
+              <button data-filter="yes">카페인 있음</button>
+            </div>
+          </div>
+          <div class="catalog-layout">
+            <div>
+              <div class="products" id="products"></div>
+              <div class="notice">상품명, 원료 설명, 용량과 가격은 기능 시연을 위한 허구의 데이터입니다. 실제 판매·결제는 이루어지지 않습니다.</div>
+            </div>
+            <aside class="cart-panel" id="cartPanel">
+              <div class="cart-head"><h2>샘플 장바구니</h2><span class="cart-count" id="cartCount">0개</span></div>
+              <div class="cart-list" id="cartBody"><div class="empty">상품을 담아보세요.</div></div>
+              <div class="price-lines">
+                <div class="price-line"><span>상품 합계</span><strong id="subtotal">0원</strong></div>
+                <div class="price-line"><span>샘플 배송비</span><strong id="shipping">0원</strong></div>
+                <div class="price-line total"><span>예상 합계</span><strong id="total">0원</strong></div>
+              </div>
+              <button class="checkout" id="checkout" type="button">샘플 주문 흐름 확인</button>
+            </aside>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="compare">
+          <div class="compare-box">
+            <h2>선택한 상품 비교</h2>
+            <div class="compare-grid" id="compareGrid"><div class="empty" style="grid-column:1/-1">가격·장바구니 탭에서 비교 버튼을 눌러 최대 3개를 선택하세요.</div></div>
+          </div>
+          <div class="notice">비교 기능도 전부 브라우저 안에서만 작동하며 데이터가 저장되거나 전송되지 않습니다.</div>
+        </section>
+
+        <div class="demo-footer">
+          <p>이 페이지는 기존 사내 상품 시스템을 공개한 것이 아니라, 옵션 구성·가격 계산·비교·장바구니 기능을 설명하기 위해 별도로 만든 공개용 데모입니다.</p>
+          <a href="commerce.html">쇼핑몰 제작 보기</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <div class="mobile-cart"><div><span>샘플 장바구니</span><strong id="mobileTotal">0원 · 0개</strong></div><button id="openCart" type="button">장바구니</button></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="assets/layout.js"></script>
+  <script>
+    const products=[
+      {id:'meadow',name:'Meadow Leaf',desc:'산뜻한 허브와 레몬그라스 블렌드',color:'#7d8d48',caffeine:'free',caffeineText:'카페인 없음',note:'산뜻함',prices:{10:6000,20:11000,40:20000}},
+      {id:'amber',name:'Amber Rooibos',desc:'고소하고 부드러운 루이보스 블렌드',color:'#b76f52',caffeine:'free',caffeineText:'카페인 없음',note:'고소함',prices:{10:6500,20:12000,40:22000}},
+      {id:'evening',name:'Blue Evening',desc:'은은한 꽃 향과 베리 향의 블렌드',color:'#4f6684',caffeine:'low',caffeineText:'저카페인',note:'플로럴',prices:{10:7000,20:13000,40:24000}},
+      {id:'morning',name:'Morning Black',desc:'묵직한 몰트 향의 아침용 홍차',color:'#8a5a3c',caffeine:'yes',caffeineText:'카페인 있음',note:'진한 맛',prices:{10:7500,20:14000,40:26000}},
+      {id:'pear',name:'White Pear',desc:'배와 흰꽃 향을 더한 가벼운 백차',color:'#c8b98c',caffeine:'low',caffeineText:'저카페인',note:'달콤함',prices:{10:8000,20:15000,40:28000}},
+      {id:'mint',name:'Cool Mint',desc:'페퍼민트와 허브의 시원한 블렌드',color:'#5b9b88',caffeine:'free',caffeineText:'카페인 없음',note:'상쾌함',prices:{10:6000,20:11000,40:20000}}
+    ];
+    const state={blend:'포레스트',name:'FOREST BLEND',desc:'Herbal · Caffeine free',color:'#7d8d48',colorLabel:'그린',qty:12,base:24000,wrap:'기프트 슬리브',wrapEn:'Gift sleeve',extra:3000};
+    const cart=[],compare=[];
+    let productFilter='all';
+    const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+    const money=n=>n.toLocaleString()+'원';
+    const toast=message=>{const el=$('#toast');el.textContent=message;el.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>el.classList.remove('show'),1800)};
+    function openTab(name){
+      $$('[data-tab]').forEach(b=>{const active=b.dataset.tab===name;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active))});
+      $$('[data-panel]').forEach(p=>p.classList.toggle('active',p.dataset.panel===name));
+      if(name==='catalog')renderProducts();
+      if(name==='compare')renderCompare();
+    }
+    function updateBuilder(){
+      $('#pack').style.background=state.color;
+      $('#packName').innerHTML=state.name.replace(' ','<br>');
+      $('#packMeta').innerHTML=`${state.qty} bags · ${state.wrapEn}<br>${state.desc}`;
+      $('#packBadge').innerHTML=`${state.qty}<br>BAGS`;
+      $('#config').textContent=`${state.blend} · ${state.colorLabel} · ${state.qty}개입`;
+      $('#basePrice').textContent=money(state.base);
+      $('#extraPrice').textContent=money(state.extra);
+      $('#builderPrice').textContent=money(state.base+state.extra);
+    }
+    function renderProducts(){
+      const q=$('#productSearch').value.trim().toLowerCase();
+      const filtered=products.filter(p=>(productFilter==='all'||p.caffeine===productFilter)&&`${p.name} ${p.desc} ${p.note}`.toLowerCase().includes(q));
+      $('#products').innerHTML=filtered.length?filtered.map(p=>`<article class="product"><div class="product-top"><div class="dot" style="background:${p.color}"></div><span class="product-tag">${p.caffeineText}</span></div><h3>${p.name}</h3><p>${p.desc}</p><div class="product-meta"><span>${p.note}</span><span>샘플 제품</span></div><select id="size-${p.id}" aria-label="${p.name} 용량">${Object.entries(p.prices).map(([size,price])=>`<option value="${size}">${size}g · ${money(price)}</option>`).join('')}</select><div class="product-actions"><button type="button" data-add="${p.id}">담기</button><button class="compare ${compare.includes(p.id)?'active':''}" type="button" data-compare="${p.id}" aria-label="비교 선택">＋</button></div></article>`).join(''):'<div class="notice" style="grid-column:1/-1;margin:0">조건에 맞는 샘플 상품이 없습니다.</div>';
+      $$('[data-add]').forEach(b=>b.onclick=()=>addCatalog(b.dataset.add));
+      $$('[data-compare]').forEach(b=>b.onclick=()=>toggleCompare(b.dataset.compare));
+    }
+    function addCatalog(id){
+      const p=products.find(x=>x.id===id),size=+$('#size-'+id).value;
+      cart.push({key:crypto.randomUUID?.()||Date.now()+Math.random(),name:p.name,detail:`${size}g`,price:p.prices[size]});
+      renderCart();toast(`${p.name}을 장바구니에 담았습니다.`);
+    }
+    function addBuilder(){
+      cart.push({key:crypto.randomUUID?.()||Date.now()+Math.random(),name:`${state.blend} 맞춤 구성`,detail:`${state.qty}개입 · ${state.colorLabel} · ${state.wrap}`,price:state.base+state.extra});
+      renderCart();toast('맞춤 구성을 장바구니에 담았습니다.');
+    }
+    function renderCart(){
+      $('#cartBody').innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-row"><div><strong>${x.name}</strong><span>${x.detail} · ${money(x.price)}</span></div><button type="button" data-remove="${i}" aria-label="삭제">삭제</button></div>`).join(''):'<div class="empty">상품을 담아보세요.</div>';
+      $$('[data-remove]').forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.remove,1);renderCart()});
+      const subtotal=cart.reduce((sum,x)=>sum+x.price,0),shipping=subtotal===0||subtotal>=50000?0:3000,total=subtotal+shipping;
+      $('#cartCount').textContent=`${cart.length}개`;$('#subtotal').textContent=money(subtotal);$('#shipping').textContent=money(shipping);$('#total').textContent=money(total);$('#mobileTotal').textContent=`${money(total)} · ${cart.length}개`;
+    }
+    function toggleCompare(id){
+      const at=compare.indexOf(id);
+      if(at>-1)compare.splice(at,1);
+      else if(compare.length<3)compare.push(id);
+      else return toast('비교는 최대 3개까지 선택할 수 있습니다.');
+      renderProducts();renderCompare();toast(at>-1?'비교 목록에서 제거했습니다.':'비교 목록에 추가했습니다.');
+    }
+    function renderCompare(){
+      const selected=compare.map(id=>products.find(p=>p.id===id)).filter(Boolean);
+      $('#compareGrid').innerHTML=selected.length?selected.map(p=>`<article class="compare-item"><div class="dot" style="background:${p.color};width:38px;height:38px;border-radius:12px"></div><strong style="margin-top:12px">${p.name}</strong><span>${p.desc}</span><span>${p.caffeineText} · ${p.note}</span><span>10g ${money(p.prices[10])}</span></article>`).join(''):'<div class="empty" style="grid-column:1/-1">가격·장바구니 탭에서 비교 버튼을 눌러 최대 3개를 선택하세요.</div>';
+    }
+    $$('[data-choice] button').forEach(b=>b.onclick=()=>{b.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');if(b.dataset.name){state.name=b.dataset.name;state.blend=b.dataset.ko;state.desc=b.dataset.desc}if(b.dataset.color){state.color=b.dataset.color;state.colorLabel=b.dataset.label}if(b.dataset.qty){state.qty=+b.dataset.qty;state.base=+b.dataset.price}if(b.dataset.wrap){state.wrap=b.dataset.ko;state.wrapEn=b.dataset.wrap;state.extra=+b.dataset.extra}updateBuilder()});
+    $$('[data-tab]').forEach(b=>b.onclick=()=>openTab(b.dataset.tab));
+    $$('[data-filter]').forEach(b=>b.onclick=()=>{productFilter=b.dataset.filter;$$('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));renderProducts()});
+    $('#productSearch').oninput=renderProducts;
+    $('#builderAdd').onclick=addBuilder;
+    $('#copyConfig').onclick=async()=>{const code=`SAMPLE-${state.name.split(' ')[0]}-${state.colorLabel}-${state.qty}-${state.wrap}`;try{await navigator.clipboard.writeText(code);toast(`구성 코드 ${code}를 복사했습니다.`)}catch{toast('구성 코드를 복사하지 못했습니다.')}};
+    $('#checkout').onclick=()=>toast(cart.length?'샘플 주문 확인 화면입니다. 실제 결제는 진행되지 않습니다.':'먼저 상품을 장바구니에 담아주세요.');
+    $('#openCart').onclick=()=>{openTab('catalog');setTimeout(()=>$('#cartPanel').scrollIntoView({behavior:'smooth',block:'center'}),80)};
+    updateBuilder();renderProducts();renderCart();renderCompare();
+  </script>
+</body>
+</html>
