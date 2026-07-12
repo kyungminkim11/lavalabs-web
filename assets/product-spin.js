@@ -141,7 +141,7 @@
         <label><span>제품 종류 *</span>
           <select name="spinProductType">
             <option value="">선택해 주세요</option>
-            <option>만년필·문구</option>
+            <option>홈·리빙 소품</option>
             <option>화장품·향수</option>
             <option>주얼리·액세서리</option>
             <option>전자기기·소형 가전</option>
@@ -151,7 +151,7 @@
             <option>기타</option>
           </select>
         </label>
-        <label><span>제품명 / 모델명</span><input name="spinProductName" placeholder="예: 세일러 프로피트 21"></label>
+        <label><span>제품명 / 모델명</span><input name="spinProductName" placeholder="예: 프리미엄 블렌드 티 기프트 세트"></label>
       </div>
       <div class="form-grid">
         <label><span>촬영 제품 수 *</span><input name="spinProductCount" type="number" min="1" inputmode="numeric" placeholder="예: 5"></label>
@@ -179,7 +179,7 @@
         </label>
       </div>
       <label><span>재질·크기·반사·투명 여부 등 기타 조건</span>
-        <textarea name="spinConditions" rows="4" placeholder="예: 유광 금속 클립, 투명 배럴, 길이 140mm, 흰 배경 희망, 택배 전달 예정"></textarea>
+        <textarea name="spinConditions" rows="4" placeholder="예: 유광 금속 클립, 투명 용기, 길이 140mm, 흰 배경 희망, 택배 전달 예정"></textarea>
       </label>
     `;
 
