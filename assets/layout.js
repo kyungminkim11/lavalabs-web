@@ -68,6 +68,13 @@ if(location.pathname.toLowerCase().endsWith('automation-pos-live.html')){
   document.head.append(script);
 }
 
+if(location.pathname.toLowerCase().endsWith('demo-store-guide.html')){
+  const script=document.createElement('script');
+  script.src='assets/demo-store-guide-grid-fix.js?v=20260712a';
+  script.defer=true;
+  document.head.append(script);
+}
+
 const exampleScript=document.createElement('script');
 exampleScript.src='assets/service-examples.js?v=20260712b';
 exampleScript.defer=true;
