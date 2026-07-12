@@ -1,1 +1,211 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#10243a"><meta name="robots" content="index,follow"><meta name="description" content="가상의 라이프스타일 매장을 기준으로 만든 층별 지도, 카테고리 위치, 방문 정보 안내 데모입니다."><link rel="canonical" href="https://space.lavalabs.co.kr/demo-store-guide.html"><title>샘플 매장 안내 데모 | LavaLabs</title><link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="assets/styles.css"><style>:root{--demo:#10243a;--demo2:#1c4a68;--mint:#c9ff48;--paper:#f4f6f7;--line:#dce2e8}.demo-hero{padding:76px 0 42px;background:linear-gradient(135deg,#10243a,#1d5374);color:#fff}.demo-hero .flag{display:inline-flex;padding:7px 11px;border:1px solid #ffffff32;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.08em}.demo-hero h1{margin:18px 0 12px;font-size:clamp(36px,7vw,72px);line-height:1;letter-spacing:-.055em}.demo-hero p{max-width:680px;margin:0;color:#d8e4ec;line-height:1.75}.demo-wrap{padding:28px 0 100px;background:var(--paper)}.demo-tabs{display:flex;gap:8px;overflow:auto;padding-bottom:4px}.demo-tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:11px 16px;font-weight:850;white-space:nowrap}.demo-tab.active{background:var(--demo);color:#fff;border-color:var(--demo)}.demo-panel{display:none;margin-top:16px}.demo-panel.active{display:block}.demo-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.demo-card{padding:22px;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:0 14px 34px rgba(16,36,58,.06)}.floor-switch{display:flex;gap:8px;margin-bottom:14px}.floor-switch button{flex:1;padding:12px;border:1px solid var(--line);border-radius:13px;background:#f8fafb;font-weight:900}.floor-switch button.active{background:var(--mint);border-color:#a9d238}.map{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(8,44px);gap:6px;min-height:350px}.zone{display:flex;align-items:center;justify-content:center;padding:8px;border-radius:14px;background:#dfeaf0;color:#173246;font-size:11px;font-weight:900;text-align:center}.zone.a{grid-column:1/6;grid-row:1/4;background:#dff7a4}.zone.b{grid-column:6/13;grid-row:1/3;background:#dce7ff}.zone.c{grid-column:1/5;grid-row:4/8;background:#ffe4bf}.zone.d{grid-column:5/9;grid-row:3/8;background:#f1ddff}.zone.e{grid-column:9/13;grid-row:3/7;background:#d8f1ed}.zone.entry{grid-column:9/13;grid-row:7/9;background:#10243a;color:#fff}.legend{display:grid;gap:10px}.legend button{display:grid;grid-template-columns:36px 1fr auto;gap:10px;align-items:center;width:100%;padding:12px;border:1px solid var(--line);border-radius:14px;background:#fff;text-align:left}.legend button.active{border-color:#89a700;box-shadow:0 0 0 3px #c9ff4844}.legend i{width:36px;height:36px;border-radius:11px;background:#e8edf0}.legend strong,.legend span{display:block}.legend strong{font-size:12px}.legend span{margin-top:3px;color:#76828d;font-size:10px}.legend b{color:#718719}.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.info-item{padding:18px;border:1px solid var(--line);border-radius:17px;background:#fff}.info-item span,.info-item strong{display:block}.info-item span{color:#78838d;font-size:10px}.info-item strong{margin-top:7px;font-size:15px}.category-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.category{padding:20px;border:1px solid var(--line);border-radius:18px;background:#fff}.category small{color:#718719;font-weight:900}.category h3{margin:15px 0 6px;font-size:20px}.category p{margin:0;color:#6f7b86;font-size:11px;line-height:1.65}.notice{margin-top:16px;padding:16px 18px;border:1px dashed #a9b4bd;border-radius:16px;color:#66727c;font-size:11px;line-height:1.7;background:#fff}.demo-footer{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-top:18px;padding:20px;border-radius:18px;background:#10243a;color:#fff}.demo-footer p{margin:0;color:#cbd7df;font-size:11px}.demo-footer a{color:#10243a;background:var(--mint);padding:11px 15px;border-radius:12px;font-weight:900}@media(max-width:820px){.demo-grid{grid-template-columns:1fr}.category-list{grid-template-columns:1fr 1fr}}@media(max-width:520px){.demo-hero{padding:54px 0 34px}.demo-wrap{padding-bottom:72px}.demo-card{padding:16px}.map{grid-template-rows:repeat(8,36px);gap:4px}.zone{font-size:9px;border-radius:10px}.info-grid,.category-list{grid-template-columns:1fr}.demo-footer{display:block}.demo-footer a{display:block;margin-top:12px;text-align:center}}</style></head><body><div id="site-header"></div><main><section class="demo-hero"><div class="container"><span class="flag">PUBLIC DEMO · DUMMY DATA</span><h1>샘플 라이프스타일 스토어<br>매장 안내</h1><p>실제 매장·회사 정보와 무관한 공개용 더미 데모입니다. 층별 지도, 카테고리 위치, 영업시간과 방문 정보를 모바일에서 확인하는 흐름을 보여줍니다.</p></div></section><section class="demo-wrap"><div class="container"><nav class="demo-tabs" aria-label="매장 안내 메뉴"><button class="demo-tab active" data-tab="map">층별 지도</button><button class="demo-tab" data-tab="visit">방문 정보</button><button class="demo-tab" data-tab="category">카테고리 안내</button></nav><section class="demo-panel active" data-panel="map"><div class="demo-grid"><article class="demo-card"><div class="floor-switch"><button class="active" data-floor="1">1F</button><button data-floor="2">2F</button></div><div class="map" id="floorMap"><div class="zone a">데일리 굿즈</div><div class="zone b">리빙 소품</div><div class="zone c">기프트 포장</div><div class="zone d">시즌 큐레이션</div><div class="zone e">체험 테이블</div><div class="zone entry">입구 · 계산대</div></div></article><aside class="demo-card"><h2 style="margin:0 0 14px;font-size:24px">현재 층 안내</h2><div class="legend" id="legend"></div></aside></div></section><section class="demo-panel" data-panel="visit"><div class="info-grid"><div class="info-item"><span>영업시간</span><strong>매일 11:00–20:00</strong></div><div class="info-item"><span>휴무</span><strong>매월 둘째 화요일</strong></div><div class="info-item"><span>주소</span><strong>서울 샘플구 데모로 10</strong></div><div class="info-item"><span>교통</span><strong>샘플역 2번 출구 도보 3분</strong></div><div class="info-item"><span>주차</span><strong>건물 지하 1시간 지원</strong></div><div class="info-item"><span>문의</span><strong>000-0000-0000</strong></div></div><div class="notice">위 정보는 화면 구조를 보여주기 위한 허구의 데이터입니다. 실제 영업시간·주소·연락처가 아닙니다.</div></section><section class="demo-panel" data-panel="category"><div class="category-list"><article class="category"><small>1F · A ZONE</small><h3>데일리 굿즈</h3><p>일상에서 자주 사용하는 소형 제품과 선물용 아이템을 모은 구역입니다.</p></article><article class="category"><small>1F · B ZONE</small><h3>리빙 소품</h3><p>책상, 주방, 수납 관련 라이프스타일 제품을 확인합니다.</p></article><article class="category"><small>1F · C ZONE</small><h3>기프트 포장</h3><p>포장지, 카드와 선물 포장 서비스를 안내합니다.</p></article><article class="category"><small>2F · A ZONE</small><h3>워크숍</h3><p>예약형 체험 프로그램과 클래스 공간을 소개합니다.</p></article><article class="category"><small>2F · B ZONE</small><h3>브랜드 쇼룸</h3><p>시즌별 기획 제품과 협업 전시를 확인합니다.</p></article><article class="category"><small>2F · C ZONE</small><h3>라운지</h3><p>구매 제품을 확인하고 상담받을 수 있는 휴식 공간입니다.</p></article></div></section><div class="demo-footer"><p>이 페이지는 공개 포트폴리오용으로 새로 만든 샘플 매장 안내 데모입니다.</p><a href="store.html">매장 솔루션 보기</a></div></div></section></main><div id="site-footer"></div><script src="assets/layout.js"></script><script>const floors={1:[['데일리 굿즈','일상 소형 제품','A'],['리빙 소품','책상·주방·수납','B'],['기프트 포장','포장지·카드','C'],['시즌 큐레이션','월별 기획 전시','D'],['체험 테이블','제품 체험','E']],2:[['워크숍','예약형 클래스','A'],['브랜드 쇼룸','기획 제품 전시','B'],['상담 데스크','단체·기업 상담','C'],['라운지','휴식·제품 확인','D']]};const legend=document.querySelector('#legend');function draw(f){legend.innerHTML=floors[f].map((x,i)=>`<button ${i===0?'class="active"':''}><i></i><div><strong>${x[0]}</strong><span>${x[1]}</span></div><b>${x[2]}</b></button>`).join('');document.querySelectorAll('#legend button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#legend button').forEach(x=>x.classList.remove('active'));b.classList.add('active')})}draw(1);document.querySelectorAll('[data-floor]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-floor]').forEach(x=>x.classList.remove('active'));b.classList.add('active');draw(b.dataset.floor);document.querySelector('#floorMap').style.filter=b.dataset.floor==='2'?'hue-rotate(55deg)':'none'});document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('[data-panel]').forEach(x=>x.classList.toggle('active',x.dataset.panel===b.dataset.tab))});</script></body></html>
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b2238">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="가상의 라이프스타일 매장을 기준으로 만든 층별 지도, 구역 검색, 입구 기준 길 안내와 방문 정보 데모입니다.">
+  <link rel="canonical" href="https://space.lavalabs.co.kr/demo-store-guide.html">
+  <title>샘플 매장 안내·층별 지도 데모 | LavaLabs</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    :root{--navy:#0b2238;--blue:#185a78;--lime:#c9ff48;--paper:#f1f4f3;--surface:#fff;--line:#d9e0e2;--muted:#66737c;--shadow:0 18px 45px rgba(11,34,56,.08)}
+    *{box-sizing:border-box}.demo-hero{position:relative;overflow:hidden;padding:86px 0 56px;background:linear-gradient(135deg,#081b2d 0%,#123f5d 58%,#1e6d86 100%);color:#fff}.demo-hero:after{content:"";position:absolute;right:-110px;bottom:-190px;width:430px;height:430px;border:1px solid #ffffff24;border-radius:50%;box-shadow:0 0 0 70px #ffffff08,0 0 0 140px #ffffff05}.demo-hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:46px;align-items:end}.demo-hero .flag{display:inline-flex;padding:7px 11px;border:1px solid #ffffff32;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.08em}.demo-hero h1{margin:19px 0 14px;font-size:clamp(40px,7vw,78px);line-height:.98;letter-spacing:-.06em}.demo-hero p{max-width:720px;margin:0;color:#d9e7ef;line-height:1.75}.hero-status{display:grid;gap:10px;padding:22px;border:1px solid #ffffff1f;border-radius:22px;background:#ffffff0d;backdrop-filter:blur(12px)}.hero-status-row{display:flex;justify-content:space-between;gap:18px;align-items:center;padding-bottom:12px;border-bottom:1px solid #ffffff18}.hero-status-row:last-child{padding:0;border:0}.hero-status span{color:#b9cbd7;font-size:11px}.hero-status strong{font-size:13px}.status-open{color:var(--lime)}.demo-wrap{padding:28px 0 108px;background:var(--paper)}.quick-bar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:-47px;position:relative;z-index:2}.quick-link{min-height:92px;padding:18px;border:1px solid #ffffff55;border-radius:19px;background:#fff;color:var(--navy);box-shadow:var(--shadow)}.quick-link b,.quick-link span{display:block}.quick-link b{font-size:12px}.quick-link span{margin-top:7px;color:var(--muted);font-size:10px;line-height:1.5}.demo-tabs{position:sticky;top:72px;z-index:7;display:flex;gap:8px;overflow:auto;margin-top:28px;padding:8px;border:1px solid var(--line);border-radius:18px;background:#ffffffea;backdrop-filter:blur(14px);box-shadow:0 12px 30px rgba(11,34,56,.05)}.demo-tab{min-height:46px;border:0;background:transparent;border-radius:12px;padding:11px 17px;font-weight:900;white-space:nowrap;color:#52616b}.demo-tab.active{background:var(--navy);color:#fff}.demo-panel{display:none;margin-top:18px}.demo-panel.active{display:block}.demo-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(310px,.9fr);gap:16px}.demo-card{padding:22px;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:var(--shadow)}.map-toolbar{display:grid;grid-template-columns:auto minmax(220px,1fr);gap:12px;margin-bottom:14px}.floor-switch{display:flex;gap:7px}.floor-switch button{min-width:76px;min-height:48px;padding:10px 14px;border:1px solid var(--line);border-radius:13px;background:#f8fafb;font-weight:900}.floor-switch button.active{background:var(--lime);border-color:#a8d735;color:#162310}.zone-search{width:100%;min-height:48px;padding:0 15px;border:1px solid var(--line);border-radius:13px;background:#f8fafb;font:inherit}.map-shell{position:relative;padding:14px;border:1px solid #dfe6e9;border-radius:20px;background:linear-gradient(180deg,#f7fafb,#edf2f4)}.map-label{display:flex;justify-content:space-between;gap:16px;margin-bottom:12px;color:#60707b;font-size:10px}.map{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(8,46px);gap:7px;min-height:365px}.zone{position:relative;display:flex;align-items:center;justify-content:center;padding:8px;border:2px solid transparent;border-radius:15px;color:#173246;font-size:11px;font-weight:900;text-align:center;cursor:pointer;transition:.2s}.zone:hover,.zone.active{transform:translateY(-2px);border-color:#173246;box-shadow:0 10px 24px rgba(11,34,56,.14)}.zone.route{animation:pulse 1.4s infinite}.zone small{display:block;font-size:8px;font-weight:800;opacity:.65}.zone.entry{background:var(--navy)!important;color:#fff}.zone.stairs{background:#d9e0e3!important;color:#40515d}.zone-a{background:#dff7a4}.zone-b{background:#dce7ff}.zone-c{background:#ffe4bf}.zone-d{background:#f1ddff}.zone-e{background:#d8f1ed}.zone-f{background:#ffdfe6}@keyframes pulse{50%{box-shadow:0 0 0 8px #c9ff4840}}.side-title{display:flex;justify-content:space-between;gap:14px;align-items:start;margin-bottom:14px}.side-title h2{margin:0;font-size:25px;letter-spacing:-.04em}.side-title span{padding:6px 9px;border-radius:999px;background:#eef3f4;color:#60707b;font-size:9px;font-weight:900}.legend{display:grid;gap:8px;max-height:330px;overflow:auto;padding-right:3px}.legend button{display:grid;grid-template-columns:38px 1fr auto;gap:11px;align-items:center;width:100%;padding:12px;border:1px solid var(--line);border-radius:15px;background:#fff;text-align:left}.legend button.active{border-color:#8fab20;background:#f8ffe8;box-shadow:0 0 0 3px #c9ff4844}.legend i{width:38px;height:38px;border-radius:12px;background:#e8edf0}.legend strong,.legend span{display:block}.legend strong{font-size:12px}.legend span{margin-top:3px;color:#76828d;font-size:10px}.legend b{color:#718719}.zone-detail{margin-top:14px;padding:17px;border-radius:17px;background:var(--navy);color:#fff}.zone-detail small{color:var(--lime);font-weight:900}.zone-detail h3{margin:10px 0 7px;font-size:20px}.zone-detail p{margin:0;color:#c7d4dc;font-size:11px;line-height:1.65}.detail-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.detail-actions button{min-height:44px;border:1px solid #ffffff24;border-radius:12px;background:#ffffff0c;color:#fff;font-weight:900}.detail-actions button.primary{background:var(--lime);color:#162310;border-color:var(--lime)}.route-note{display:none;margin-top:10px;padding:12px;border-radius:12px;background:#ffffff12;color:#eaf0f3;font-size:10px;line-height:1.6}.route-note.show{display:block}.visit-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.info-item{padding:18px;border:1px solid var(--line);border-radius:18px;background:#fff}.info-item span,.info-item strong,.info-item small{display:block}.info-item span{color:#78838d;font-size:10px}.info-item strong{margin-top:7px;font-size:15px}.info-item small{margin-top:5px;color:#7a8790;font-size:9px;line-height:1.5}.visit-side{display:grid;gap:11px}.visit-card{padding:20px;border-radius:20px;background:var(--navy);color:#fff}.visit-card h3{margin:0 0 12px;font-size:20px}.visit-card ul{display:grid;gap:9px;margin:0;padding:0;list-style:none}.visit-card li{font-size:11px;color:#d5e0e6}.visit-card li:before{content:"✓";margin-right:8px;color:var(--lime);font-weight:900}.copy-btn{width:100%;min-height:46px;margin-top:14px;border:0;border-radius:13px;background:var(--lime);color:#162310;font-weight:900}.category-tools{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:13px}.category-tools input{width:min(380px,100%);min-height:46px;padding:0 14px;border:1px solid var(--line);border-radius:13px;background:#fff}.category-filter{display:flex;gap:7px}.category-filter button{min-height:42px;padding:8px 13px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:850}.category-filter button.active{background:var(--navy);color:#fff}.category-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.category{display:flex;min-height:230px;flex-direction:column;padding:20px;border:1px solid var(--line);border-radius:19px;background:#fff}.category small{color:#718719;font-weight:900}.category h3{margin:23px 0 7px;font-size:20px}.category p{margin:0;color:#6f7b86;font-size:11px;line-height:1.65}.category button{margin-top:auto;padding:10px;border:1px solid var(--line);border-radius:11px;background:#f7f9f7;font-weight:900}.notice{margin-top:16px;padding:16px 18px;border:1px dashed #a9b4bd;border-radius:16px;color:#66727c;font-size:11px;line-height:1.7;background:#fff}.demo-footer{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-top:18px;padding:22px;border-radius:20px;background:var(--navy);color:#fff}.demo-footer p{margin:0;color:#cbd7df;font-size:11px;line-height:1.6}.demo-footer a{color:var(--navy);background:var(--lime);padding:12px 16px;border-radius:12px;font-weight:900}.toast{position:fixed;right:18px;bottom:18px;z-index:20;max-width:320px;padding:13px 15px;border-radius:14px;background:#111820;color:#fff;box-shadow:0 18px 40px rgba(0,0,0,.2);font-size:11px;opacity:0;transform:translateY(15px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:none}
+    @media(max-width:920px){.demo-hero-grid,.demo-grid,.visit-grid{grid-template-columns:1fr}.quick-bar{grid-template-columns:1fr 1fr}.category-list{grid-template-columns:1fr 1fr}.map{grid-template-rows:repeat(8,42px)}}
+    @media(max-width:620px){.demo-hero{padding:58px 0 74px}.demo-hero-grid{gap:24px}.hero-status{padding:17px}.quick-bar{grid-template-columns:1fr 1fr;margin-top:-52px}.quick-link{min-height:82px;padding:14px}.demo-wrap{padding-bottom:82px}.demo-tabs{top:62px;margin-top:20px}.demo-tab{flex:1;padding:10px 13px}.demo-card{padding:15px}.map-toolbar{grid-template-columns:1fr}.floor-switch button{flex:1}.map-shell{padding:9px}.map{grid-template-rows:repeat(8,34px);gap:4px;min-height:285px}.zone{border-radius:9px;font-size:8px;padding:3px}.zone small{display:none}.info-grid,.category-list{grid-template-columns:1fr}.category-tools{align-items:stretch;flex-direction:column}.category-filter{overflow:auto}.category-filter button{white-space:nowrap}.demo-footer{display:block}.demo-footer a{display:block;margin-top:13px;text-align:center}.detail-actions{grid-template-columns:1fr}.toast{left:14px;right:14px;bottom:14px;max-width:none}}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main>
+    <section class="demo-hero">
+      <div class="container demo-hero-grid">
+        <div>
+          <span class="flag">PUBLIC DEMO · ALL DATA IS FICTIONAL</span>
+          <h1>샘플 라이프스타일 스토어<br>매장 안내</h1>
+          <p>층별 지도를 누르고, 카테고리를 검색하고, 입구에서 원하는 구역까지 이동 경로를 확인해 보세요. 회사명·주소·영업시간·상품 정보는 모두 새로 만든 더미 데이터입니다.</p>
+        </div>
+        <aside class="hero-status" aria-label="샘플 매장 요약">
+          <div class="hero-status-row"><span>현재 상태</span><strong id="openStatus" class="status-open">운영시간 확인 중</strong></div>
+          <div class="hero-status-row"><span>운영시간</span><strong>매일 11:00–20:00</strong></div>
+          <div class="hero-status-row"><span>층 구성</span><strong>2개 층 · 9개 구역</strong></div>
+          <div class="hero-status-row"><span>데이터</span><strong>100% 공개용 더미</strong></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="demo-wrap">
+      <div class="container">
+        <div class="quick-bar">
+          <a class="quick-link" href="#guide" data-open-tab="map"><b>층별 지도</b><span>구역을 눌러 상세 위치를 확인합니다.</span></a>
+          <a class="quick-link" href="#guide" data-open-tab="visit"><b>방문 정보</b><span>영업시간·교통·주차·편의시설을 확인합니다.</span></a>
+          <a class="quick-link" href="#guide" data-open-tab="category"><b>카테고리 검색</b><span>키워드와 층으로 원하는 구역을 찾습니다.</span></a>
+          <a class="quick-link" href="examples.html"><b>다른 체험 보기</b><span>웹·360·자동화 공개 예시를 둘러봅니다.</span></a>
+        </div>
+
+        <nav class="demo-tabs" id="guide" aria-label="매장 안내 메뉴">
+          <button class="demo-tab active" data-tab="map" aria-selected="true">층별 지도</button>
+          <button class="demo-tab" data-tab="visit" aria-selected="false">방문 정보</button>
+          <button class="demo-tab" data-tab="category" aria-selected="false">카테고리 안내</button>
+        </nav>
+
+        <section class="demo-panel active" data-panel="map">
+          <div class="demo-grid">
+            <article class="demo-card">
+              <div class="map-toolbar">
+                <div class="floor-switch" aria-label="층 선택">
+                  <button class="active" data-floor="1">1F</button>
+                  <button data-floor="2">2F</button>
+                </div>
+                <input class="zone-search" id="zoneSearch" type="search" placeholder="예: 포장, 워크숍, 라운지" aria-label="구역 검색">
+              </div>
+              <div class="map-shell">
+                <div class="map-label"><span id="floorLabel">1층 안내도</span><span>구역을 눌러 상세 보기</span></div>
+                <div class="map" id="floorMap" aria-live="polite"></div>
+              </div>
+            </article>
+            <aside class="demo-card">
+              <div class="side-title"><h2>현재 층 안내</h2><span id="zoneCount">5개 구역</span></div>
+              <div class="legend" id="legend"></div>
+              <div class="zone-detail" id="zoneDetail">
+                <small id="detailCode">1F · A ZONE</small>
+                <h3 id="detailTitle">데일리 굿즈</h3>
+                <p id="detailDesc">일상에서 자주 사용하는 소형 제품과 선물용 아이템을 모은 구역입니다.</p>
+                <div class="detail-actions">
+                  <button class="primary" id="routeBtn" type="button">입구에서 길 찾기</button>
+                  <button id="saveBtn" type="button">관심 구역 저장</button>
+                </div>
+                <div class="route-note" id="routeNote"></div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="demo-panel" data-panel="visit">
+          <div class="visit-grid">
+            <div>
+              <div class="info-grid">
+                <div class="info-item"><span>영업시간</span><strong>매일 11:00–20:00</strong><small>샘플 운영시간입니다.</small></div>
+                <div class="info-item"><span>정기 휴무</span><strong>매월 둘째 화요일</strong><small>공휴일 운영은 별도 공지.</small></div>
+                <div class="info-item"><span>주소</span><strong id="demoAddress">서울 샘플구 데모로 10</strong><small>실재하지 않는 더미 주소입니다.</small></div>
+                <div class="info-item"><span>대중교통</span><strong>샘플역 2번 출구 도보 3분</strong><small>출구에서 직진 후 첫 골목.</small></div>
+                <div class="info-item"><span>주차</span><strong>건물 지하 1시간 지원</strong><small>샘플 정책이며 실제 효력이 없습니다.</small></div>
+                <div class="info-item"><span>문의</span><strong>000-0000-0000</strong><small>연결되지 않는 예시 번호입니다.</small></div>
+              </div>
+              <div class="notice">위 정보는 화면 구조를 보여주기 위한 허구의 데이터입니다. 실제 영업시간·주소·연락처·주차 정책이 아닙니다.</div>
+            </div>
+            <aside class="visit-side">
+              <div class="visit-card">
+                <h3>방문 전 확인</h3>
+                <ul>
+                  <li>워크숍은 샘플 예약제로 표시됩니다.</li>
+                  <li>반려동물은 이동 가방 사용을 가정합니다.</li>
+                  <li>2층은 엘리베이터 이용이 가능한 설정입니다.</li>
+                  <li>포장 데스크는 마감 30분 전 종료 설정입니다.</li>
+                </ul>
+                <button class="copy-btn" id="copyVisit" type="button">방문 정보 복사</button>
+              </div>
+              <div class="info-item"><span>저장한 관심 구역</span><strong id="savedZone">아직 없음</strong><small>브라우저에만 임시 저장됩니다.</small></div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="demo-panel" data-panel="category">
+          <div class="category-tools">
+            <input id="categorySearch" type="search" placeholder="카테고리 이름이나 설명 검색" aria-label="카테고리 검색">
+            <div class="category-filter" aria-label="층 필터">
+              <button class="active" data-filter="all">전체</button>
+              <button data-filter="1">1F</button>
+              <button data-filter="2">2F</button>
+            </div>
+          </div>
+          <div class="category-list" id="categoryList"></div>
+          <div class="notice">카테고리명과 설명 역시 공개 데모를 위해 새로 만든 허구의 데이터입니다.</div>
+        </section>
+
+        <div class="demo-footer">
+          <p>이 페이지는 실제 사내 매장 시스템을 공개한 것이 아니라, 기능 구조만 참고해 회사명·주소·상품·구역 데이터를 새로 만든 독립형 공개 데모입니다.</p>
+          <a href="store.html">매장 솔루션 보기</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="assets/layout.js"></script>
+  <script>
+    const zones={
+      1:[
+        {id:'daily',code:'A',name:'데일리 굿즈',short:'소형 제품·선물',desc:'일상에서 자주 사용하는 소형 제품과 선물용 아이템을 모은 구역입니다.',cls:'zone-a',grid:'1/6|1/4',route:'입구 → 중앙 통로 직진 → 왼쪽 A 구역'},
+        {id:'living',code:'B',name:'리빙 소품',short:'책상·주방·수납',desc:'책상, 주방, 수납 관련 라이프스타일 제품을 확인하는 구역입니다.',cls:'zone-b',grid:'6/13|1/3',route:'입구 → 오른쪽 통로 직진 → 창가 B 구역'},
+        {id:'gift',code:'C',name:'기프트 포장',short:'포장지·카드',desc:'포장지, 카드와 선물 포장 서비스를 안내하는 데스크입니다.',cls:'zone-c',grid:'1/5|4/8',route:'입구 → 계산대 앞 통로 → 왼쪽 C 구역'},
+        {id:'season',code:'D',name:'시즌 큐레이션',short:'월별 기획 전시',desc:'월별 테마와 계절 제품을 모아 소개하는 기획 구역입니다.',cls:'zone-d',grid:'5/9|3/8',route:'입구 → 중앙 통로 → 정면 D 구역'},
+        {id:'experience',code:'E',name:'체험 테이블',short:'제품 체험',desc:'샘플 제품을 직접 확인하고 간단한 설명을 듣는 체험 공간입니다.',cls:'zone-e',grid:'9/13|3/7',route:'입구 → 오른쪽 통로 → 안쪽 E 구역'}
+      ],
+      2:[
+        {id:'workshop',code:'A',name:'워크숍',short:'예약형 클래스',desc:'소규모 체험 프로그램과 클래스를 진행하는 예약형 공간입니다.',cls:'zone-a',grid:'1/7|1/4',route:'입구 → 엘리베이터로 2층 → 왼쪽 A 구역'},
+        {id:'showroom',code:'B',name:'브랜드 쇼룸',short:'기획 제품 전시',desc:'시즌별 기획 제품과 협업 전시를 확인하는 쇼룸입니다.',cls:'zone-b',grid:'7/13|1/5',route:'입구 → 엘리베이터로 2층 → 오른쪽 B 구역'},
+        {id:'consult',code:'C',name:'상담 데스크',short:'단체·기업 상담',desc:'단체 주문과 기업 협업 상담을 위한 조용한 데스크입니다.',cls:'zone-c',grid:'1/5|4/8',route:'입구 → 엘리베이터로 2층 → 왼쪽 안쪽 C 구역'},
+        {id:'lounge',code:'D',name:'라운지',short:'휴식·제품 확인',desc:'구매 제품을 확인하고 휴식하거나 상담을 기다리는 공간입니다.',cls:'zone-e',grid:'5/10|5/9',route:'입구 → 엘리베이터로 2층 → 중앙 D 구역'}
+      ]
+    };
+    let floor=1,selected=zones[1][0],categoryFloor='all';
+    const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+    const toast=message=>{const el=$('#toast');el.textContent=message;el.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>el.classList.remove('show'),1800)};
+    const setOpenStatus=()=>{const hour=new Date().getHours(),open=hour>=11&&hour<20;const el=$('#openStatus');el.textContent=open?'현재 영업 중 · 20:00 마감':'현재 영업 종료 · 11:00 오픈';el.classList.toggle('status-open',open)};
+    function renderMap(){
+      const map=$('#floorMap');map.innerHTML='';
+      zones[floor].forEach(zone=>{
+        const [col,row]=zone.grid.split('|');
+        const button=document.createElement('button');
+        button.type='button';button.className=`zone ${zone.cls}${selected.id===zone.id?' active':''}`;button.dataset.id=zone.id;
+        button.style.gridColumn=col;button.style.gridRow=row;
+        button.innerHTML=`<span>${zone.name}<small>${zone.code} ZONE</small></span>`;
+        button.onclick=()=>selectZone(zone.id);
+        map.append(button);
+      });
+      const stairs=document.createElement('div');stairs.className='zone stairs';stairs.style.gridColumn=floor===1?'9/13':'10/13';stairs.style.gridRow=floor===1?'7/9':'5/9';stairs.innerHTML=floor===1?'입구 · 계산대':'엘리베이터';map.append(stairs);
+      $('#floorLabel').textContent=`${floor}층 안내도`;
+      $('#zoneCount').textContent=`${zones[floor].length}개 구역`;
+      renderLegend($('#zoneSearch').value.trim());
+    }
+    function renderLegend(query=''){
+      const list=zones[floor].filter(z=>`${z.name} ${z.short} ${z.desc}`.includes(query));
+      $('#legend').innerHTML=list.length?list.map(z=>`<button type="button" data-id="${z.id}" class="${selected.id===z.id?'active':''}"><i class="${z.cls}"></i><div><strong>${z.name}</strong><span>${z.short}</span></div><b>${z.code}</b></button>`).join(''):'<div class="notice" style="margin:0">검색 결과가 없습니다.</div>';
+      $$('#legend button').forEach(b=>b.onclick=()=>selectZone(b.dataset.id));
+    }
+    function selectZone(id){
+      selected=zones[floor].find(z=>z.id===id)||zones[floor][0];
+      $('#detailCode').textContent=`${floor}F · ${selected.code} ZONE`;
+      $('#detailTitle').textContent=selected.name;
+      $('#detailDesc').textContent=selected.desc;
+      $('#routeNote').classList.remove('show');
+      renderMap();
+    }
+    function openTab(name){
+      $$('[data-tab]').forEach(b=>{const active=b.dataset.tab===name;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active))});
+      $$('[data-panel]').forEach(p=>p.classList.toggle('active',p.dataset.panel===name));
+      if(name==='category')renderCategories();
+    }
+    function renderCategories(){
+      const q=$('#categorySearch').value.trim();
+      const items=Object.entries(zones).flatMap(([f,list])=>list.map(z=>({...z,floor:+f}))).filter(z=>(categoryFloor==='all'||String(z.floor)===categoryFloor)&&`${z.name} ${z.short} ${z.desc}`.includes(q));
+      $('#categoryList').innerHTML=items.length?items.map(z=>`<article class="category"><small>${z.floor}F · ${z.code} ZONE</small><h3>${z.name}</h3><p>${z.desc}</p><button type="button" data-go="${z.floor}|${z.id}">지도에서 위치 보기</button></article>`).join(''):'<div class="notice" style="grid-column:1/-1;margin:0">조건에 맞는 카테고리가 없습니다.</div>';
+      $$('[data-go]').forEach(b=>b.onclick=()=>{const [f,id]=b.dataset.go.split('|');floor=+f;selected=zones[floor].find(z=>z.id===id);$$('[data-floor]').forEach(x=>x.classList.toggle('active',+x.dataset.floor===floor));openTab('map');renderMap();$('#guide').scrollIntoView({behavior:'smooth',block:'start'})});
+    }
+    setOpenStatus();renderMap();renderCategories();
+    $$('[data-floor]').forEach(b=>b.onclick=()=>{floor=+b.dataset.floor;selected=zones[floor][0];$$('[data-floor]').forEach(x=>x.classList.toggle('active',x===b));$('#zoneSearch').value='';renderMap();selectZone(selected.id)});
+    $$('[data-tab]').forEach(b=>b.onclick=()=>openTab(b.dataset.tab));
+    $$('[data-open-tab]').forEach(a=>a.onclick=()=>openTab(a.dataset.openTab));
+    $('#zoneSearch').oninput=e=>renderLegend(e.target.value.trim());
+    $('#categorySearch').oninput=renderCategories;
+    $$('[data-filter]').forEach(b=>b.onclick=()=>{categoryFloor=b.dataset.filter;$$('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));renderCategories()});
+    $('#routeBtn').onclick=()=>{const note=$('#routeNote');note.textContent=selected.route;note.classList.add('show');$$('.zone').forEach(z=>z.classList.toggle('route',z.dataset.id===selected.id));toast(`${selected.name}까지 경로를 표시했습니다.`)};
+    $('#saveBtn').onclick=()=>{localStorage.setItem('lava-demo-saved-zone',JSON.stringify({floor,name:selected.name,code:selected.code}));$('#savedZone').textContent=`${floor}F · ${selected.name}`;toast('관심 구역을 브라우저에 저장했습니다.')};
+    const saved=JSON.parse(localStorage.getItem('lava-demo-saved-zone')||'null');if(saved)$('#savedZone').textContent=`${saved.floor}F · ${saved.name}`;
+    $('#copyVisit').onclick=async()=>{const text='샘플 라이프스타일 스토어\n영업시간: 매일 11:00–20:00\n주소: 서울 샘플구 데모로 10\n※ 모두 공개용 더미 데이터';try{await navigator.clipboard.writeText(text);toast('방문 정보를 복사했습니다.')}catch{toast('복사하지 못했습니다.')}};
+  </script>
+</body>
+</html>
