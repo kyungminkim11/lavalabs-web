@@ -1,1 +1,0 @@
-Payload is stored in downloads/POS_Upload_Template_Simple.xlsx.b64 and can be decoded client-side.
