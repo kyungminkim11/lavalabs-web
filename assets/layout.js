@@ -69,6 +69,6 @@ if(location.pathname.toLowerCase().endsWith('automation-pos-live.html')){
 }
 
 const exampleScript=document.createElement('script');
-exampleScript.src='assets/service-examples.js?v=20260712a';
+exampleScript.src='assets/service-examples.js?v=20260712b';
 exampleScript.defer=true;
 document.head.append(exampleScript);
