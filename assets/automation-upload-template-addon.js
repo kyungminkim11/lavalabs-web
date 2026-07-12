@@ -1,6 +1,6 @@
 (()=>{
   if(!location.pathname.toLowerCase().endsWith('automation-pos-live.html')) return;
-  const TEMPLATE='downloads/POS_마감자동화_업로드_표준양식.xlsx';
+  const TEMPLATE='downloads/POS_Upload_Template.xlsx';
   const required=['주문번호','상품명','수량','단가','결제수단','결제상태','과세구분'];
   const optional=['판매일자','담당자','거래처','비고'];
   const style=document.createElement('style');
@@ -13,9 +13,9 @@
     if(!host||document.querySelector('.template-guide')) return false;
     const card=document.createElement('article');
     card.className='template-guide';
-    card.innerHTML=`<div class="template-guide-grid"><div><small class="eyebrow">STANDARD EXCEL TEMPLATE</small><h2>양식을 먼저 내려받아 작성하세요.</h2><p>열 이름을 추측할 필요 없이 표준 양식에 입력하고 XLSX로 저장한 뒤 그대로 업로드하면 됩니다.</p><div class="template-steps"><div class="template-step"><b>01</b><span>양식 다운로드</span></div><div class="template-step"><b>02</b><span>예시 행 수정·입력</span></div><div class="template-step"><b>03</b><span>XLSX로 저장</span></div><div class="template-step"><b>04</b><span>파일 업로드·검사</span></div></div><div class="template-columns">${required.map(v=>`<span class="required">${v} · 필수</span>`).join('')}${optional.map(v=>`<span>${v} · 선택</span>`).join('')}</div><p class="template-note">입력양식 시트가 첫 번째 시트로 구성되어 있으며, 결제수단·상태·과세구분에는 드롭다운이 들어 있습니다.</p></div><div class="template-download"><a class="button button-primary" href="${TEMPLATE}" download>표준 양식 XLSX 다운로드</a></div></div><div class="template-validation" id="templateValidation" aria-live="polite"></div>`;
+    card.innerHTML=`<div class="template-guide-grid"><div><small class="eyebrow">STANDARD EXCEL TEMPLATE</small><h2>양식을 먼저 내려받아 작성하세요.</h2><p>열 이름을 추측할 필요 없이 표준 양식에 입력하고 XLSX로 저장한 뒤 그대로 업로드하면 됩니다.</p><div class="template-steps"><div class="template-step"><b>01</b><span>양식 다운로드</span></div><div class="template-step"><b>02</b><span>예시 행 수정·입력</span></div><div class="template-step"><b>03</b><span>XLSX로 저장</span></div><div class="template-step"><b>04</b><span>파일 업로드·검사</span></div></div><div class="template-columns">${required.map(v=>`<span class="required">${v} · 필수</span>`).join('')}${optional.map(v=>`<span>${v} · 선택</span>`).join('')}</div><p class="template-note">입력양식 시트가 첫 번째 시트로 구성되어 있으며, 결제수단·상태·과세구분에는 드롭다운이 들어 있습니다.</p></div><div class="template-download"><a class="button button-primary" href="${TEMPLATE}" download="POS_Upload_Template.xlsx">표준 양식 XLSX 다운로드</a></div></div><div class="template-validation" id="templateValidation" aria-live="polite"></div>`;
     host.prepend(card);
-    const bindDownload=(selector,label)=>{const el=document.querySelector(selector);if(!el)return;el.textContent=label;el.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();const a=document.createElement('a');a.href=TEMPLATE;a.download='POS_마감자동화_업로드_표준양식.xlsx';document.body.append(a);a.click();a.remove();},true)};
+    const bindDownload=(selector,label)=>{const el=document.querySelector(selector);if(!el)return;el.textContent=label;el.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();const a=document.createElement('a');a.href=TEMPLATE;a.download='POS_Upload_Template.xlsx';a.rel='noopener';document.body.append(a);a.click();setTimeout(()=>a.remove(),0);},true)};
     bindDownload('#heroInput','표준 업로드 양식 XLSX');
     bindDownload('#input','표준 양식 다운로드');
     bindDownload('#inputCard','표준 양식 다운로드');
