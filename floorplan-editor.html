@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="description" content="벽, 방, 문, 창문, 가구, 치수와 360 촬영 위치를 웹에서 쉽게 배치하고 PNG·SVG·프로젝트 파일로 저장하는 무료 공간 도면 제작 도구입니다.">
+  <link rel="canonical" href="https://space.lavalabs.co.kr/floorplan-editor.html">
+  <title>쉬운 공간 도면 만들기 | LavaLabs</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/floorplan-editor.css?v=20260713a">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="LavaLabs">
+  <meta property="og:title" content="쉬운 공간 도면 만들기 | LavaLabs">
+  <meta property="og:description" content="방 크기와 구조를 그리고 문·창문·가구·360 촬영 포인트를 배치한 뒤 도면을 저장하세요.">
+  <meta property="og:url" content="https://space.lavalabs.co.kr/floorplan-editor.html">
+  <meta property="og:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260713-floorplan">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="page-hero floorplan-hero">
+      <div class="container inner">
+        <span class="eyebrow">LAVA FLOOR PLAN · FREE BETA</span>
+        <h1>전문 프로그램 없이도<br>공간 도면을 쉽게.</h1>
+        <p>방 크기를 입력하거나 화면에 직접 그려 벽·문·창문·가구·치수와 360 촬영 위치를 배치하세요. 완성한 도면은 PNG·SVG 또는 프로젝트 파일로 저장해 상담 자료로 보낼 수 있습니다.</p>
+        <div class="floorplan-hero-actions">
+          <a class="button button-primary" href="#floorplan-editor">도면 만들기 시작</a>
+          <a class="button button-dark" href="360-editor.html#editor">360 이미지 편집기</a>
+          <a class="button button-light" href="space.html#quick-inquiry">도면 첨부해 문의하기</a>
+        </div>
+        <div class="floorplan-hero-points">
+          <span>설치 없음</span><span>브라우저 자동 저장</span><span>실측 단위 표시</span><span>360 촬영 포인트</span><span>PNG·SVG·JSON 저장</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="floorplan-section" id="floorplan-editor">
+      <div class="floorplan-app" id="floorplanApp">
+        <header class="fp-topbar">
+          <div class="fp-brandline">
+            <div>
+              <strong>공간 도면 편집기</strong>
+              <span id="saveState">새 도면 · 브라우저 자동 저장</span>
+            </div>
+            <span class="fp-local">LOCAL ONLY</span>
+          </div>
+          <div class="fp-top-actions">
+            <button class="fp-btn" id="newProjectBtn" type="button">새 도면</button>
+            <label class="fp-btn fp-file-btn">프로젝트 열기<input id="projectInput" type="file" accept="application/json,.json"></label>
+            <button class="fp-btn" id="saveProjectBtn" type="button">프로젝트 저장</button>
+            <button class="fp-btn fp-primary" id="exportPngBtn" type="button">PNG 저장</button>
+          </div>
+        </header>
+
+        <div class="fp-workspace">
+          <aside class="fp-sidebar fp-left" aria-label="도면 도구">
+            <section class="fp-panel">
+              <div class="fp-panel-head"><h2>빠른 시작</h2><span>STEP 1</span></div>
+              <label class="fp-field"><span>템플릿</span><select id="templateSelect">
+                <option value="blank">빈 도면</option>
+                <option value="rectangle">직사각형 공간</option>
+                <option value="office">소형 사무실</option>
+                <option value="cafe">카페·매장</option>
+                <option value="party">파티룸</option>
+                <option value="studio">촬영 스튜디오</option>
+              </select></label>
+              <div class="fp-two">
+                <label class="fp-field"><span>가로</span><div class="fp-unit"><input id="spaceWidth" type="number" min="1" max="100" step="0.1" value="8"><b>m</b></div></label>
+                <label class="fp-field"><span>세로</span><div class="fp-unit"><input id="spaceHeight" type="number" min="1" max="100" step="0.1" value="6"><b>m</b></div></label>
+              </div>
+              <button class="fp-btn fp-wide fp-acid" id="applyTemplateBtn" type="button">선택한 크기로 만들기</button>
+            </section>
+
+            <section class="fp-panel">
+              <div class="fp-panel-head"><h2>그리기</h2><span>STEP 2</span></div>
+              <div class="fp-tools" role="toolbar" aria-label="그리기 도구">
+                <button class="fp-tool active" data-tool="select" type="button"><b>↖</b><span>선택</span></button>
+                <button class="fp-tool" data-tool="room" type="button"><b>▭</b><span>방</span></button>
+                <button class="fp-tool" data-tool="wall" type="button"><b>╱</b><span>벽</span></button>
+                <button class="fp-tool" data-tool="door" type="button"><b>◜</b><span>문</span></button>
+                <button class="fp-tool" data-tool="window" type="button"><b>═</b><span>창문</span></button>
+                <button class="fp-tool" data-tool="dimension" type="button"><b>↔</b><span>치수</span></button>
+                <button class="fp-tool" data-tool="text" type="button"><b>T</b><span>텍스트</span></button>
+                <button class="fp-tool" data-tool="camera" type="button"><b>360</b><span>촬영점</span></button>
+              </div>
+              <p class="fp-help" id="toolHelp">요소를 선택해 이동하거나 오른쪽에서 크기와 이름을 수정하세요.</p>
+            </section>
+
+            <section class="fp-panel">
+              <div class="fp-panel-head"><h2>가구·시설</h2><span>ADD</span></div>
+              <div class="fp-library" id="furnitureLibrary">
+                <button data-furniture="table" type="button">테이블</button>
+                <button data-furniture="chair" type="button">의자</button>
+                <button data-furniture="sofa" type="button">소파</button>
+                <button data-furniture="desk" type="button">책상</button>
+                <button data-furniture="bed" type="button">침대</button>
+                <button data-furniture="counter" type="button">카운터</button>
+                <button data-furniture="sink" type="button">싱크대</button>
+                <button data-furniture="toilet" type="button">화장실</button>
+                <button data-furniture="tv" type="button">TV</button>
+                <button data-furniture="pc" type="button">PC</button>
+                <button data-furniture="storage" type="button">수납장</button>
+                <button data-furniture="stairs" type="button">계단</button>
+              </div>
+            </section>
+
+            <section class="fp-panel">
+              <div class="fp-panel-head"><h2>참고 이미지</h2><span>OPTION</span></div>
+              <label class="fp-file-drop" id="underlayDrop">도면 사진·스캔본 불러오기<input id="underlayInput" type="file" accept="image/*"></label>
+              <label class="fp-field"><span>배경 투명도</span><input id="underlayOpacity" type="range" min="0" max="100" value="35"></label>
+              <button class="fp-btn fp-wide" id="removeUnderlayBtn" type="button">참고 이미지 제거</button>
+            </section>
+          </aside>
+
+          <section class="fp-canvas-column">
+            <div class="fp-canvas-toolbar">
+              <div class="fp-history">
+                <button class="fp-icon-btn" id="undoBtn" type="button" title="실행 취소" disabled>↶</button>
+                <button class="fp-icon-btn" id="redoBtn" type="button" title="다시 실행" disabled>↷</button>
+                <button class="fp-icon-btn" id="deleteBtn" type="button" title="선택 삭제" disabled>⌫</button>
+              </div>
+              <div class="fp-view-actions">
+                <label class="fp-check"><input id="gridToggle" type="checkbox" checked>격자</label>
+                <label class="fp-check"><input id="snapToggle" type="checkbox" checked>격자 맞춤</label>
+                <label class="fp-check"><input id="dimensionToggle" type="checkbox" checked>자동 치수</label>
+                <button class="fp-btn" id="zoomOutBtn" type="button">−</button>
+                <span id="zoomValue">100%</span>
+                <button class="fp-btn" id="zoomInBtn" type="button">＋</button>
+                <button class="fp-btn" id="fitBtn" type="button">화면 맞춤</button>
+              </div>
+            </div>
+
+            <div class="fp-stage-wrap" id="stageWrap">
+              <div class="fp-stage" id="stage">
+                <svg id="floorplanSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="공간 도면 편집 영역">
+                  <defs>
+                    <pattern id="minorGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e8ece4" stroke-width="1"/></pattern>
+                    <pattern id="majorGrid" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(#minorGrid)"/><path d="M 100 0 L 0 0 0 100" fill="none" stroke="#d4dbcf" stroke-width="1.5"/></pattern>
+                    <marker id="arrowStart" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M8,0 L0,4 L8,8" fill="none" stroke="#54616d" stroke-width="1.2"/></marker>
+                    <marker id="arrowEnd" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#54616d" stroke-width="1.2"/></marker>
+                  </defs>
+                  <rect id="gridBackground" width="1200" height="800" fill="url(#majorGrid)"/>
+                  <g id="underlayLayer"></g>
+                  <g id="drawingLayer"></g>
+                  <g id="selectionLayer"></g>
+                  <g id="draftLayer"></g>
+                </svg>
+              </div>
+              <div class="fp-empty-guide" id="emptyGuide"><strong>템플릿을 선택하거나 ‘방’ 도구로 드래그하세요.</strong><span>마우스 휠로 확대·축소, Space를 누른 채 드래그하면 화면을 이동할 수 있습니다.</span></div>
+            </div>
+
+            <footer class="fp-statusbar">
+              <span id="cursorPosition">X 0.0m · Y 0.0m</span>
+              <span id="objectCount">요소 0개</span>
+              <span id="canvasSize">도면 12m × 8m</span>
+              <span>단축키: V 선택 · R 방 · W 벽 · Delete 삭제 · Ctrl+Z 취소</span>
+            </footer>
+          </section>
+
+          <aside class="fp-sidebar fp-right" aria-label="선택 요소 설정">
+            <section class="fp-panel fp-inspector">
+              <div class="fp-panel-head"><h2>선택 요소</h2><span id="selectedType">NONE</span></div>
+              <div id="emptyInspector" class="fp-inspector-empty"><b>요소를 선택하세요.</b><p>이름, 위치, 크기, 색상과 회전을 조절할 수 있습니다.</p></div>
+              <div id="inspectorFields" hidden>
+                <label class="fp-field"><span>이름</span><input id="itemLabel" type="text" maxlength="40"></label>
+                <div class="fp-two">
+                  <label class="fp-field"><span>X</span><div class="fp-unit"><input id="itemX" type="number" step="0.1"><b>m</b></div></label>
+                  <label class="fp-field"><span>Y</span><div class="fp-unit"><input id="itemY" type="number" step="0.1"><b>m</b></div></label>
+                </div>
+                <div class="fp-two" id="sizeFields">
+                  <label class="fp-field"><span>가로</span><div class="fp-unit"><input id="itemWidth" type="number" min="0.1" step="0.1"><b>m</b></div></label>
+                  <label class="fp-field"><span>세로</span><div class="fp-unit"><input id="itemHeight" type="number" min="0.1" step="0.1"><b>m</b></div></label>
+                </div>
+                <label class="fp-field"><span>회전</span><input id="itemRotation" type="range" min="-180" max="180" value="0"><output id="itemRotationValue">0°</output></label>
+                <div class="fp-two">
+                  <label class="fp-field"><span>채우기</span><input id="itemFill" type="color" value="#eef4df"></label>
+                  <label class="fp-field"><span>선 색상</span><input id="itemStroke" type="color" value="#20262d"></label>
+                </div>
+                <label class="fp-field"><span>투명도</span><input id="itemOpacity" type="range" min="10" max="100" value="100"><output id="itemOpacityValue">100%</output></label>
+                <div class="fp-inspector-actions">
+                  <button class="fp-btn" id="duplicateBtn" type="button">복제</button>
+                  <button class="fp-btn fp-danger" id="deleteInspectorBtn" type="button">삭제</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="fp-panel">
+              <div class="fp-panel-head"><h2>도면 정보</h2><span>PROJECT</span></div>
+              <label class="fp-field"><span>공간명</span><input id="projectName" type="text" maxlength="50" value="새 공간 도면"></label>
+              <label class="fp-field"><span>주소·메모</span><textarea id="projectMemo" rows="3" maxlength="300" placeholder="예: 서울시 ○○구 / 출입구는 남쪽"></textarea></label>
+              <label class="fp-field"><span>격자 간격</span><select id="gridScale"><option value="0.25">한 칸 0.25m</option><option value="0.5" selected>한 칸 0.5m</option><option value="1">한 칸 1m</option></select></label>
+            </section>
+
+            <section class="fp-panel">
+              <div class="fp-panel-head"><h2>360 촬영 계획</h2><span id="cameraCount">0 POINTS</span></div>
+              <div class="fp-camera-list" id="cameraList"><p>‘촬영점’ 도구로 도면에 촬영 위치를 표시하세요.</p></div>
+            </section>
+
+            <section class="fp-panel">
+              <div class="fp-panel-head"><h2>내보내기</h2><span>STEP 3</span></div>
+              <label class="fp-field"><span>배경</span><select id="exportBackground"><option value="white">흰색</option><option value="transparent">투명</option><option value="grid">격자 포함</option></select></label>
+              <div class="fp-export-grid">
+                <button class="fp-btn fp-primary" id="exportPngSideBtn" type="button">PNG</button>
+                <button class="fp-btn" id="exportSvgBtn" type="button">SVG</button>
+                <button class="fp-btn" id="printBtn" type="button">인쇄</button>
+              </div>
+              <a class="fp-btn fp-wide fp-acid fp-link-btn" href="space.html#quick-inquiry">도면 첨부해 상담받기</a>
+              <p class="fp-help">저장된 도면과 프로젝트 JSON은 서버로 전송되지 않습니다. 문의 시 직접 첨부해 주세요.</p>
+            </section>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">HOW TO USE</span><h2>실측이 완벽하지 않아도<br>상담용 도면을 만들 수 있습니다.</h2><p>정확한 설계도면이 없어도 공간 구조와 주요 시설, 촬영 지점을 전달하는 데 충분하도록 구성했습니다.</p></div>
+        <div class="editor-steps floorplan-steps">
+          <article class="editor-step"><span>01</span><h3>크기 또는 템플릿 선택</h3><p>공간의 대략적인 가로·세로를 입력하거나 업종별 템플릿으로 시작합니다.</p></article>
+          <article class="editor-step"><span>02</span><h3>구조와 시설 배치</h3><p>방, 벽, 문, 창문과 가구를 드래그해 실제 구조에 가깝게 배치합니다.</p></article>
+          <article class="editor-step"><span>03</span><h3>촬영 위치 표시</h3><p>360 촬영이 필요한 지점을 번호로 표시하고 장면 이름을 정리합니다.</p></article>
+          <article class="editor-step"><span>04</span><h3>저장하고 문의</h3><p>PNG와 프로젝트 파일로 저장한 뒤 공간 촬영 문의 폼에 첨부합니다.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="fp-toast" id="fpToast" role="status" aria-live="polite"></div>
+  <div id="site-footer"></div>
+  <script src="assets/layout.js"></script>
+  <script src="assets/floorplan-editor.js?v=20260713a"></script>
+  <script src="assets/app.js?v=20260713-floorplan"></script>
+</body>
+</html>
