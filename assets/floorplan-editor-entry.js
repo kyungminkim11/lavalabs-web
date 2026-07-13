@@ -1,6 +1,11 @@
 (()=>{
   const href='floorplan-editor.html';
   const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  if(current==='floorplan-editor.html'){
+    const style=document.createElement('style');
+    style.textContent='.floorplan-steps{display:grid;gap:12px}.floorplan-steps .editor-step{padding:23px;border:1px solid #dfe3da;border-radius:20px;background:#fff}.floorplan-steps .editor-step span{display:inline-grid;width:34px;height:34px;place-items:center;border-radius:10px;background:#11161d;color:#c9ff48;font:900 11px Inter,sans-serif}.floorplan-steps .editor-step h3{margin:16px 0 7px;font-size:17px}.floorplan-steps .editor-step p{margin:0;color:#66717c;font-size:11px;line-height:1.65}';
+    document.head.appendChild(style);
+  }
   const addNav=()=>{
     document.querySelectorAll('.dropdown-menu').forEach(menu=>{
       if(menu.querySelector(`a[href="${href}"]`))return;
