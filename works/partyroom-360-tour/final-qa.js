@@ -55,4 +55,11 @@
       document.querySelectorAll(".reveal-section:not(.is-visible)").forEach(section=>section.classList.add("is-visible"));
     },1200);
   }
+
+  if(!document.querySelector('script[data-lava-contrast-guard]')){
+    const contrastGuard=document.createElement('script');
+    contrastGuard.src='/assets/site-contrast-guard.js?v=20260714a';
+    contrastGuard.dataset.lavaContrastGuard='true';
+    document.head.appendChild(contrastGuard);
+  }
 })();
