@@ -5,7 +5,9 @@
   if (!URL.createObjectURL.__lavaPatched) {
     const wrappedCreateObjectURL = blob => {
       const url = originalCreateObjectURL(blob);
-      if (blob instanceof Blob && blob.type.startsWith('image/')) {
+      const stack = new Error().stack || '';
+      const isDownloadOnly = /downloadBlob/.test(stack);
+      if (blob instanceof Blob && blob.type.startsWith('image/') && !isDownloadOnly) {
         window.__lava360LatestImageUrl = url;
         window.__lava360ViewerConfig = Object.assign({}, window.__lava360ViewerConfig || {}, { panorama: url });
         window.dispatchEvent(new CustomEvent('lava360:imagesource', { detail: { url, type: blob.type, size: blob.size } }));
