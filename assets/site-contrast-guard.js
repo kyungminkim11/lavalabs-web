@@ -229,8 +229,8 @@
   window.addEventListener('load',()=>setTimeout(audit,120));
   window.addEventListener('pageshow',schedule);
   const observer=new MutationObserver(mutations=>{
-    if(mutations.some(mutation=>mutation.type==='childList'||(mutation.type==='attributes'&&['class','style','data-theme'].includes(mutation.attributeName))))schedule();
+    if(mutations.some(mutation=>mutation.type==='childList'||(mutation.type==='attributes'&&['class','data-theme'].includes(mutation.attributeName))))schedule();
   });
-  observer.observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['class','style','data-theme']});
+  observer.observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['class','data-theme']});
   matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',schedule);
 })();
