@@ -83,4 +83,12 @@ if(location.pathname.toLowerCase().endsWith('demo-store-guide.html')){
 const exampleScript=document.createElement('script');
 exampleScript.src='assets/service-examples.js?v=20260712b';
 exampleScript.defer=true;
-document.head.append(exampleScript);
+document.head.appendChild(exampleScript);
+
+if(!document.querySelector('script[data-lava-contrast-guard]')){
+  const contrastGuard=document.createElement('script');
+  contrastGuard.src='/assets/site-contrast-guard.js?v=20260714a';
+  contrastGuard.defer=true;
+  contrastGuard.dataset.lavaContrastGuard='true';
+  document.head.appendChild(contrastGuard);
+}
