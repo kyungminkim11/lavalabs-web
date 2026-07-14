@@ -49,4 +49,11 @@
   document.querySelectorAll('a[target="_blank"]').forEach(link=>{
     if(!link.rel.includes("noopener"))link.rel=`${link.rel} noopener`.trim();
   });
+
+  if(!document.querySelector('script[data-lava-contrast-guard]')){
+    const contrastGuard=document.createElement('script');
+    contrastGuard.src='/assets/site-contrast-guard.js?v=20260714a';
+    contrastGuard.dataset.lavaContrastGuard='true';
+    document.head.appendChild(contrastGuard);
+  }
 })();
