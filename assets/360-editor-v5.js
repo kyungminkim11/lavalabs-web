@@ -18,7 +18,7 @@
 
   (async () => {
     try {
-      await loadScript('assets/360-editor-view-hook.js?v=20260714-view-export2', true);
+      await loadScript('assets/360-editor-view-hook.js?v=20260714-view-export3', true);
       await loadScript('assets/360-editor-pro-loader.js?v=20260713-pro1');
       await loadScript('assets/360-editor-view-export.js?v=20260714-view-export1');
       await loadScript('assets/360-editor-gpano-fix.js?v=20260713-naver360-1', true);
