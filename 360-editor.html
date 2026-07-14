@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0d1117">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
-  <meta name="description" content="360도 이미지를 브라우저에서 보정하고 개인정보 모자이크와 바닥 로고를 적용한 뒤, 네이버 블로그 등에서 360 뷰로 인식할 수 있도록 GPano XMP 메타데이터를 포함한 JPEG로 저장합니다.">
+  <meta name="description" content="360도 이미지를 브라우저에서 보정하고 정면 위치와 수평·기울기를 조절한 뒤, 현재 시야를 원하는 비율의 2D 이미지 또는 GPano 메타데이터가 포함된 360 JPEG로 저장합니다.">
   <link rel="canonical" href="https://space.lavalabs.co.kr/360-editor.html">
-  <title>360 이미지 편집기 · 네이버 360 호환 저장 | LavaLabs</title>
+  <title>360 이미지 편집기 · 정면·수평 보정과 2D 저장 | LavaLabs</title>
   <link rel="icon" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,14 +18,14 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="LavaLabs">
-  <meta property="og:title" content="360 이미지를 편집하고 네이버 360 뷰 호환 JPEG로 저장하세요. | LavaLabs">
-  <meta property="og:description" content="360 이미지 보정, 개인정보 모자이크, 바닥 로고와 GPano XMP 메타데이터 삽입을 브라우저에서 처리합니다.">
+  <meta property="og:title" content="360 사진의 정면과 수평을 맞추고, 원하는 화면을 2D로 저장하세요. | LavaLabs">
+  <meta property="og:description" content="정면 위치 지정, 수평·기울기 보정, 개인정보 모자이크, 바닥 로고, 비율별 2D 이미지 출력과 GPano 호환 360 JPEG 저장을 브라우저에서 처리합니다.">
   <meta property="og:url" content="https://space.lavalabs.co.kr/360-editor.html">
-  <meta property="og:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260713-naver360">
+  <meta property="og:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260714-view-export">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="360 이미지 편집기 · 네이버 360 호환 저장 | LavaLabs">
-  <meta name="twitter:description" content="편집한 2:1 JPEG에 GPano 메타데이터를 삽입해 360 이미지로 저장합니다.">
-  <meta name="twitter:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260713-naver360">
+  <meta name="twitter:title" content="360 이미지 편집기 · 정면·수평 보정과 2D 저장 | LavaLabs">
+  <meta name="twitter:description" content="현재 360 시야를 1:1, 4:5, 16:9, 9:16 또는 직접 지정한 비율의 일반 이미지로 출력합니다.">
+  <meta name="twitter:image" content="https://space.lavalabs.co.kr/assets/social/space.jpg?v=20260714-view-export">
 </head>
 <body>
   <div id="site-header"></div>
@@ -33,14 +33,14 @@
     <section class="page-hero editor-hero">
       <div class="container inner">
         <span class="eyebrow">LAVA 360 STUDIO · LOCAL EDITOR</span>
-        <h1>편집한 이미지도<br>360 사진으로 이어지게.</h1>
-        <p>360 이미지 보정과 바닥 로고를 적용한 뒤 네이버 블로그 등에서 360 뷰로 인식하는 데 필요한 GPano 메타데이터를 포함해 저장합니다.</p>
+        <h1>360 사진의 방향을 바로잡고,<br>필요한 장면은 일반 사진으로.</h1>
+        <p>원하는 방향을 정면으로 지정하고 수평과 기울기를 보정하세요. 편집한 360 이미지는 호환 JPEG로, 현재 보고 있는 장면은 SNS와 블로그에 맞는 비율의 2D 이미지로 저장할 수 있습니다.</p>
         <div class="editor-hero-actions">
           <a class="button button-primary" href="#editor">편집기 열기</a>
           <a class="button button-outline" href="space.html">360 촬영 서비스 보기</a>
         </div>
         <div class="editor-hero-badges" aria-label="주요 기능">
-          <span>이미지 서버 전송 없음</span><span>네이버 360 호환 JPEG</span><span>GPano XMP 자동 삽입</span><span>개인정보 모자이크</span><span>바닥 로고</span>
+          <span>이미지 서버 전송 없음</span><span>정면 위치 지정</span><span>수평·기울기 보정</span><span>현재 시야 2D 저장</span><span>출력 비율·해상도 조절</span><span>GPano XMP 자동 삽입</span><span>개인정보 모자이크</span><span>바닥 로고</span>
         </div>
       </div>
     </section>
@@ -58,7 +58,7 @@
   <div id="site-footer"></div>
   <script src="assets/layout.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js" onerror="this.onerror=null;this.src='https://unpkg.com/pannellum@2.5.7/build/pannellum.js'"></script>
-  <script src="assets/360-editor-v5.js?v=20260713-naver360-1"></script>
+  <script src="assets/360-editor-v5.js?v=20260714-view-export2"></script>
   <script src="assets/app.js?v=20260713-naver360"></script>
 </body>
 </html>
