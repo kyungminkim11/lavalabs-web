@@ -18,9 +18,9 @@
   });
 
   document.querySelectorAll('.desktop-nav,.mobile-menu').forEach(nav=>{
-    const legacy=[...nav.querySelectorAll('a')].filter(link=>toPath(link.getAttribute('href')).endsWith('/examples.html'));
-    legacy.forEach(link=>link.remove());
-    const portfolio=[...nav.querySelectorAll('a')].find(link=>toPath(link.getAttribute('href')).endsWith('/works/'));
-    if(portfolio)portfolio.textContent='포트폴리오';
+    const links=[...nav.querySelectorAll('a')].filter(link=>toPath(link.getAttribute('href')).endsWith('/works/'));
+    const primary=links.shift();
+    links.forEach(link=>link.remove());
+    if(primary){primary.href='/works/';primary.textContent='포트폴리오'}
   });
 })();
