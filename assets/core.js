@@ -1,6 +1,6 @@
 const $=(s,r=document)=>r.querySelector(s);const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 
-const CONTACT={email:'info@lavalabs.co.kr',center:'0507-1362-3970',centerTel:'050713623970',mobile:'010-7914-3970',mobileTel:'01079143970'};
+const CONTACT={email:'space@lavalabs.co.kr',center:'0507-1362-3970',centerTel:'050713623970',mobile:'010-7914-3970',mobileTel:'01079143970'};
 const contrastStyle=document.createElement('style');contrastStyle.textContent=`
 :root{--muted:#56616d;--accent:#667b00}
 body{color:#11151b}
@@ -36,13 +36,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 `;document.head.appendChild(contrastStyle);
 
 function updateContactInfo(){
-  $$('a[href^="mailto:"]').forEach(a=>{if(a.href.includes('lavalabs.ceo@gmail.com')){a.href=`mailto:${CONTACT.email}`;if(a.textContent.includes('lavalabs.ceo@gmail.com'))a.textContent=CONTACT.email}});
+  $$('a[href^="mailto:"]').forEach(a=>{if(a.href.includes('space@lavalabs.co.kr')){a.href=`mailto:${CONTACT.email}`;if(a.textContent.includes('space@lavalabs.co.kr'))a.textContent=CONTACT.email}});
   $$('a[href^="tel:"]').forEach(a=>{if(a.href.includes('0319009228')){a.href=`tel:${CONTACT.centerTel}`;a.textContent=CONTACT.center}});
-  $$('strong,a').forEach(el=>{const t=el.textContent.trim();if(t==='lavalabs.ceo@gmail.com'){el.textContent=CONTACT.email;if(el.tagName==='A')el.href=`mailto:${CONTACT.email}`}if(t==='031-900-9228'){el.textContent=CONTACT.center;if(el.tagName==='A')el.href=`tel:${CONTACT.centerTel}`}});
+  $$('strong,a').forEach(el=>{const t=el.textContent.trim();if(t==='space@lavalabs.co.kr'){el.textContent=CONTACT.email;if(el.tagName==='A')el.href=`mailto:${CONTACT.email}`}if(t==='031-900-9228'){el.textContent=CONTACT.center;if(el.tagName==='A')el.href=`tel:${CONTACT.centerTel}`}});
   $$('.business-info>div').forEach(div=>{const label=$('span',div);if(!label)return;if(label.textContent.trim()==='대표 연락처'){label.textContent='고객센터';const value=$('a,strong',div);if(value){value.textContent=CONTACT.center;if(value.tagName==='A')value.href=`tel:${CONTACT.centerTel}`}}if(label.textContent.trim()==='이메일'){const value=$('a,strong',div);if(value){value.textContent=CONTACT.email;if(value.tagName==='A')value.href=`mailto:${CONTACT.email}`}}});
   const business=$('.business-info');if(business&&!$$('.business-info span').some(s=>s.textContent.trim()==='업무용 휴대전화')){const mobile=document.createElement('div');mobile.innerHTML=`<span>업무용 휴대전화</span><a href="tel:${CONTACT.mobileTel}">${CONTACT.mobile}</a>`;const emailBox=$$('.business-info>div').find(d=>$('span',d)?.textContent.trim()==='이메일');emailBox?.insertAdjacentElement('beforebegin',mobile)}
   const footerLinks=$$('.footer-links').find(box=>$$('a',box).some(a=>a.href.startsWith('mailto:')));if(footerLinks&&!$$('a',footerLinks).some(a=>a.href.includes(CONTACT.mobileTel))){const center=$$('a',footerLinks).find(a=>a.href.startsWith('tel:'));if(center){center.textContent=`고객센터 ${CONTACT.center}`;center.href=`tel:${CONTACT.centerTel}`;const mobile=document.createElement('a');mobile.href=`tel:${CONTACT.mobileTel}`;mobile.textContent=`업무용 휴대전화 ${CONTACT.mobile}`;center.insertAdjacentElement('afterend',mobile)}}
-  $$('.contact-meta>div').forEach(div=>{const label=$('span',div),value=$('strong',div);if(!label||!value)return;const l=label.textContent.trim(),v=value.textContent.trim();if(l==='PHONE'||l==='대표 연락처'||v==='031-900-9228'){label.textContent=l==='PHONE'?'CUSTOMER CENTER':'고객센터';value.textContent=CONTACT.center}if(l==='EMAIL'||l==='이메일'||v==='lavalabs.ceo@gmail.com'){value.textContent=CONTACT.email}});
+  $$('.contact-meta>div').forEach(div=>{const label=$('span',div),value=$('strong',div);if(!label||!value)return;const l=label.textContent.trim(),v=value.textContent.trim();if(l==='PHONE'||l==='대표 연락처'||v==='031-900-9228'){label.textContent=l==='PHONE'?'CUSTOMER CENTER':'고객센터';value.textContent=CONTACT.center}if(l==='EMAIL'||l==='이메일'||v==='space@lavalabs.co.kr'){value.textContent=CONTACT.email}});
   const meta=$('.contact-meta');if(meta&&!$$('.contact-meta span').some(s=>['BUSINESS MOBILE','업무용 휴대전화'].includes(s.textContent.trim()))){const mobile=document.createElement('div');mobile.innerHTML=`<span>${location.pathname.endsWith('contact.html')?'BUSINESS MOBILE':'업무용 휴대전화'}</span><strong>${CONTACT.mobile}</strong>`;const emailCard=$$('.contact-meta>div').find(d=>['EMAIL','이메일'].includes($('span',d)?.textContent.trim()));emailCard?.insertAdjacentElement('afterend',mobile)}
 }
 

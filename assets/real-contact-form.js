@@ -1,5 +1,5 @@
 (()=>{
-  const ENDPOINT='https://formsubmit.co/info@lavalabs.co.kr';
+  const ENDPOINT='https://formsubmit.co/space@lavalabs.co.kr';
   const THANK_YOU='https://space.lavalabs.co.kr/thanks.html';
   const AUTO_REPLY='문의가 접수되었습니다. 내용을 확인한 뒤 순차적으로 답변드리겠습니다. 문의만으로 계약이나 결제가 진행되지는 않습니다.';
   const MAX_FILE_BYTES=10*1024*1024;

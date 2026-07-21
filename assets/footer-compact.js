@@ -42,7 +42,7 @@ footer.innerHTML=`
     <h4>CONTACT</h4>
     <a class="compact-contact-link" href="tel:050713623970" aria-label="고객센터 0507-1362-3970"><span>고객센터</span><strong>0507-1362-3970</strong></a>
     <a class="compact-contact-link" href="tel:01079143970" aria-label="업무용 휴대전화 010-7914-3970"><span>업무용 휴대전화</span><strong>010-7914-3970</strong></a>
-    <a class="compact-contact-link" href="mailto:info@lavalabs.co.kr" aria-label="이메일 문의 info@lavalabs.co.kr"><span>이메일 문의</span><strong>info@lavalabs.co.kr</strong></a>
+    <a class="compact-contact-link" href="mailto:space@lavalabs.co.kr" aria-label="이메일 문의 space@lavalabs.co.kr"><span>이메일 문의</span><strong>space@lavalabs.co.kr</strong></a>
     <a class="button button-primary" href="contact.html">프로젝트 문의</a>
   </div>
 </div>

@@ -1,6 +1,6 @@
 (() => {
   const PAGE = "lavaspin.html";
-  const CONTACT_EMAIL = "info@lavalabs.co.kr";
+  const CONTACT_EMAIL = "space@lavalabs.co.kr";
   const path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
   const q = (selector, root = document) => root.querySelector(selector);
   const qa = (selector, root = document) => [...root.querySelectorAll(selector)];

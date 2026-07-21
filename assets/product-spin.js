@@ -1,6 +1,6 @@
 (() => {
   const SERVICE_NAME = "360° 제품 스핀 제작";
-  const CONTACT_EMAIL = "info@lavalabs.co.kr";
+  const CONTACT_EMAIL = "space@lavalabs.co.kr";
   const path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
 
   const style = document.createElement("style");

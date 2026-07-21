@@ -326,7 +326,7 @@
         height: 630
       },
       image: SOCIAL_IMAGE,
-      email: "info@lavalabs.co.kr",
+      email: "space@lavalabs.co.kr",
       telephone: "+82-507-1362-3970",
       address: {
         "@type": "PostalAddress",

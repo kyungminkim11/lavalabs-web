@@ -48,11 +48,11 @@ const footer=`
     </div>
     <div>
       <h4>CONTACT</h4>
-      <div class="footer-links"><a href="mailto:info@lavalabs.co.kr">info@lavalabs.co.kr</a><a href="tel:050713623970">0507-1362-3970</a><a href="tel:01079143970">010-7914-3970</a><a href="contact.html">견적 문의</a><a href="partnership.html">협업 제안</a></div>
+      <div class="footer-links"><a href="mailto:space@lavalabs.co.kr">space@lavalabs.co.kr</a><a href="tel:050713623970">0507-1362-3970</a><a href="tel:01079143970">010-7914-3970</a><a href="contact.html">견적 문의</a><a href="partnership.html">협업 제안</a></div>
     </div>
   </div>
   <div class="container business-info">
-    <div><span>상호</span><strong>라바랩스(LavaLabs)</strong></div><div><span>대표자</span><strong>김경민</strong></div><div><span>사업자등록번호</span><strong>455-23-01867</strong></div><div><span>통신판매업 신고번호</span><strong>2025-고양일산서-1352</strong></div><div class="business-wide"><span>사업장 소재지</span><strong>경기도 고양시 일산서구 일현로 47, 2층 204호 1308호실(탄현동, 예일 큰프라자)</strong></div><div><span>고객센터</span><a href="tel:050713623970">0507-1362-3970</a></div><div><span>업무용 휴대전화</span><a href="tel:01079143970">010-7914-3970</a></div><div><span>이메일</span><a href="mailto:info@lavalabs.co.kr">info@lavalabs.co.kr</a></div><div><span>거래 안내</span><strong>사업자 거래·세금계산서 발행 가능</strong></div>
+    <div><span>상호</span><strong>라바랩스(LavaLabs)</strong></div><div><span>대표자</span><strong>김경민</strong></div><div><span>사업자등록번호</span><strong>455-23-01867</strong></div><div><span>통신판매업 신고번호</span><strong>2025-고양일산서-1352</strong></div><div class="business-wide"><span>사업장 소재지</span><strong>경기도 고양시 일산서구 일현로 47, 2층 204호 1308호실(탄현동, 예일 큰프라자)</strong></div><div><span>고객센터</span><a href="tel:050713623970">0507-1362-3970</a></div><div><span>업무용 휴대전화</span><a href="tel:01079143970">010-7914-3970</a></div><div><span>이메일</span><a href="mailto:space@lavalabs.co.kr">space@lavalabs.co.kr</a></div><div><span>거래 안내</span><strong>사업자 거래·세금계산서 발행 가능</strong></div>
   </div>
   <div class="container footer-bottom"><span>© <span id="year"></span> LavaLabs. All rights reserved.</span><div><a href="/works/">포트폴리오</a><a href="sitemap.html">전체 사이트맵</a><a href="about.html">사업자 정보</a><a href="contact.html">문의</a></div></div>
 </footer>
